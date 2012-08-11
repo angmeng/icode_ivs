@@ -1,0 +1,111 @@
+<% title "Purchase Requisition" %>
+<br />
+<%= link_to image_tag("new.png", :title => "New"), new_purchase_requisition_path %>
+<br /><br />
+<% form_for @search do |f| %>
+  <table class="list" style="width: 50%">
+    <tr>
+      <th align="left">
+        From Date
+
+      </th>
+      <th align="left">
+        To Date
+
+      </th>
+      <th>
+        Action
+      </th>
+    </tr>
+    <tr>
+      <td><%= f.calendar_date_select :pr_date_greater_than_or_equal_to %></td>
+      <td><%= f.calendar_date_select :pr_date_less_than_or_equal_to %></td>
+       <td align="center"><%= f.submit(t "links.search") %></td>
+    </tr>
+
+
+</table>
+<% end %>
+<br />
+<% form_for @search do |f| %>
+  <table class="list" style="width: auto">
+    <tr>
+      <th align="left">PR No</th><td><%= f.text_field :pr_number_like %></td>
+</tr>
+<tr>
+      <th align="left">Batch No</th><td><%= f.text_field :batch_no_like %></td>
+</tr>
+<tr>
+      <th align="left">BOM/PA</th> <td><%= f.select :purchase_requisition_category_id_equals, PurchaseRequisitionCategory.all(:order => "name").map {|c| [c.name, c.id]} , {:include_blank => true} %></td>
+</tr>
+<tr>
+      <th align="left">Project</th><td><%= f.select :project_id_equals, Project.all(:order => "name").map {|c| [c.name, c.id]} , {:include_blank => true} %></td>
+</tr>
+<tr>
+      <th align="left">Product</th><td><%= f.select :purchase_requisition_items_product_id_equals, Product.all(:order => "name").map {|c| [c.name, c.id]} , {:include_blank => true} %></td>
+
+      
+     
+    </tr>
+   
+   <tr>
+     <th align="left">Item</th> <td><%= f.text_field :purchase_requisition_items_material_description_like %></td>
+</tr>
+<tr>
+     <th align="left">Category</th><td><%= f.select :purchase_requisition_items_material_material_category_id_equals, MaterialCategory.all(:order => "name").map {|m| [m.name, m.id]}, {:include_blank => true} %></td>
+</tr>
+<tr>
+     <th align="left">Supplier</th> <td><%= f.select :purchase_requisition_items_supplier_id_equals, Supplier.all(:order => "name").map {|c| [c.name, c.id]} , {:include_blank => true} %></td>
+</tr>
+<tr>
+      <th align="left"><%=t "common.action" %></th><td><%= f.submit(t "links.search") %></td>
+
+
+   </tr>
+
+</table>
+<% end %>
+<br />
+<% paginated_section @prs do %>
+<br />
+<table class="list">
+  <thead>
+  <tr>
+    <th align="left">Date</th>
+    <th align="left">PR No</th>
+    <th align="left">Batch No</th>
+    <th align="left">BOM/PA</th>
+    <th align="left">Delivery Date</th>
+    <th align="left">Remark</th>
+    <th align="left"><%=t "invoice.total" %></th>
+    <th align="left">Status</th>
+    <th><%=t "common.action" %></th>
+  </tr>
+    </thead>
+   <tbody>
+  <% for purchase in @prs %>
+     <tr class="<%= cycle("odd", "even") %>">
+      <td><%=h purchase.pr_date %></td>
+      <td><%=h purchase.pr_number %></td>
+      <td><%=h purchase.batch_no %></td>
+      
+      <td><%=h purchase.purchase_requisition_category.name rescue "-" %></td>
+      <td><%=h purchase.delivery_date %></td>
+      <td><%=h purchase.remark %></td>
+      <td> 
+         <% purchase.total_amount.each do |t| %>  
+             <%= t.name  %>  <%= "%.3f" %  t.total %><br />
+         <% end %>
+      </td>
+      <td><%= purchase.status %></td>
+      <td align="center">
+      	<%= link_to image_tag("show.png", :title => "show"), purchase %>
+     <%= link_to image_tag("edit.png", :title => "Edit"), edit_purchase_requisition_path(purchase) %>
+   <%= link_to image_tag("delete.png", :title => "Delete"), purchase, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+   </tbody>
+</table>
+<br />
+
+<% end %>

@@ -1,0 +1,19 @@
+one:
+  cheque_number: MyString
+  cheque_bank_id: 1
+  reference_id: 1
+  cheque_type_id: 1
+  owner_name: MyString
+  cheque_date: 2010-01-17
+  clear: false
+  bank_account_number: MyString
+
+two:
+  cheque_number: MyString
+  cheque_bank_id: 1
+  reference_id: 1
+  cheque_type_id: 1
+  owner_name: MyString
+  cheque_date: 2010-01-17
+  clear: false
+  bank_account_number: MyString

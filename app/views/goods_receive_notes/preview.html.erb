@@ -1,0 +1,70 @@
+<h3 style="text-align: center"><%= company_name.upcase %> <%# "UNI-VESSEL ENGINEERING (B'WORTH) SDN.BHD." %></h3>
+<h3 style="text-align: center">PURCHASE REQUISITION</h3>
+
+<table width="100%" style="border: none">
+	<tr>
+          <td style="width: 10%"><b>PR NO</b> </td>
+          <td> : </td>
+          <td style="width: 60%"><%= @pr.pr_number %></td>
+          <td style="width: 10%"><b>Date</b> </td>
+          <td> : </td>
+          <td><%= @pr.pr_date.strftime("%d-%m-%Y") %></td>
+	</tr>
+	
+	<tr>
+          <td><b>Batch No</b> </td>
+          <td> : </td>
+          <td> <%= @pr.batch_no %></td>
+          <td><b>BOM / PA</b> </td>
+          <td> : </td>
+          <td> <%= @pr.purchase_requisition_category.name %></td>
+	</tr>
+	
+</table>
+<br />
+<table border="1" style="width: 100%;border-style: solid;border-color: #111113;border-collapse: collapse;" cellpadding="2">
+  <tr>
+    <th>No</th>
+    <th>Project</th>
+    <th>Product</th>
+    <th>Category</th>
+    <th>Description of Item</th>
+    <th>Pur Qty</th>
+    <th>Currency</th>
+    <th>Unit Price</th>
+    <th>Total Amount</th>
+    <th>Supplier</th>
+    <th>Remark</th>
+  </tr>
+	
+  <% line = 0 %>
+  <% @items.each do |c|  %>
+  <% line += 1 %>
+  <tr>
+    <td align="center"><%= line.to_s %></td>
+    <td align="center"><%= c.project.name rescue "-" %></td>
+    <td align="center"><%= c.product.name rescue "-" %></td>
+    <td align="center"><%= c.material.material_category.name rescue "-" %></td>
+    <td align="left"><%= c.material.code_name %></td>
+    <td align="center"><%= "%.3f" % c.quantity %></td>
+    <td align="center"><%= c.currency.name %></td>
+    <td align="center"><%= "%.3f" % c.unit_price %></td>
+    <td align="center"><%= "%.3f" % c.total_amount %></td>
+    <td align="center"><%= c.supplier.name %></td>
+    <td align="center"><%= c.remark %></td>
+  </tr>
+  <% end %>
+  <tr>
+    <td colspan="4"></td>
+    <td align="center"><strong>ITEM : <%= line.to_s  %> ONLY </strong> </td>
+    <td colspan="3">  </td>
+    <td align="center"> <strong> <% @pr.total_amount.each do |t| %>
+              <%= t.name  %>  <%= "%.3f" % t.total %><br />
+           <% end %></strong><hr/><hr/></td>
+    <td colspan="2"></td>
+  </tr>
+
+</table>
+
+
+

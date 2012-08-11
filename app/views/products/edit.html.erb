@@ -1,0 +1,10 @@
+<% title (t "titles.edit") %>
+<br />
+<p>
+  <%= link_to image_tag("show.png", :title => "Show"), @product %> |
+  <%= link_to image_tag("home.png", :title => "View All"), products_path %>
+</p>
+<br />
+<%= render :partial => 'form' %>
+
+

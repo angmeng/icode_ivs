@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  outlet_id: 1
+  purchase_order_date: 2010-05-18
+  purchase_order_number: MyString
+  remark: MyText
+  void: false
+
+two:
+  outlet_id: 1
+  purchase_order_date: 2010-05-18
+  purchase_order_number: MyString
+  remark: MyText
+  void: false

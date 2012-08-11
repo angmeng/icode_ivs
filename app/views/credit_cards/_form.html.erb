@@ -1,0 +1,32 @@
+<% form_for @credit_card do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :card_number %><br />
+    <%= f.text_field :card_number %>
+  </p>
+  <p>
+    <%= f.label :bank_id %><br />
+    <%= f.text_field :bank_id %>
+  </p>
+  <p>
+    <%= f.label :reference_id %><br />
+    <%= f.text_field :reference_id %>
+  </p>
+  <p>
+    <%= f.label :card_type_id %><br />
+    <%= f.text_field :card_type_id %>
+  </p>
+  <p>
+    <%= f.label :card_category_id %><br />
+    <%= f.text_field :card_category_id %>
+  </p>
+  <p>
+    <%= f.label :owner_name %><br />
+    <%= f.text_field :owner_name %>
+  </p>
+  <p>
+    <%= f.label :clear %><br />
+    <%= f.check_box :clear %>
+  </p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>

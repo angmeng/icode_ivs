@@ -1,0 +1,30 @@
+
+<% title "Editing Project Supervisors"  %>
+<br />
+<%= link_to 'Show', @project_supervisor %> |
+<%= link_to 'Back', project_supervisors_path %>
+<br /><br />
+<% form_for(@project_supervisor) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :employee_number %><br />
+    <%= f.text_field :employee_number %>
+  </p>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label :remark %><br />
+    <%= f.text_field :remark %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+

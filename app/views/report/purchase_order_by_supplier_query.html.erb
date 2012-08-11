@@ -1,0 +1,99 @@
+<% title ("Purchase Order by Supplier") %>
+<br />
+<% form_for @search do |f| %>
+  <table calss="list" style="width: auto;">
+    <tr>
+      <th align="left">From Date</th><td><%= f.calendar_date_select :purchase_order_purchase_order_date_gte %></td>
+      <th align="left">To Date</th><td><%= f.calendar_date_select :purchase_order_purchase_order_date_lte %></td>
+      <th align="left">Supplier</th><td><%= f.select :purchase_order_supplier_id_equals, Supplier.all(:order => "name").map {|s| [s.name, s.id]}, :include_blank => true %></td>
+      <th align="left"> </th><td><%= f.submit(t "links.search") %> | <%= link_to "Back", "/report/purchase_order_by_supplier_query"   %></td>
+</tr>
+</table>
+<% end %>
+<br />
+
+<% if !@purchase_orders.empty? %>
+<br />
+<table style="width: 100%;border-style: solid;border-width: medium;border-spacing: 0">
+  <thead>
+  <tr>
+    <th style="width: 100px;border-style: solid;border-width: thick;border-right: none;padding: 2px 2px 2px 2px">PO Date</th>
+    <th style="border-style: solid;border-width: thick;border-right: none;padding: 2px 2px 2px 2px">PO No</th>
+    <th style="border-style: solid;border-width: thick;border-right: none;padding: 2px 2px 2px 2px">Product</th>
+    <th style="border-style: solid;border-width: thick;border-right: none;padding: 2px 2px 2px 2px">Description</th>
+    <th style="border-style: solid;border-width: thick;border-right: none;padding: 2px 2px 2px 2px">Project</th>
+    <th style="border-style: solid;border-width: thick;padding: 2px 2px 2px 2px">Total</th>
+    
+  </tr>
+</thead>
+   <tbody>
+   <%
+     @supplier_name = ""
+     @grand_total = {}
+     @project_total_based_on_currency = {}
+   %>
+<% @purchase_orders.each do |item| %>
+<%
+  	if @grand_total.has_key?(item.currency.name)
+       @grand_total[item.currency.name] += item.total_amount 
+     else
+       @grand_total = @grand_total.merge({ item.currency.name => item.total_amount })
+     end
+%>
+   <% if @supplier_name == item.purchase_order.supplier.name 
+         if @project_total_based_on_currency.has_key?(item.currency.name)
+           @project_total_based_on_currency[item.currency.name] += item.total_amount 
+         else
+           @project_total_based_on_currency = @project_total_based_on_currency.merge({ item.currency.name => item.total_amount })
+         end
+      else	        
+       %>
+        
+    <% if !@project_total_based_on_currency.blank? %>
+     <tr>
+       <td colspan="6" style="width: 100%;height: 30px;text-align: right;border-style: solid;border-width: thin;">
+         <h2>Total : <%= @project_total_based_on_currency.map {|key, value| "#{key}  #{number_with_precision(value, :precision => 3)}" }.join(", ") %></h2>
+       </td>
+     </tr>
+    <% end %>
+    <% @project_total_based_on_currency = { item.currency.name => item.total_amount } %>
+    <% @supplier_name = item.purchase_order.supplier.name %>
+     <tr>
+       <td colspan="6" style="height: 38px;width: 100%;border-style: solid;border-width: thin;">
+         <h2><%= @supplier_name %></h2>
+       </td>
+     </tr>
+     <% end %>
+   <tr>
+    <td style="width: auto;border-style: solid;border-width: thin;border-bottom: none;border-right: none"><%=h item.purchase_order.purchase_order_date %></td>
+    <td style="width: auto;border-style: solid;border-width: thin;border-bottom: none;border-right: none"><%=h item.purchase_order.purchase_order_number %></td>
+    
+    <td style="width: auto;border-style: solid;border-width: thin;border-bottom: none;border-right: none"><%=h item.product.name rescue " - " %></td>
+    <td style="width: auto;border-style: solid;border-width: thin;border-bottom: none;border-right: none"><%=h item.material.description rescue " - "  %></td>
+    <td style="width: auto;border-style: solid;border-width: thin;border-bottom: none;border-right: none"><%=h item.purchase_order.project.name rescue " - "  %></td>
+    <td style="width: auto;border-style: solid;border-width: thin;border-bottom: none;"><%= "#{item.currency.name} " + ("%.3f" % item.total_amount) %></td>
+   </tr>
+   
+<% end %>
+     <% if !@project_total_based_on_currency.blank?  %>
+      <tr>
+       <td colspan="6" style="width: 100%;height: 30px;text-align: right;border-style: solid;border-width: thin;">
+         <h2>Total : <%= @project_total_based_on_currency.map {|key, value| "#{key}  #{ number_with_precision(value, :precision => 3)}" }.join(", ") %></h2>
+       </td>
+     </tr>
+       <% end %>
+     </tbody>
+</table>
+
+<br />
+ <% if !@grand_total.blank?  %>
+<table style="width: 100%">
+      <tr>
+        <td style="width: 100%;height: 30px;text-align: right;border-style: solid;border-width: thin;">
+         <h2>Grand Total : <%= @grand_total.map {|key, value| "#{key}  #{ number_with_precision(value, :precision => 3)}" }.join(", ") %></h2>
+       </td>
+     </tr>
+     </table>
+  <% end %>
+<% end %>
+

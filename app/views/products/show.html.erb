@@ -1,0 +1,50 @@
+<%= render '/shared/product_header' %>
+
+
+<% title (t "titles.product") %>
+<br />
+<p>
+   
+  <%= link_to image_tag("edit.png", :title => "Edit"), edit_product_path(@product) %> |
+  <%= link_to image_tag("delete.png", :title => "Delete"), @product, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to image_tag("home.png", :title => "View All"), products_path %>
+</p>
+<p>
+   <%= generate_previous_next_label(@first, @previous, @next, @last) %>	
+</p>
+<br />
+
+<table style="width:50%">
+	<tr>
+		<td style="width:30%"><strong><%=t 'product.code' %>:</strong></td>
+		<td style="width:70%"><%=h @product.code %></td>
+	</tr>
+	<tr>
+		<td><strong><%=t 'product.name' %>:</strong></td>
+		<td> <%=h @product.name %></td>
+	</tr>
+        <tr>
+		<td><strong>Group:</strong></td>
+		<td><%=h @product.product_group.name rescue "-" %></td>
+	</tr>
+	<tr>
+		<td><strong><%=t 'product.product_category' %>:</strong></td>
+		<td><%=h @product.product_category_name rescue "-" %></td>
+	</tr>
+        <tr>
+		<td><strong>Uom:</strong></td>
+		<td><%=h @product.uom.name rescue "-" %></td>
+	</tr>
+        
+	<tr>
+		<td><strong><%=t 'product.description' %>:</strong></td>
+		<td><%=h @product.description %></td>
+	</tr>
+	<tr>
+		<td valign="top"><strong><%=t 'product.image' %>:</strong></td>
+		<td><%= image_tag @product.photo.url(:thumb) %></td>
+	</tr>
+</table>
+
+
+<br />

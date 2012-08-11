@@ -1,0 +1,17 @@
+one:
+  name: MyString
+  product_category_id: 1
+  description: MyText
+  open_balance: 1
+  uom: MyString
+  selling_price: 9.99
+  active: false
+
+two:
+  name: MyString
+  product_category_id: 1
+  description: MyText
+  open_balance: 1
+  uom: MyString
+  selling_price: 9.99
+  active: false

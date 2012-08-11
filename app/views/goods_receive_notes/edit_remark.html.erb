@@ -1,0 +1,48 @@
+<% content_for :head do %>
+<%= include_tiny_mce_if_needed %>
+<% end %>
+
+<% title "Goods Receive Note Item Remark" %>
+
+<br />
+
+<%= link_to "Back", @goods_receive_note %>
+<br /><br />
+<table class="list">
+  <thead>
+    <tr>
+        <th align="left">Project</th>
+        <th align="left">Product</th>
+        <th align="left">Material</th>
+	<th>UOM</th>
+	<th><%=t "invoice.quantity" %></th>
+        <th>Delivered Quantity</th>
+	<th>Balance</th>
+	<th>Location</th>
+        
+    </tr>
+   </thead>
+  <tbody>
+  
+ <% po_quantity = @item.purchase_order_item.collected_quantity %>
+   <tr class="<%= cycle("odd", "even") %>">
+     <td><%= @item.project.name rescue "-" %></td>
+     <td><%= @item.product.name rescue "-" %></td>
+     <td><%= @item.material.code_name %></td>
+     <td align="center"><%= @item.material.uom.name rescue "Not Assigned" %></td>
+     <td align="center"><%= @item.quantity %></td>
+     <td align="center"><%= po_quantity %> </td>
+     <td align="center"><%= @item.quantity - po_quantity %> </td>
+     <td align="center"><%= @item.store_location.name rescue "-"%></td>
+     
+  </tr>
+
+</tbody>
+</table>
+
+<br /><hr /> <br />
+<% form_tag update_remark_goods_receive_note_path(@goods_receive_note) do %>
+<%= text_area_tag "item[#{@item.id.to_s}][remark]", @item.remark, :size => "160x30" , :class => "mceEditor" %>
+<br />
+<%= submit_tag "Update" %>
+<% end %>

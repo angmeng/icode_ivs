@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  address: MyText
+  mobile_number: MyString
+  remark: MyText
+  suspend: false
+
+two:
+  name: MyString
+  address: MyText
+  mobile_number: MyString
+  remark: MyText
+  suspend: false

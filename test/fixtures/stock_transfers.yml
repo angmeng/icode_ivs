@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  product_id: 1
+  from_store_location_id: 1
+  store_location_id: 1
+  quantity: 1
+  transfer_date: 2010-04-27
+
+two:
+  product_id: 1
+  from_store_location_id: 1
+  store_location_id: 1
+  quantity: 1
+  transfer_date: 2010-04-27

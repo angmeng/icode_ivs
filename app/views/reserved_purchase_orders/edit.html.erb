@@ -1,0 +1,28 @@
+<% title "Editing reserved_purchase_order" %>
+<br />
+<%= link_to 'Show', @reserved_purchase_order %> |
+<%= link_to 'Back', reserved_purchase_orders_path %>
+<br /><br />
+<% form_for(@reserved_purchase_order) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :purchase_order_number %><br />
+    <%= @reserved_purchase_order.purchase_order_number %>
+  </p>
+  <p>
+    <%= f.label :purchase_order_id %><br />
+    <%= @reserved_purchase_order.purchase_order_id %>
+  </p>
+  <p>
+    <%= f.label :used %><br />
+    <%= f.check_box :used %>
+  </p>
+  <p>
+    <%= f.label :remark %><br />
+    <%= f.text_area :remark %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>

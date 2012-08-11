@@ -1,0 +1,52 @@
+<% title (t "titles.edit") %>
+<br />
+
+  <%= link_to (t "links.show"), @pr %> |
+  <%= link_to (t "links.view_all"), purchase_requisitions_path %>
+
+<br /><br />
+<% form_for @pr do |f| %>
+  <%= f.error_messages %>
+<p>
+    <%= f.label :pr_number, "PR No" %><br />
+    <%= f.text_field :pr_number %>
+  </p>
+  <p>
+    <%= f.label :pr_date, "PR Date" %><br />
+    <%= f.date_select :pr_date %>
+  </p>
+  <p><%= f.label :delivery_date %><br />
+        <%= f.text_field :delivery_date %>
+      </p>
+  
+   <p><%= f.label :purchase_requisition_category_id, "BOM/PA" %><br />
+        <%= f.select :purchase_requisition_category_id, PurchaseRequisitionCategory.all(:order => "name").map {|c| [c.name, c.id]} %>
+      </p>
+      <p><%= f.label :project_id %><br />
+        <%= f.select :project_id, options_for_select(@projects, @pr.project_id) %>
+      </p>
+       <p><%= f.label :issued_user_id %><br />
+        <%= f.select :issued_user_id, User.all(:order => "signature_name").map {|u| [u.signature_name, u.id]}, :include_blank => true %>
+      </p>
+  <p><%= f.label :approved_user_id %><br />
+        <%= f.select :approved_user_id, User.all(:order => "signature_name").map {|u| [u.signature_name, u.id]}, :include_blank => true %>
+      </p>
+
+    <p>
+    <%= f.label :batch_no %><br />
+    <%= f.text_field :batch_no %>
+  </p>
+
+  <p>
+    <%= f.label :remark, (t "common.remark") %><br />
+    <%= f.text_area :remark, :size => "60x2" %>
+  </p>
+  <p>
+    <%= f.label :void, (t "purchase_invoice.void") %><br />
+    <%= f.check_box :void %>
+  </p>
+  <p><%= f.submit(t "links.submit") %></p>
+<% end %>
+
+
+

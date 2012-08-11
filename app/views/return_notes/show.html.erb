@@ -1,0 +1,79 @@
+<%= link_to(image_tag("print.png", :title => "Print"), preview_return_note_path(@return_note), {:target => "_blank"}) %> |
+<%= link_to image_tag("edit.png", :title => "Edit"), edit_return_note_path(@return_note) %> |
+<%= link_to image_tag("home.png", :title => "View All"), return_notes_path %>
+<br /><br />
+
+<table class="list">
+  <tr>
+    <th>Receive No</th>
+    <th>Date</th>
+    <th>S/N</th>
+    <th>DO No</th>
+    <th>Invoice No</th>
+    <th>Supplier</th>
+
+  </tr>
+  <tr align="center">
+    <td><%=h @return_note.grn_number %></td>
+    <td><%=h @return_note.grn_date %></td>
+    <td><%=h @return_note.serial_number %></td>
+    <td><%=h @return_note.do_number %></td>
+    <td><%=h @return_note.invoice_number %></td>
+    <td><%=h @return_note.supplier.name %></td>
+  </tr>
+</table>
+
+
+<p>
+  <b>Remark:</b>
+  <%=h @return_note.remark %>
+</p>
+
+<hr />
+
+<% form_tag update_items_return_note_path(@return_note) do  %>
+<table class="list">
+  <tr>
+    <th></th>
+    <th>Project</th>
+    <th>Product</th>
+    <th>Material</th>
+    <th>UOM</th>
+    <th>Qty</th>
+    <th>Remark</th>
+  </tr>
+  <% @items.each do |i| %>
+  <tr class="<%= cycle("list0", "list1") %>" align="center">
+    <td><%= link_to image_tag("delete.png", :title => "Remove"), remove_item_return_note_path(i), :method => :delete, :confirm => "Are you sure ?" %> </td>
+    <td><%= i.project.name rescue "-" %> </td>
+    <td><%= i.product.name rescue "-" %> </td>
+    <td><%= i.material.code_name rescue "-" %> </td>
+    <td><%= i.material.uom.name rescue "-" %> </td>
+    <td><%= text_field_tag "item[#{i.id.to_s}][quantity]", "%.3f" % i.quantity, :size => 5 %> </td>
+    <td><%= text_field_tag "item[#{i.id.to_s}][remark]", i.remark, :size => 60 %> </td>
+  </tr>
+
+  <% end %>
+  <tr>
+    <td colspan="5"></td>
+    <td align="center">
+        <%= submit_tag("Update") unless @items.empty? %>
+    </td>
+    <td></td>
+  </tr>
+</table>
+<% end %>
+
+<br /> <br />
+
+<div style="float: left;width: 50%">
+
+    <% form_tag add_items_return_note_path(@return_note) do %>
+     <%= render 'new_items' %>
+     <br />
+     <p style="margin-left: 70px"><%= submit_tag (t "invoice.add_product") %></p>
+     <% end %>
+     <br />
+
+ </div>
+

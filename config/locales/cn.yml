@@ -1,0 +1,482 @@
+# Auto-generated template
+cn:
+  date:
+    formats:
+      default: "%Y-%m-%d"
+      short: "%b%d日"
+      long: "%Y年%b%d日"
+    day_names: [星期日, 星期一, 星期二, 星期三, 星期四, 星期五, 星期六]
+    abbr_day_names: [日, 一, 二, 三, 四, 五, 六]
+    month_names: [~, 一月, 二月, 三月, 四月, 五月, 六月, 七月, 八月, 九月, 十月, 十一月, 十二月]
+    abbr_month_names: [~, 1月, 2月, 3月, 4月, 5月, 6月, 7月, 8月, 9月, 10月, 11月, 12月]
+    order: [ :year, :month, :day ]
+  
+  time:
+    formats:
+      default: "%Y年%b%d日 %A %H:%M:%S %Z"
+      short: "%b%d日 %H:%M"
+      long: "%Y年%b%d日 %H:%M"
+    am: "上午"
+    pm: "下午"
+  
+  datetime:
+    distance_in_words:
+      half_a_minute: "半分钟"
+      less_than_x_seconds:
+        one: "不到一秒"
+        other: "不到 {{count}} 秒"
+      x_seconds:
+        one: "一秒"
+        other: "{{count}} 秒"
+      less_than_x_minutes:
+        one: "不到一分钟"
+        other: "不到 {{count}} 分钟"
+      x_minutes:
+        one: "一分钟"
+        other: "{{count}} 分钟"
+      about_x_hours:
+        one: "大约一小时"
+        other: "大约 {{count}} 小时"
+      x_days:
+        one: "一天"
+        other: "{{count}} 天"
+      about_x_months:
+        one: "大约一个月"
+        other: "大约 {{count}} 个月"
+      x_months:
+        one: "一个月"
+        other: "{{count}} 个月"
+      about_x_years:
+        one: "大约一年"
+        other: "大约 {{count}} 年"
+      over_x_years:
+        one: "一年多"
+        other: "{{count}} 年多"
+    prompts:
+      year:   "年"
+      month:  "月"
+      day:    "日"
+      hour:   "时"
+      minute: "分"
+      second: "秒"
+  
+  number:
+    format:
+      separator: "."
+      delimiter: ","
+      precision: 3
+    currency:
+      format:
+        format: "%u %n"
+        unit: "CN¥"
+        separator: "."
+        delimiter: ","
+        precision: 2
+    percentage:
+      format:
+        delimiter: ""
+    precision:
+      format:
+        delimiter: ""
+    human:
+      format:
+        delimiter: ""
+        precision: 1
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: "Byte"
+            other: "Bytes"
+          kb: "KB"
+          mb: "MB"
+          gb: "GB"
+          tb: "TB"
+  
+  support:
+    array:
+      words_connector: ", "
+      two_words_connector: " 和 "
+      last_word_connector: ", 和 "
+  
+  activerecord:
+    models:
+      user: "用户"
+    attributes:
+      user:
+        username: "用户名"
+    errors:
+      template:
+        header: 
+          one: "有 1 个错误发生导致「{{model}}」无法被保存。"
+          other: "有 {{count}} 个错误发生导致「{{model}}」无法被保存。"
+        body: "如下字段出现错误："
+      messages:
+        record_invalid: "校验失败: {{errors}}"
+        inclusion: "不包含于列表中"
+        exclusion: "是保留关键字"
+        invalid: "是无效的"
+        confirmation: "与确认值不匹配"
+        accepted: "必须是可被接受的"
+        empty: "不能留空"
+        blank: "不能为空字符"
+        too_long: "过长（最长为 {{count}} 个字符）"
+        too_short: "过短（最短为 {{count}} 个字符）"
+        wrong_length: "长度非法（必须为 {{count}} 个字符）"
+        taken: "已经被使用"
+        not_a_number: "不是数字"
+        greater_than: "必须大于 {{count}}"
+        greater_than_or_equal_to: "必须大于或等于 {{count}}"
+        equal_to: "必须等于 {{count}}"
+        less_than: "必须小于 {{count}}"
+        less_than_or_equal_to: "必须小于或等于 {{count}}"
+        odd: "必须为单数"
+        even: "必须为双数"
+        
+  menu:
+    home: "首页"
+    inventory: "货源管理"
+    product_category: "货物分类"
+    product: "货物"
+    location: "地点"
+    stock_adjustment: "存货调整"
+    admin: "行政管理"
+    department: "部门"
+    user: "用户"
+    document: "文件"
+    document_category: "文件类别"
+    ar_management: "顾客管理"
+    customer: "顾客"
+    invoice: "出货单"
+    payment: "付款"
+    ap_management: "供应商管理"
+    supplier: "供应商"
+    purchase_invoice: "购货单"
+    payment: "付款"
+    misc: "其他"
+    expenses: "开销"
+    cheques: "支票"
+    report: "报告"
+    sales: "销售"
+    stock: "存货"
+    location_stock: "存货地点"
+    profit_loss: "盈亏报告"
+    product_movement: "货物流程"
+    stock_transfer: "货物转运"
+    salesman: "业务员"
+    commission: "佣金"
+    company: "公司"
+    outlet_management: "分行管理"
+    outlet: "分行"
+    outlet_staff: "分行员工"
+    purchase_order: "采购订单"
+    outlet_purchase_order: "分行订单"
+    delivery_order: "交货单"
+    grn: "货物接收清单"
+    packing_list: "捡货单"
+    
+  links:
+    logout: "退出"
+    new: "新资料"
+    edit: "更改"
+    show: "详情"
+    change_password: "更改密码"
+    destroy: "删除"
+    remove: "删除"
+    show_product: "显示货物"
+    show_invoice: "显示出货单"
+    show_purchase_invoice: "显示购货单"
+    show_adjustment: "显示调整"
+    show_transfer: "显示转运"
+    view_all: "显示全部"
+    search: "搜寻"
+    back: "回主页"
+    submit: "呈交"
+    update: "更新"
+    preview: "预览"
+    my_current_date_cheques: "我的到期支票"
+    customer_current_date_cheques: "顾客的到期支票"
+    my_future_cheques: "我的期票"
+    customer_future_cheques: "顾客的期票"
+    
+  flashes:
+    unauthorized_access: "非法进入"
+    successfully_created: "新纪录储存"
+    successfully_updated: "纪录成功更改"
+    successfully_destroyed: "纪录成功删除"
+    successfully_voided: "纪录成功清空"
+    use_void: "单据不可删除。请选择清空"
+    successfully_removed: "成功删除"
+    saving_failed: "有一项或多项资料出错而导致系统无法储存"
+    operation_completed: "操作完成"
+    add_new_group: "你必须增加一个新组合"
+    fill_in_group_name: "你没有填入组合名称"
+    group_added: "组合成功加入"
+    group_removed: "组合已删除"
+    item_removed: "项目已成功删除"
+    valid_date_period: "请选择正确日期"
+    successfully_logged_in: "登入成功"
+    invalid_login: "名字或密码错误"
+    successfully_logout: "你已成功登出"
+    cannot_destroy_pls_use_void: "系统不能删除资料，请使用取消功能"
+    dont_have_access_right: "你没有使用的权限"
+    cannot_destroy_due_to: "系统不能删除有连线的资料"
+    cannot_destroy_builtin: "系统不能删除内建的资料"
+    pls_select_document: "请选择文件"
+    not_enough_stock: " 没有足够的数量在 "
+    adjust_quantity_first: "系统不能删除还有现货的地点"
+    pass_cant_be_blank: "密码不能放空"
+    pass_must_over_six: "密码必须多于5个数目"
+    pass_confirm_failed: "确认密码不一样"
+    pass_changed: "密码成功更新"
+    
+  html_msg:
+    opening_balance: "开始数额"
+    deleted_from_invoice: "已从单据中删除"
+    added_to_invoice: "已加入单据"
+    added_to_purchase_invoice: "已加入购货单"
+    deleted_from_purchase_invoice: "已从购货单删除"
+    adjutment_deleted: "更改删除"
+    adjustment_created: "更改成功"
+    are_you_sure: "你肯定吗?"
+    
+  titles:
+    bank: "银行"
+    new: "新资料"
+    edit: "更改"
+    information_center: "资讯中心"
+    document_category: "文件类别"
+    document_storage: "文件储存"
+    department: "部门"
+    customer: "顾客"
+    customer_payment: "顾客付款"
+    card_category: "信用卡分类"
+    change_password: "更换密码"
+    cheque: "支票"
+    credit_card: "信用卡"
+    expense: "开销"
+    invoice: "单据"
+    payment_method: "付款方式"
+    product_category: "货物分类"
+    product_movement: "货物流程"
+    product: "产品"
+    purchase_invoice:  "购货单"
+    sales_enquiry: "销售咨询"
+    report_for_sales_invoice: "出货单报告"
+    profit_loss_enquiry: "盈亏咨询"
+    report_for_profit_loss: "盈亏报告"
+    stock_detail: "存货资料"
+    setting: "设定"
+    stock_adjustment: "存货调整"
+    stock: "存货"
+    store_location: "存货地点"
+    supplier_payment: "供应商付款"
+    supplier: "供应商"
+    user: "用户"
+    
+  common:
+    action: "行动"
+    name: "名字"
+    description: "描述"
+    priority: "特别"
+    message: "讯息"
+    document: "文件"
+    remark: "备注"
+    
+  cheque:
+    cheque_number: "支票号码"
+    cheque_bank: "支票银行"
+    owner_name: "户口名称"
+    cheque_date: "支票日期"
+    bank_account_no: "户口号码"
+    own_cheque: "自己的支票"
+    
+  card:
+    card_no: "信用卡号码"
+    card_bank: "信用卡银行"
+    reference: "参考"
+    card_type: "信用卡类型"
+    card_category: "信用卡类别"
+    owner_name: "卡主名字"
+    clear: "清算"
+    
+  customer_payment:
+    payment_date: "付款日期"
+    customer: "顾客"
+    reference_no: "参考号码"
+    resit_no: "收据号码"
+    payment_method: "付款方式"
+    amount: "数目"
+    
+  customer:
+    code: "顾客编号"
+    name: "名字"
+    home_address: "住家地址"
+    company_address: "公司地址"
+    mobile_number: "手提电话号码"
+    additional_phone_one: "手提电话号码 1"
+    additional_phone_two: "手提电话号码 2"
+    home_phone_number: "住家电话号码"
+    office_phone_number: "公司电话号码"
+    fax_number: "传真号码"
+    outstanding_amount: "欠款"
+    credit_limit: "信用额"
+    suspend: "暂停"
+    
+  department:
+    name: "部门名称"
+    description: "描述"
+    message: "讯息"
+    builtin: "内建"
+    
+  document_category:
+    authorized_department: "特许部门"
+    
+  document:
+    filename: "文件名"
+    
+  expenses:
+    expense_date: "开销日期"
+    title: "标题"
+    amount: "数额"
+  
+  invoice_item:
+    invoice: "出货单"
+    product: "产品"
+    quantity: "数量"
+    unit_price: "单价"
+    remark: "备注"
+    
+  invoice:
+    customer: "顾客"
+    invoice_date: "货单日期"
+    invoice_number: "货单号码"
+    remark: "备注"
+    remove: "清除"
+    location: "地点"
+    product: "产品"
+    quantity: "数量"
+    unit_price: "单价"
+    amount: "数目"
+    auto_generate: "自动"
+    add_item: "添加项目"
+    add_product: "添加产品"
+    total: "总共"
+    
+  product_movement:  
+    product: "产品"
+    movement_category: "移动类别"
+    reference: "参考"
+    quantity: "数量"
+    unit_Price: "单价"
+    movement_date: "移动日期"
+    balance: "剩余"
+    deleted_from_invoice: "已从开货单删除"
+    deleted_from_purchase_invoice: "已从购物单删除"
+    added_into_invoice: "加进开货单"
+    added_into_purchase_invoice: "加进购物单"
+    adjustment_deleted: "已从调整项目删除"
+    adjustment_created: "加入调整项目"
+    invoice_deleted: "开货单已被删除"
+    purchase_invoice_deleted: "购物单已被删除"
+    transfer_deleted: "已从转运项目删除"
+    transfer_created: "加入转运项目"
+    
+    
+  product:
+    code: "货物代号"
+    name: "货物名称"
+    product_category: "货物类别"
+    description: "货物简述"
+    uom: "计量单位"
+    selling_price: "出售价"
+    stock_quantity: "数量"
+    image: "相片"
+    active: "活跃"
+    version: "版本"
+    previous_version: "上一版本"
+    lastest_version: "最新版本"
+    open_balance: "初始化数量"
+
+  purchase_invoice:
+    supplier: "供应商"
+    product: "产品"
+    quantity: "数量"
+    unit_Price: "单价"
+    remark: "备注"
+    void: "取消"
+    
+  report:
+    group: "组合"
+    total_sales: "总销量"
+    total_profit: "总净利"
+    total_expenses: "总开销"
+    profit: "净利"
+    add_group: "添加组合"
+    choose_product: "请选择产品类别再添加进入报告组合"
+    add_to_group: "添加进入组合"
+    add: "添加"
+    from: "从"
+    to: "至"
+    grouping: "组合?"
+    total_amount: "总和"
+    cost: "成本"
+
+  setting:
+    ar_code: "顾客代号"
+    ar_last_number: "顾客最后号码"
+    ap_code: "供应商代号"
+    ap_last_number: "供应商最后号码"
+    invoice_code: "出货单代号"
+    invoice_last_number: "出货单最后号码"
+ 
+  stock_adjustment:
+    title: "标题"
+    description: "描述"
+    store_location: "存储地点"
+    product: "产品"
+    status: "状况"
+    quantity: "数量"
+    debit: "量入"
+    credit: "量出"
+
+  stock:
+    store_location: "存储地点"
+    product: "产品"
+    quantity: "数量"
+
+  store_location:
+    name: "存储地点"
+    description: "描述"
+
+  supplier_payment:
+    payment_date: "付款日期"
+    supplier: "供应商"
+    reference_number: "参考号码"
+    resit_number: "收据号码"
+    description: "描述"
+    payment_method: "付款方式"
+    cheque: "支票"
+    credit_card: "信用卡"
+    amount: "数目"
+    
+  supplier:
+    code: "代号"
+    name: "名字"
+    address: "地址"
+    office_phone: "办公电话"
+    fax_number: "传真号码"
+    contact_person: "联络人"
+    contact_number: "联系电话"
+    contact_number_2: "联系电话 2"
+    contact_number_3: "联系电话 3"
+    outstanding_amount: "欠款"
+    active: "状况"
+
+  user:
+    user_name: "用户名"
+    department: "部门"
+    email: "电子邮件"
+    password: "键入密码"
+    confirm_password: "确定密码"
+    language: "语言"

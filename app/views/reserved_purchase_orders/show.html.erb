@@ -1,0 +1,29 @@
+<br />
+<%= link_to 'Edit', edit_reserved_purchase_order_path(@reserved_purchase_order) %> |
+<%= link_to 'Back', reserved_purchase_orders_path %>
+<br />
+<p>
+  <b>Purchase order number:</b>
+  <%=h @reserved_purchase_order.purchase_order_number %>
+</p>
+
+<p>
+  <b>Purchase order:</b>
+  <% if @reserved_purchase_order.purchase_order %>
+    <%= link_to "Show",  @reserved_purchase_order.purchase_order %>
+  <% else %>
+    Not yet assigned
+  <% end %>
+</p>
+
+<p>
+  <b>Used:</b>
+  <%=h @reserved_purchase_order.used %>
+</p>
+
+<p>
+  <b>Remark:</b>
+  <%=h @reserved_purchase_order.remark %>
+</p>
+
+

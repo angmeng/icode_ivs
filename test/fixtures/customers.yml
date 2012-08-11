@@ -1,0 +1,27 @@
+one:
+  code: MyString
+  name: MyString
+  ic_number: MyString
+  gender: MyString
+  address: MyString
+  mobile_number: MyString
+  home_phone_number: MyString
+  office_phone_number: MyString
+  fax_number: MyString
+  credit_limit: 9.99
+  used_limit: 9.99
+  suspend: false
+
+two:
+  code: MyString
+  name: MyString
+  ic_number: MyString
+  gender: MyString
+  address: MyString
+  mobile_number: MyString
+  home_phone_number: MyString
+  office_phone_number: MyString
+  fax_number: MyString
+  credit_limit: 9.99
+  used_limit: 9.99
+  suspend: false

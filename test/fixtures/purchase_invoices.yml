@@ -1,0 +1,13 @@
+one:
+  invoice_date: 2009-12-03
+  invoice_number: MyString
+  supplier_id: 1
+  remark: MyText
+  void: false
+
+two:
+  invoice_date: 2009-12-03
+  invoice_number: MyString
+  supplier_id: 1
+  remark: MyText
+  void: false

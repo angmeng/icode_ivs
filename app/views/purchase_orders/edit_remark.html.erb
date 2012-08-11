@@ -1,0 +1,48 @@
+<% content_for :head do %>
+<%= include_tiny_mce_if_needed %>
+<% end %>
+
+<% title (t "menu.purchase_order") %>
+
+<br />
+
+<%= link_to "Back", @po %>
+<br /><br />
+<table class="list">
+  <thead>
+    <tr>
+	
+        <th align="left">Material</th>
+	<th>UOM</th>
+	<th><%=t "invoice.quantity" %></th>
+        <th>Currency</th>
+	<th><%=t "invoice.unit_price" %></th>
+	<th><%=t "invoice.amount" %></th>
+        
+    </tr>
+   </thead>
+  <tbody>
+  
+ 
+   <tr class="<%= cycle("odd", "even") %>">
+     
+     <td><%= @item.material.code_name %></td>
+     <td align="center"><%= @item.material.uom.name rescue "Not Assigned" %></td>
+     <td align="center"><%= @item.quantity %></td>
+     <td align="center"><%= @item.currency.name %></td>
+
+     <td align="center">
+       <%= "%.2d" % @item.unit_price %></td>
+     <td align="center"> <%= number_with_precision(@item.total_amount, :precision => 2) %></td>
+   
+  </tr>
+
+</tbody>
+</table>
+
+<br /><hr /> <br />
+<% form_tag update_remark_purchase_order_path(@po) do %>
+<%= text_area_tag "item[#{@item.id.to_s}][remark]", @item.remark, :size => "160x30" , :class => "mceEditor" %>
+<br />
+<%= submit_tag "Update" %>
+<% end %>

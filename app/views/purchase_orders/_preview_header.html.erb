@@ -1,0 +1,68 @@
+<h2 style="text-align: center">Purchase Order</h2>
+<table width="100%" style="border:none">
+  <tr>
+       <td><strong>PO No :</strong></td>
+    <td><%= @purchase_order.purchase_order_number %></td>
+    <td></td>
+    <td></td>
+  </tr>
+
+    <tr>
+      <td style="width: 10%"><strong>Supplier Code : </strong> </td>
+      <td style="width: 60%"><%= @purchase_order.supplier.code rescue "-" %></td>
+      <td style="width: 10%"><strong>PO Issued Date :</strong> </td>
+      <td><%= @purchase_order.purchase_order_date.strftime("%d-%m-%Y") %></td>
+    </tr>
+     <tr>
+      <td style="width: 10%"><strong>Supplier Name : </strong> </td>
+      <td style="width: 60%"><%= @purchase_order.supplier.name rescue "-" %></td>
+      <td style="width: 10%"><strong>Term & Conditions :</strong> </td>
+      <td><%= @purchase_order.term %></td>
+    </tr>
+     <tr>
+      <td style="width: 10%"><strong>Supplier Address : </strong> </td>
+      <td style="width: 60%"><%= @purchase_order.supplier.address rescue "-" %></td>
+      <td style="width: 10%"><strong></strong> </td>
+      <td></td>
+    </tr>
+
+    <tr>
+      <td><strong>DID Code : </strong></td>
+      <td> </td>
+      <td><strong></strong> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td style="width: 10%"><strong>Telephone No : </strong> </td>
+      <td style="width: 60%"><%= @purchase_order.supplier.office_phone rescue "-" %>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Fax No : <%= @purchase_order.supplier.fax_number rescue "-" %></td>
+      <td style="width: 10%"><strong></strong> </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td style="width: 10%"><strong>Person Contact : </strong> </td>
+      <td style="width: 60%"><%= @purchase_order.supplier.contact_person rescue "-" %></td>
+      <td style="width: 10%"><strong></strong> </td>
+      <td></td>
+    </tr>
+     <tr>
+      <td style="width: 10%"><strong>Deliver To : </strong> </td>
+      <td style="width: 60%"><%= @purchase_order.deliver_to %></td>
+      <td style="width: 10%"><strong></strong> </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td style="width: 10%"><strong>Delivery Date : </strong> </td>
+      <td style="width: 60%"><%= @purchase_order.delivery_date %></td>
+      <td style="width: 10%"><strong></strong> </td>
+      <td></td>
+    </tr>
+       <tr>
+      <td style="width: 10%"><strong>Remark : </strong> </td>
+      <td colspan="3"><%= @purchase_order.remark %></td>
+      
+    </tr>
+
+
+
+</table>

@@ -1,0 +1,24 @@
+<% title (t "titles.new") %>
+<br />
+<%= link_to 'Back', vehicles_path %>
+<br /><br />
+<% form_for(@vehicle) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    <%= f.label :disabled %><br />
+    <%= f.check_box :disabled %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+

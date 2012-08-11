@@ -1,0 +1,31 @@
+<% title "Listing UOMs"  %>
+<br />
+
+<%= link_to image_tag("new.png", :title => "New"), new_uom_path %>
+<br /><br />
+<%= will_paginate @suppliers %>
+<br /><br />
+<table class="list">
+  <thead>
+  <tr>
+    <th align="left">Name</th>
+    <th align="left">Description</th>
+    <th>Action</th>
+  </tr>
+    </thead>
+   <tbody>
+<% @uoms.each do |m| %>
+  <tr class="<%= cycle("list0", "list1") %>">
+    <td><%=h m.name %></td>
+    <td><%=h m.description %></td>
+    <td align="center"><%= link_to 'Show', m %>
+    <%= link_to 'Edit', edit_uom_path(m) %>
+    <%= link_to 'Destroy', m, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+    </tbody>
+</table>
+
+<br />
+<%= will_paginate @suppliers %>
+<br />

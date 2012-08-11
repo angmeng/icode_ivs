@@ -1,0 +1,2 @@
+module TransportationSlipsHelper
+end

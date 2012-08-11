@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  code: MyString
+  material_group_id: 1
+  material_category_id: 1
+  description: MyString
+  uom_id: 1
+  remark: MyText
+
+two:
+  code: MyString
+  material_group_id: 1
+  material_category_id: 1
+  description: MyString
+  uom_id: 1
+  remark: MyText

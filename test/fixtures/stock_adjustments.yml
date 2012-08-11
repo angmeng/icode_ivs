@@ -1,0 +1,13 @@
+one:
+  name: MyString
+  description: MyText
+  store_location_id: 1
+  product_id: 1
+  quantity: 1
+
+two:
+  name: MyString
+  description: MyText
+  store_location_id: 1
+  product_id: 1
+  quantity: 1

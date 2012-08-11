@@ -1,0 +1,33 @@
+
+<% title "Listing Material Groups"  %>
+<br />
+<%= link_to image_tag("new.png", :title => "New"), new_material_group_path %>
+<br />
+<% paginated_section @material_groups do %>
+<br/><br />
+
+<table class="list">
+  <thead>
+  <tr>
+    <th align="left">Name</th>
+    <th align="left">Description</th>
+ <th>Need KG value?</th>
+    <th>Action</th>
+  </tr>
+    </thead>
+   <tbody>
+<% @material_groups.each do |material_group| %>
+    <tr class="<%= cycle("odd", "even") %>">
+    <td><%=h material_group.name %></td>
+    <td><%=h material_group.description %></td>
+ <td align="center"><%=h material_group.is_counting %></td>
+    <td align="center"><%= link_to 'Show', material_group %>
+    <%= link_to 'Edit', edit_material_group_path(material_group) %>
+    <%= link_to 'Destroy', material_group, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+      </tbody>
+</table>
+
+<br />
+<% end %>

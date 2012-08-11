@@ -1,0 +1,44 @@
+
+<% title "Editing Materials"  %>
+<br />
+<%= link_to 'Show', @material %> |
+<%= link_to 'Back', materials_path %>
+<br /><br />
+
+<% form_for(@material) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :code %><br />
+    <%= f.text_field :code %>
+  </p>
+  <p>
+    <%= f.label :material_group_id %><br />
+    <%= f.select :material_group_id, MaterialGroup.all(:order => "name").map {|g| [g.name, g.id]}, {:include_blank => true} %>
+  </p>
+  <p>
+    <%= f.label :material_category_id %><br />
+    <%= f.select :material_category_id, MaterialCategory.all(:order => "name").map {|c| [c.name, c.id]} %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description, :size => "60x2" %>
+  </p>
+  <p>
+    <%= f.label :uom_id %><br />
+    <%= f.select :uom_id, Uom.all(:order => "name").map {|u| [u.name, u.id]} %>
+  </p>
+<p>
+    <%= f.label :kg, "KG" %><br />
+    <%= f.text_field :kg %>
+  </p>
+
+  <p>
+    <%= f.label :remark %><br />
+    <%= f.text_area :remark, :size => "60x4" %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+

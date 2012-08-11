@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  purchase_order_date: 2010-05-18
+  purchase_order_number: MyString
+  supplier_id: 1
+  remark: MyText
+  void: false
+
+two:
+  purchase_order_date: 2010-05-18
+  purchase_order_number: MyString
+  supplier_id: 1
+  remark: MyText
+  void: false

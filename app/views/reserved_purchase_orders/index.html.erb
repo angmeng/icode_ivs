@@ -1,0 +1,33 @@
+<% title "Listing reserved_purchase_orders" %>
+<br />
+
+<%= link_to image_tag("new.png", :title => "New"), new_reserved_purchase_order_path, :confirm => "Are you sure you want to generate a new PO No?" %>
+<br /><br />
+<% paginated_section @reserved_purchase_orders do %>
+<table class="list">
+  <thead>
+  <tr>
+    <th align="left" width="15%">Purchase order number</th>
+    <th align="left" width="15%">Purchase order ID</th>
+    <th align="left" width="10%">Used</th>
+    <th align="left">Remark</th>
+    <th align="left" width="15%">Action</th>
+  </tr>
+ </thead>
+   <tbody>
+<% @reserved_purchase_orders.each do |reserved_purchase_order| %>
+  <tr>
+    <td><%=h reserved_purchase_order.purchase_order_number %></td>
+    <td><%=h reserved_purchase_order.purchase_order_id %></td>
+    <td><%= show_image(reserved_purchase_order.used?) %></td>
+    <td><%=h reserved_purchase_order.remark %></td>
+    <td><%= link_to 'Show', reserved_purchase_order %>
+    <%= link_to 'Edit', edit_reserved_purchase_order_path(reserved_purchase_order) %>
+    <% link_to 'Destroy', reserved_purchase_order, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+   </tbody>
+</table>
+
+<br />
+<% end %>

@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <title>DSS</title>
+    <!-- authentications : new -->
+    <link href="/stylesheets/screen.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/modalbox.css" media="screen" rel="stylesheet" type="text/css" />
+    <style></style>
+
+    <script src="/javascripts/prototype.js" type="text/javascript"></script>
+    <script src="/javascripts/effects.js" type="text/javascript"></script>
+    <script src="/javascripts/dragdrop.js" type="text/javascript"></script>
+    <script src="/javascripts/controls.js" type="text/javascript"></script>
+    <script src="/javascripts/modalbox.js" type="text/javascript"></script>
+    <script src="/javascripts/application.js" type="text/javascript"></script>
+
+
+    <script type='text/javascript'></script>
+  </head>
+  <body>
+    <div id='header'>
+      <div id='welcome'>
+        <a href="/sessions/new">Login</a> |
+
+        <a href="#" onclick="Modalbox.show($('about'), { title: this.title }); return false;" title="About DSS">About</a>
+
+      </div>
+      <h3>
+        <a href="/"><%= company_name %></a>
+      </h3>
+    </div>
+    <p id="flash" style="display:none;"></p>
+    <div class='tabless'>
+
+      <div class='standalone' id='standalone'>
+
+
+
+        <% form_tag sessions_path do %>
+	
+          <div class='title'>Login</div>
+          <div class='section'>
+            <div class='label'>Username:</div>
+            <input id="user_session_login" name="login" size="30" type="text" />
+            <div class='label'>Password:</div>
+            <input id="user_session_password" name="password" size="30" type="password" />
+
+          </div>
+          <br />
+          <div class='buttonbar'>
+            <input id="authentication_submit" name="commit" type="submit" value="Login" />
+
+          </div>
+
+        <%  end %>
+      </div>
+    </div>
+    <center>
+      <div id='footer'>
+        Powered by <a href="http://www.dsssb.com.my" onclick="window.open(this.href);return false;">iCode Solution</a>
+        v1.2 &copy; 2008-2012 by iCode Solution
+      </div>
+
+      <br />
+      <div id='about' style='display:none;'>
+        <h3>
+          DSS
+          <span class='cool'>v1.2</span>
+          (mysql)
+        </h3>
+        <p>
+          Thank you for using iCode system! We appreciate your business and hope you enjoy using the software.
+
+        </p>
+      </div>
+    </center>
+
+  </body>
+</html>
+
+  

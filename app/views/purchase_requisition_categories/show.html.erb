@@ -1,0 +1,13 @@
+<p>
+  <b>Name:</b>
+  <%=h @purchase_requisition_category.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @purchase_requisition_category.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_purchase_requisition_category_path(@purchase_requisition_category) %> |
+<%= link_to 'Back', purchase_requisition_categories_path %>

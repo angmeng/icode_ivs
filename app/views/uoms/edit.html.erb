@@ -1,0 +1,22 @@
+<% title "Editing UOMs"  %>
+<br />
+
+<%= link_to 'Show', @uom %> |
+<%= link_to 'Back', uoms_path %>
+<br /><br />
+
+<% form_for(@uom) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>

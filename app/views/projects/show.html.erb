@@ -1,0 +1,36 @@
+<% title 'Project'  %>
+<br />
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>
+<br /><br />
+<p>
+  <b>Code:</b>
+  <%=h @project.code %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%=h @project.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @project.description %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%=h @project.address %>
+</p>
+
+<p>
+  <b>PIC:</b>
+  <%=h @project.project_supervisor.name rescue "-" %>
+</p>
+
+<p>
+  <b>Completed:</b>
+  <%=h @project.completed %>
+</p>
+
+

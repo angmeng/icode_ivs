@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  packing_list_id: 1
+  outlet_purchase_order_id: 1
+
+two:
+  packing_list_id: 1
+  outlet_purchase_order_id: 1

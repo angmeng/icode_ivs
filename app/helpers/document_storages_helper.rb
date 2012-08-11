@@ -1,0 +1,2 @@
+module DocumentStoragesHelper
+end

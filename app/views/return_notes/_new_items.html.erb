@@ -1,0 +1,28 @@
+<table>
+  <tr>
+    <th>Project</th><td><%= select_tag "item[project_id]", options_for_select(@projects)  %> </td>
+  </tr>
+  <tr>
+    <th>Product</th><td><%= select_tag "item[product_id]", options_for_select(@products)  %> </td>
+  </tr>
+  <tr>
+    <th>Category</th><td><%= select_tag "item[category_id]", options_for_select(@categories), {:onChange => remote_function(:url => {:action => 'search_by_category'},
+    :with => "'id='+this.value")}  %> </td>
+  </tr>
+  <tr>
+    <th>Material</th><td>
+      <div id="material">
+        <%= render :partial => "material", :locals => {:materials => @materials} %>
+      </div>
+
+    </td>
+  </tr>
+
+  <tr>
+    <th>Quantity</th><td><%= text_field_tag "item[quantity]"  %> </td>
+  </tr>
+
+  <tr>
+    <th>Remark</th><td><%= text_area_tag "item[remark]" ,{}, :size => "60x2" %> </td>
+  </tr>
+</table>

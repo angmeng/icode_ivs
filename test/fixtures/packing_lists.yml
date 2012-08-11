@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  packing_list_number: MyString
+  packing_date: 2010-06-15
+  description: MyText
+  void: false
+  settled: false
+
+two:
+  packing_list_number: MyString
+  packing_date: 2010-06-15
+  description: MyText
+  void: false
+  settled: false

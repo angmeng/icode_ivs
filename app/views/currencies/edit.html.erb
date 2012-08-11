@@ -1,0 +1,30 @@
+<% title 'Editing Currency'  %>
+<br />
+<%= link_to 'Show', @currency %> |
+<%= link_to 'Back', currencies_path %>
+<br /><br />
+
+<% form_for(@currency) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :code %><br />
+    <%= f.text_field :code %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    <%= f.label :position %><br />
+    <%= f.select :position, (0..@size).to_a %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+

@@ -1,0 +1,53 @@
+<% form_for @supplier do |f| %>
+  <%= f.error_messages %>
+ <% if @last_code %>
+<p>
+   <%= f.label :code, "Last Supplier No"%> : <%= @last_code.code %>
+</p>
+<% end %>
+ <p>
+    <%= f.label :code, "Supplier No"%><br />
+    <%= f.text_field :code, :size => 80, :maxlength => 45 %>
+  </p>
+  <p>
+    <%= f.label :name, (t "supplier.name") %><br />
+    <%= f.text_field :name, :size => 120, :maxlength => 45 %>
+  </p>
+  <p>
+    <%= f.label :address, (t "supplier.address") %><br />
+    <%= f.text_area :address, :size => "80x6" %>
+  </p>
+  <p>
+    <%= f.label :office_phone, (t "supplier.office_phone") %><br />
+    <%= f.text_field :office_phone %>
+  </p>
+  <p>
+    <%= f.label :fax_number, (t "supplier.fax_number") %><br />
+    <%= f.text_field :fax_number %>
+  </p>
+  <p>
+    <%= f.label :contact_person, (t "supplier.contact_person") %><br />
+    <%= f.text_field :contact_person %>
+  </p>
+  <p>
+    <%= f.label :contact_number, (t "supplier.contact_number") %><br />
+    <%= f.text_field :contact_number %>
+  </p>
+  <p>
+    <%= f.label :area %><br />
+    <%= f.text_field :area %>
+  </p>
+  <p>
+    <%= f.label :term %><br />
+    <%= f.select :term, Term.all.map {|t| [t.name, t.name]} %>
+  </p>
+   <p>
+    <%= f.label :remark, (t "common.remark") %><br />
+    <%= f.text_area :remark, :size => "80x6" %>
+  </p>
+  <p>
+    <%= f.label :active, (t "supplier.active") %><br />
+    <%= f.check_box :active %>
+  </p>
+  <p><%= f.submit(t "links.submit") %></p>
+<% end %>

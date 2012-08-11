@@ -1,0 +1,96 @@
+<h1>Editing purchase_order_history</h1>
+
+<% form_for(@purchase_order_history) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :history_id %><br />
+    <%= f.text_field :history_id %>
+  </p>
+  <p>
+    <%= f.label :year %><br />
+    <%= f.text_field :year %>
+  </p>
+  <p>
+    <%= f.label :month %><br />
+    <%= f.text_field :month %>
+  </p>
+  <p>
+    <%= f.label :delivery_date %><br />
+    <%= f.text_field :delivery_date %>
+  </p>
+  <p>
+    <%= f.label :pr_number %><br />
+    <%= f.text_field :pr_number %>
+  </p>
+  <p>
+    <%= f.label :po_number %><br />
+    <%= f.text_field :po_number %>
+  </p>
+  <p>
+    <%= f.label :project_code %><br />
+    <%= f.text_field :project_code %>
+  </p>
+  <p>
+    <%= f.label :po_issue_date %><br />
+    <%= f.date_select :po_issue_date %>
+  </p>
+  <p>
+    <%= f.label :supplier_code %><br />
+    <%= f.text_field :supplier_code %>
+  </p>
+  <p>
+    <%= f.label :material_code %><br />
+    <%= f.text_field :material_code %>
+  </p>
+  <p>
+    <%= f.label :category %><br />
+    <%= f.text_field :category %>
+  </p>
+  <p>
+    <%= f.label :item_description %><br />
+    <%= f.text_area :item_description %>
+  </p>
+  <p>
+    <%= f.label :uom %><br />
+    <%= f.text_field :uom %>
+  </p>
+  <p>
+    <%= f.label :remark %><br />
+    <%= f.text_area :remark %>
+  </p>
+  <p>
+    <%= f.label :unit_price %><br />
+    <%= f.text_field :unit_price %>
+  </p>
+  <p>
+    <%= f.label :qty %><br />
+    <%= f.text_field :qty %>
+  </p>
+  <p>
+    <%= f.label :deliver_to %><br />
+    <%= f.text_field :deliver_to %>
+  </p>
+  <p>
+    <%= f.label :term %><br />
+    <%= f.text_field :term %>
+  </p>
+  <p>
+    <%= f.label :product_code %><br />
+    <%= f.text_field :product_code %>
+  </p>
+  <p>
+    <%= f.label :currency %><br />
+    <%= f.text_field :currency %>
+  </p>
+  <p>
+    <%= f.label :currency_unit_price %><br />
+    <%= f.text_field :currency_unit_price %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @purchase_order_history %> |
+<%= link_to 'Back', purchase_order_histories_path %>

@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  purchase_order_number: MyString
+  purchase_order_id: 1
+  used: false
+  remark: MyText
+
+two:
+  purchase_order_number: MyString
+  purchase_order_id: 1
+  used: false
+  remark: MyText

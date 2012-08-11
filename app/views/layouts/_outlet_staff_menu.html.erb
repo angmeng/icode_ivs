@@ -1,0 +1,26 @@
+<div class="menu">
+		<ul>
+
+			<li><a href="#"><%=t 'menu.outlet_management' %></a>
+			   <ul>
+			     
+			      <li><a href="/home">Pending Outlet Purchase Order</a></li>	
+			     <li><a href="/outlet_purchase_orders">Completed Outlet Purchase Order</a></li>
+			     <li><a href="#"><%=t 'menu.grn' %></a></li>
+		       
+		       </ul>
+		  </li>
+		  
+
+		  <li><a href="#"><%=t 'menu.misc' %></a>
+			  <ul>
+			   
+			    <li><a href="/home/change_language"><%= session[:locale] == :cn ? "English" : "华文"  %> </a></li>
+		      </ul>
+		  </li>
+		  
+		
+		</ul>
+	</div>
+
+	

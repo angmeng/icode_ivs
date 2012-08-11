@@ -1,0 +1,20 @@
+<% title "Material Group"  %>
+<br/>
+<%= link_to 'Edit', edit_material_group_path(@material_group) %> |
+<%= link_to 'Back', material_groups_path %>
+<br />
+<p>
+  <b>Name:</b>
+  <%=h @material_group.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @material_group.description %>
+</p>
+<p>
+  <b>Need KG value?:</b>
+  <%=h @material_group.is_counting %>
+</p>
+
+

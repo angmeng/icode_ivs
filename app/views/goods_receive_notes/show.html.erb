@@ -1,0 +1,132 @@
+<% title 'Goods_receive_note'  %>
+<br />
+<%= link_to 'Edit', edit_goods_receive_note_path(@goods_receive_note) %> |
+<% unless @goods_receive_note.settled? %>
+  <%= link_to 'Settle', settle_goods_receive_note_path(@goods_receive_note, :status_id => 1), :confirm => "Are you sure you want to settle this GRN ?" %> |
+<% else %>
+  <%= link_to 'UnSettle', settle_goods_receive_note_path(@goods_receive_note, :status_id => 2), :confirm => "Are you sure you want to settle this GRN ?" %> |
+
+<% end %>
+<%= link_to 'Back', goods_receive_notes_path %>
+<br /><br />
+
+<div class="mg10 exhibiton ex01">
+    <div class="exHead">
+        <div class="hTxt">
+            <div class="hTxtContent"><h2>GRN Detail</h2></div>
+        </div>
+        <div class="hLeft"></div>
+        <div class="hRight"></div>
+    </div>
+    <div class="exBody">
+        <div class="content">
+          <table class="list">
+            <tr>
+              <th>GRN No</th>
+              <th>GRN Date</th>
+              <th>S/N</th>
+              <th>DO No</th>
+              <th>Invoice No</th>
+              <th>PO No</th>
+          
+              <th>Supplier</th>
+              
+              <th>Status</th>
+            </tr>
+            <tr align="center">
+              <td><%=h @goods_receive_note.grn_number %></td>
+              <td><%=h @goods_receive_note.grn_date %></td>
+              <td><%=h @goods_receive_note.serial_number %></td>
+              <td><%=h @goods_receive_note.do_number %></td>
+              <td><%=h @goods_receive_note.invoice_number %></td>
+              
+              <td><%=h @goods_receive_note.purchase_order.purchase_order_number %>(<%=h @goods_receive_note.purchase_order.purchase_order_date %>)</td>
+       
+              <td><%=h @goods_receive_note.supplier.name %></td>
+             
+              <td><%= @goods_receive_note.status %></td>
+            </tr>
+          </table>
+
+<p>
+  <b>Remark:</b>
+  <%=h @goods_receive_note.remark %>
+</p>
+
+
+        </div>
+    </div>
+    <div class="exFoot">
+        <div class="fLeft"></div>
+        <div class="fRight"></div>
+    </div>
+</div>
+
+
+
+<br />
+<hr />
+<%= link_to "Import from PO", show_items_goods_receive_note_path(@goods_receive_note) %><br />
+
+<% form_tag :action => "update_items", :id => @goods_receive_note do  %>
+
+<% paginated_section @items do %>
+<br /><br />
+  <table class="flexi">
+    <thead>
+  <tr>
+    <th width="50">Remove</th>
+    <th width="120">Project</th>
+    <th width="120">Product</th>
+    <th width="330">Material</th>
+    <th width="60">UOM</th>
+    <th width="50">Qty</th>
+    <th width="55">Deliver Qty</th>
+    <th width="65">Total Deliver</th>
+    <th width="50">Balance</th>
+    <% if is_admin? %>
+    <th width="60">Currency</th>
+    <th width="80">Unit Price</th>
+    <% end %>
+    <th width="100">Location</th>
+    <th width="300">Remark</th>
+    
+  </tr>
+  </thead>
+    <tbody>
+  <% @items.each do |i| %>
+  <% po_deliver_qty = i.purchase_order_item.collected_quantity %>
+  <tr class="<%= cycle("list0", "list1") %>" align="center">
+    <td align="center"><%= link_to image_tag("delete.png", :title => "Remove"), remove_item_goods_receive_note_path(i), :confirm => "Are you sure?"  %> </td>
+    <td><%= i.project.code_name rescue "-" %> </td>
+    <td><%= i.product.code_name rescue "-" %> </td>
+    <td><%= i.material.code_name rescue "-" %> </td>
+    <td><%= i.material.uom.name rescue "-" %> </td>
+    <td><%= "%.3f" % i.quantity %> </td>
+    <td><%= text_field_tag "item[#{i.id.to_s}][deliver_quantity]", "%.3f" % i.deliver_quantity, :size => 5 %> </td>
+    <td><%= "%.3f" % po_deliver_qty %> </td>
+    <td><%= "%.3f" % (i.quantity - po_deliver_qty) %> </td>
+    <% if is_admin? %>
+    <td><%= i.currency.name %> </td>
+    <td><%= text_field_tag "item[#{i.id.to_s}][unit_price]", "%.3f" % i.unit_price, :size => 10 %> </td>
+    <% end %>
+    <td><%= select_tag "item[#{i.id.to_s}][store_location_id]", options_for_select(StoreLocation.options, i.store_location_id) %> </td>
+    <td><%= link_to "Edit", edit_remark_goods_receive_note_path(i)  %> <br /> <%= i.remark %></td>
+  </tr>
+ 
+
+  <% end %>
+  
+  </tbody>
+</table>
+      <% unless @goods_receive_note.settled? %>
+        <%= submit_tag "Update" %>
+      <% end %>
+<% end %>
+<% end %>
+
+<script type="text/javascript">
+
+ jQuery('.flexi').flexigrid({width:jQuery(window).width()-40,striped:true});
+
+</script>

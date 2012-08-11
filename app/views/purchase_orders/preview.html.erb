@@ -1,0 +1,114 @@
+<style type="text/css">
+  table {font-size:80%;}
+
+</style>
+
+  <% line = 0 %>
+  <% total_amount = 0.000 %>
+  <% @groups = @items.in_groups_of(@number_rows, false) %>
+  <% @groups.each do |item_group|  %>
+
+  <% if @groups.at(0) == item_group %>
+    <%= render "preview_header" %>
+  <% else %>
+    <%= render "dummy_header"  %>
+
+  <% end %>
+<br />
+
+<table width="100%" border="0" cellpadding="2" cellspacing="0">
+  <tr>
+    <th align="left">No</th>
+    <th align="left">Code</th>
+    <th align="left">Material</th>
+    <th align="left">UOM</th>
+    <th><%=t "invoice.quantity" %></th>
+    
+    <th align="right"> <%=t "invoice.unit_price" %></th>
+    <th align="right"> <%=t "invoice.amount" %> </th>
+    <th>Prj Code</th>
+    <th>Pd Code</th>
+  </tr>
+  <tr>
+    <td colspan="9"><hr/></td>
+  </tr>
+  <% internal_line = 0 %>
+ <% item_group.each do |c|  %>
+   <% internal_line += 1 %>
+  <% line += 1%>
+  <% total_amount += c.total_amount %>
+  <tr>
+     <td><%= line.to_s %></td>
+<td><%= c.material.code %></td>
+     <td><%= c.material.description %></td>
+     <td><%= c.material.uom.name rescue "None" %></td>
+     <td align="center"><%= "%.3f" % c.quantity %></td>
+     
+     <td align="right"> <%= "%.3f" % c.unit_price %></td>
+     <td align="right"> <%= "%.3f" % c.total_amount %></td>
+     <td align="center"><%= c.project.code rescue "-" %></td>
+     <td align="center"><%= c.product.code rescue "-" %></td>
+  </tr>
+  <% unless c.remark.blank? %>
+  <tr>
+    <td></td>
+    <td></td>
+    <td colpsan="7">
+      <%= c.remark.gsub("<p>", "").gsub("</p>", "<br />") rescue c.remark %>
+    </td>
+  </tr>
+  <% end %>
+  <% end %>
+   <tr>
+    <td colspan="9"><hr/></td>
+  </tr>
+
+  <% if @groups.at(-1) == item_group %>
+
+  <tr>
+    <td colspan="5"></td><td><strong> Currency :</strong> <%= @currency.name rescue "" %> </td>
+    <td align="right" style="font-size: 15px;font-weight: bold"><b>Grand Total</b> :
+                            
+              <%= @currency.name rescue ""  %> <%= "%.3f" % total_amount  %>
+                 <hr/></td>
+  </tr>
+    <% end %>
+</table>
+<% (@number_rows - internal_line).times do %>
+  <br />
+<% end %>
+  <% end %>
+<table width="100%">
+  <tr>
+<td></td><td width="60%"></td><td><%= company_name %><%# "UNI-VESSEL ENGINEERING (B'WORTH) SDN.BHD." %><%# "UNI-VESSEL AUTOMATION SDN BHD." %>
+<br /><br /><br /><br />
+<br /><br /><br /><br />
+</td>
+</tr>
+<tr>
+<td>________________________________________</td><td width="60%"></td><td>________________________________________</td>
+</tr>
+<tr>
+<td>Purchased By : <%=h @purchase_order.purchased_user.signature_name rescue "-"  %></td><td></td><td>Approved By :  <%=h @purchase_order.approved_user.signature_name rescue "-" %></td>
+</tr>
+</table>
+<br /><br /><br /><br />
+<hr/>
+
+<!--
+<%#*<table width="100%">%>
+<%#*<tr>%>
+<%#*<td><%= @purchase_order.purchase_order_date.strftime("%d-%m-%Y") %></td>%>
+<%#*<td colspan="2" style="padding-right: 20px;text-align: right;font-size: 12;font-weight: bold;font-style: italic ">Please indicate our PO No And Parts/Materials Codes On Every Delivery Orders. </td>%>
+<%#*</tr>%>
+<%#*<tr>%>
+<%#*<td></td><td>P/O : <%= @purchase_order.purchase_order_number %> </td><td></td>%>
+<%#*</tr>%>
+<%#*</table>%>-->
+
+
+
+
+
+
+

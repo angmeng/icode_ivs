@@ -1,0 +1,28 @@
+<% title "Settings" %>
+
+<table>
+  <tr>
+    <th>Ar Code</th>
+    <th>Ar Last Number</th>
+    <th>Ap Code</th>
+    <th>Ap Last Number</th>
+    <th>Invoice Code</th>
+    <th>Invoice Last Number</th>
+     <th>Company Name</th>
+  </tr>
+  <% for setting in @settings %>
+    <tr>
+      <td><%=h setting.ar_code %></td>
+      <td><%=h setting.ar_last_number %></td>
+      <td><%=h setting.ap_code %></td>
+      <td><%=h setting.ap_last_number %></td>
+      <td><%=h setting.invoice_code %></td>
+      <td><%=h setting.invoice_last_number %></td>
+      <td><%=h setting.company_name %></td>
+      <td><%= link_to "Show", setting %></td>
+      <td><%= link_to "Edit", edit_setting_path(setting) %></td>
+
+    </tr>
+  <% end %>
+</table>
+

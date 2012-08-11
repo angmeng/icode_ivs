@@ -1,0 +1,42 @@
+<% title "Material"  %>
+<br />
+ <% if is_admin? %>
+<%= link_to 'Edit', edit_material_path(@material) %> |
+<%= link_to 'Copy', copy_material_path(@material) %> |
+<% end %>
+<%= link_to 'Back', materials_path %>
+<br /><br />
+<p>
+  <b>Code:</b>
+  <%=h @material.code %>
+</p>
+
+<p>
+  <b>Material group:</b>
+  <%=h @material.material_group.name rescue "-" %>
+</p>
+
+<p>
+  <b>Material category:</b>
+  <%=h @material.material_category.name rescue "-" %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @material.description %>
+</p>
+
+<p>
+  <b>Uom:</b>
+  <%=h @material.uom.name rescue "-" %>
+</p>
+<p>
+  <b>KG:</b>
+  <%=h @material.kg %>
+</p>
+<p>
+  <b>Remark:</b>
+  <%=h @material.remark %>
+</p>
+
+

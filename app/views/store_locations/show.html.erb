@@ -1,0 +1,20 @@
+<% title (t "titles.store_location") %>
+<br />
+<p>
+ <%= link_to image_tag("edit.png", :title => "Edit"), edit_store_location_path(@store_location) %> |
+ <%= link_to image_tag("delete.png", :title => "Delete"), @store_location, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to image_tag("home.png", :title => "View All"), store_locations_path %>
+</p>
+<br />
+<p>
+  <strong><%=t 'common.name' %>:</strong>
+  <%=h @store_location.name %>
+</p>
+<p>
+  <strong><%=t 'common.description' %>:</strong>
+  <%=h @store_location.description %>
+</p>
+
+
+
+

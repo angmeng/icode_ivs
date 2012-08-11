@@ -1,0 +1,56 @@
+<% title "Transportation Slip" %>
+<br />
+<%= link_to(image_tag("print.png", :title => "Print"), preview_transportation_slip_path(@transportation_slip), {:target => "_blank"}) %> |
+<%= link_to image_tag("edit.png", :title => "Edit"), edit_transportation_slip_path(@transportation_slip) %> |
+<%= link_to image_tag("home.png", :title => "View All"), transportation_slips_path %>
+<br /><br />
+
+<table>
+  <tr>
+    <td><b>Slip No:</b></td><td><%=h @transportation_slip.id %></td>
+  </tr>
+  <tr>
+    <td><b>Transport date:</b></td><td><%=h @transportation_slip.transport_date %></td>
+  </tr>
+  <tr>
+    <td><b>Project:</b></td><td><%=h @transportation_slip.project.name rescue "-" %></td>
+  </tr>
+   <tr>
+    <td><b>Supplier:</b></td><td><%=h @transportation_slip.supplier.name rescue "-" %></td>
+  </tr>
+  <tr>
+    <td><b>Vehicle:</b></td><td> <%=h @transportation_slip.vehicle.name rescue "-" %></td>
+  </tr>
+  <tr>
+    <td><b>Lorry number:</b></td><td> <%=h @transportation_slip.lorry_number %></td>
+  </tr>
+   <tr>
+    <td valign="top"><b>Description of goods:</b></td><td> <%=raw @transportation_slip.description_of_goods %></td>
+  </tr>
+   <tr>
+    <td><b>Quantity:</b></td><td>  <%=h "%.3f" % @transportation_slip.quantity %></td>
+  </tr>
+   <tr>
+    <td><b>From location / Address:</b></td><td>   <%=h @transportation_slip.from_location %> | <%=h @transportation_slip.from_address %></td>
+  </tr>
+   <tr>
+    <td><b>To location / Address:</b></td><td>  <%=h @transportation_slip.to_location %> | <%=h @transportation_slip.to_address %></td>
+  </tr>
+  <tr>
+    <td><b>Driver name:</b></td><td>  <%=h @transportation_slip.driver_name %></td>
+  </tr>
+  <tr>
+    <td><b>Driver ic:</b></td><td>  <%=h @transportation_slip.driver_ic %></td>
+  </tr>
+  <tr>
+    <td><b>Do number:</b></td><td>    <%=h @transportation_slip.do_number %></td>
+  </tr>
+   <tr>
+    <td><b>Checked by:</b></td><td>  <%=h @transportation_slip.checked_by %></td>
+  </tr>
+   <tr>
+    <td><b>Fee:</b></td><td> <%=h "%.3f" % @transportation_slip.fee %></td>
+  </tr>
+</table>
+  
+

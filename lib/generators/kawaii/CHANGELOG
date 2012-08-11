@@ -1,0 +1,32 @@
+What's new in Kawaii?
+
+November 7, 2008:
+- Fixed: bug that prevented the 'Save Snippet' button from appearing on the initial tab
+- Added ability to store snippets locally in an ActiveRecord model (KawaiiSnippet)
+
+August 11, 2008:
+
+- Client-side pagination is in place for the datatable, so you can return many results.
+- Keyboard Shortcut: Ctrl-Enter to execute a query
+- Strings are formatted better. 
+- Fixed: mysql defined prematurely (thanks http://github.com/oculardisaster)
+
+August 5, 2008:
+
+- Fixed bug with proxy queries not being rendered correctly
+   e.g: User.find_by_name('robin').addresses didn't work before
+- Added support for rendering Arrays of Hashes
+- Added support for typing in SELECT SQL queries directly in the console and getting nice formatting!
+   e.g: select * from users where name = 'robin'
+   
+   Kawaii does this by checking if the first thing you type in is 'select' with a 'from' later on.
+   I don't think this should cause any collisions with actual ruby code, but let me know!
+
+July 29, 2008:
+
+- Moved around all sorts of files so that you can update Kawaii easier in the future. See README for upgrading instructions.
+- Configuration is now in a YAML file
+- Note about Prototype.js being required in the README
+- If your YAML doesn't have the snippets enabled option, it doesn't barf if you don't have the aws-s3 gem installed.
+- Added display support for Hash
+- Added empty array fix (thanks http://github.com/wwood) 

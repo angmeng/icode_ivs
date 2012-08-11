@@ -1,0 +1,20 @@
+<h1>Editing purchase_requisition_category</h1>
+
+<% form_for(@purchase_requisition_category) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @purchase_requisition_category %> |
+<%= link_to 'Back', purchase_requisition_categories_path %>

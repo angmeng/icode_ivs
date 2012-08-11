@@ -1,0 +1,97 @@
+<% title "Transportation slips" %>
+<br/>
+<%= link_to image_tag("new.png", :title => "New"), new_transportation_slip_path %>
+<br /><br />
+<% form_for @search do |f| %>
+<table class="list" style="width: auto">
+  <thead>
+ <tr>
+          
+          <th align="left">Slip No </th><td><%=h f.text_field :id_equals %></td>
+</tr>
+
+	<tr>
+	
+          <th align="left">Supplier</th><td><%=h f.select :supplier_id_equals, Supplier.all.map {|c| [c.name, c.id]}, {:include_blank => true} %></td>
+</tr>
+<tr>
+          <th align="left">Vehicle</th> <td><%=h f.select :vehicle_id_equals, Vehicle.all.map {|v| [v.name, v.id]}, {:include_blank => true} %></td>
+</tr>
+<tr>
+          <th align="left">Lorry number</th><td><%=h f.text_field :lorry_number_equals %></td>
+</tr>
+
+    
+     <tr>
+          
+          <th align="left">From</th><td><%=h f.text_field :from_location_equals %></td>
+</tr>
+<tr>
+          <th align="left">To</th> <td><%=h f.text_field :to_location_equals %></td>
+</tr>
+<tr>
+          <th align="left">Do number</th><td><%=h f.text_field :do_number_equals %></td>
+</tr>
+<tr>
+          <th align="left">Action</th><td><%= f.submit(t "links.search") %></td>
+
+     </tr>
+   </thead>
+    <tbody>
+
+	   </tbody>
+</table>
+
+<% end %>
+
+<% paginated_section @transportation_slips do %>
+<br /><br />
+<table class="flexi">
+  <thead>
+  <tr>
+<th width="60" align="left">Slip No</th>
+
+    <th width="60" align="left">Date</th>
+    <th width="230" align="left">Supplier</th>
+    <th width="100" align="left">Vehicle</th>
+    <th width="100" align="left">Lorry number</th>
+    <th width="200" align="left">Description of goods</th>
+    <th width="50">Quantity</th>
+    <th width="160" align="left">From</th>
+    <th width="160" align="left">To</th>
+    <th width="80" align="left">Do number</th>
+    <th width="50">Fee</th>
+    <th width="100">Action</th>
+  </tr>
+  </thead>
+   <tbody>
+<% @transportation_slips.each do |transportation_slip| %>
+  <tr class="<%= cycle("odd", "even") %>">
+<td><%=h transportation_slip.id.to_s %></td>
+
+    <td><%=h transportation_slip.transport_date %></td>
+    <td><%=h transportation_slip.supplier.name %></td>
+    <td><%=h transportation_slip.vehicle.name %></td>
+    <td><%=h transportation_slip.lorry_number %></td>
+    <td><%=raw transportation_slip.description_of_goods %></td>
+    <td align="center"><%=h transportation_slip.quantity %></td>
+    <td><%=h transportation_slip.from_location %></td>
+    <td><%=h transportation_slip.to_location %></td>
+    <td><%=h transportation_slip.do_number %></td>
+    <td align="right"><%=h transportation_slip.fee %></td>
+    <td align="center"><%= link_to 'Show', transportation_slip %>
+    <%= link_to 'Edit', edit_transportation_slip_path(transportation_slip) %>
+    <%= link_to 'Destroy', transportation_slip, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+  </tbody>
+</table>
+
+<br />
+<% end %>
+
+<script type="text/javascript">
+
+ jQuery('.flexi').flexigrid({width:jQuery(window).width()-40,striped:true});
+
+</script>

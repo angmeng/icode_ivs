@@ -1,0 +1,47 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  history_id: 1
+  year: 1
+  month: MyString
+  delivery_date: MyString
+  pr_number: 1
+  po_number: 1
+  project_code: MyString
+  po_issue_date: 2011-08-14
+  supplier_code: MyString
+  material_code: MyString
+  category: MyString
+  item_description: MyText
+  uom: MyString
+  remark: MyText
+  unit_price: 9.99
+  qty: 1
+  deliver_to: MyString
+  term: MyString
+  product_code: MyString
+  currency: MyString
+  currency_unit_price: 9.99
+
+two:
+  history_id: 1
+  year: 1
+  month: MyString
+  delivery_date: MyString
+  pr_number: 1
+  po_number: 1
+  project_code: MyString
+  po_issue_date: 2011-08-14
+  supplier_code: MyString
+  material_code: MyString
+  category: MyString
+  item_description: MyText
+  uom: MyString
+  remark: MyText
+  unit_price: 9.99
+  qty: 1
+  deliver_to: MyString
+  term: MyString
+  product_code: MyString
+  currency: MyString
+  currency_unit_price: 9.99

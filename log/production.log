@@ -1,0 +1,222 @@
+
+ActionView::MissingTemplate (Missing template sessions/destroy.erb in view path app/views):
+  passenger (2.2.12) lib/phusion_passenger/rack/request_handler.rb:92:in `process_request'
+  passenger (2.2.12) lib/phusion_passenger/abstract_request_handler.rb:207:in `main_loop'
+  passenger (2.2.12) lib/phusion_passenger/railz/application_spawner.rb:426:in `start_request_handler'
+  passenger (2.2.12) lib/phusion_passenger/railz/application_spawner.rb:366:in `handle_spawn_application'
+  passenger (2.2.12) lib/phusion_passenger/utils.rb:252:in `safe_fork'
+  passenger (2.2.12) lib/phusion_passenger/railz/application_spawner.rb:362:in `handle_spawn_application'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:163:in `start'
+  passenger (2.2.12) lib/phusion_passenger/railz/application_spawner.rb:215:in `start'
+  passenger (2.2.12) lib/phusion_passenger/spawn_manager.rb:262:in `spawn_rails_application'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server_collection.rb:126:in `lookup_or_add'
+  passenger (2.2.12) lib/phusion_passenger/spawn_manager.rb:256:in `spawn_rails_application'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server_collection.rb:80:in `synchronize'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server_collection.rb:79:in `synchronize'
+  passenger (2.2.12) lib/phusion_passenger/spawn_manager.rb:255:in `spawn_rails_application'
+  passenger (2.2.12) lib/phusion_passenger/spawn_manager.rb:154:in `spawn_application'
+  passenger (2.2.12) lib/phusion_passenger/spawn_manager.rb:287:in `handle_spawn_application'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+
+
+ActionView::TemplateError (undefined method `code' for #<Outlet:0x4ab69c8>) on line #23 of app/views/outlets/index.html.erb:
+20:    <tbody>
+21: <% @outlets.each do |outlet| %>
+22:  <tr class="<%= cycle("odd", "even") %>">
+23:     <td align="center"><%=h outlet.code %></td>
+24:     <td align="center"><%=h outlet.name %></td>
+25:     <td align="center"><%=h outlet.address %></td>
+26:     <td align="center"><%=h outlet.area %></td>
+
+    app/views/outlets/index.html.erb:23
+    app/views/outlets/index.html.erb:21:in `each'
+    app/views/outlets/index.html.erb:21
+    app/controllers/outlets_controller.rb:10:in `index'
+    passenger (2.2.12) lib/phusion_passenger/rack/request_handler.rb:92:in `process_request'
+    passenger (2.2.12) lib/phusion_passenger/abstract_request_handler.rb:207:in `main_loop'
+    passenger (2.2.12) lib/phusion_passenger/railz/application_spawner.rb:426:in `start_request_handler'
+    passenger (2.2.12) lib/phusion_passenger/railz/application_spawner.rb:366:in `handle_spawn_application'
+    passenger (2.2.12) lib/phusion_passenger/utils.rb:252:in `safe_fork'
+    passenger (2.2.12) lib/phusion_passenger/railz/application_spawner.rb:362:in `handle_spawn_application'
+    passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+    passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+    passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+    passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:163:in `start'
+    passenger (2.2.12) lib/phusion_passenger/railz/application_spawner.rb:215:in `start'
+    passenger (2.2.12) lib/phusion_passenger/spawn_manager.rb:262:in `spawn_rails_application'
+    passenger (2.2.12) lib/phusion_passenger/abstract_server_collection.rb:126:in `lookup_or_add'
+    passenger (2.2.12) lib/phusion_passenger/spawn_manager.rb:256:in `spawn_rails_application'
+    passenger (2.2.12) lib/phusion_passenger/abstract_server_collection.rb:80:in `synchronize'
+    passenger (2.2.12) lib/phusion_passenger/abstract_server_collection.rb:79:in `synchronize'
+    passenger (2.2.12) lib/phusion_passenger/spawn_manager.rb:255:in `spawn_rails_application'
+    passenger (2.2.12) lib/phusion_passenger/spawn_manager.rb:154:in `spawn_application'
+    passenger (2.2.12) lib/phusion_passenger/spawn_manager.rb:287:in `handle_spawn_application'
+    passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+    passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+    passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+
+
+ActionView::TemplateError (undefined method `customer' for #<Invoice:0x441ae98>) on line #22 of app/views/report/sales_report.html.erb:
+19:    <tr class="<%= cycle("list0", "list1") %>">
+20:       <td align="center"><%=h invoice.invoice_date %></td>
+21:       <td align="center"><%=h invoice.invoice_number %></td>
+22:       <td align="center"><%=h invoice.customer.name %></td>
+23:       <td align="center">RM <%= number_with_precision(invoice.total_amount, :precision => 2) %></td>
+24:     </tr>
+25:   <% end %>
+
+    app/views/report/sales_report.html.erb:22
+    app/views/report/sales_report.html.erb:18
+    passenger (2.2.12) lib/phusion_passenger/rack/request_handler.rb:92:in `process_request'
+    passenger (2.2.12) lib/phusion_passenger/abstract_request_handler.rb:207:in `main_loop'
+    passenger (2.2.12) lib/phusion_passenger/railz/application_spawner.rb:426:in `start_request_handler'
+    passenger (2.2.12) lib/phusion_passenger/railz/application_spawner.rb:366:in `handle_spawn_application'
+    passenger (2.2.12) lib/phusion_passenger/utils.rb:252:in `safe_fork'
+    passenger (2.2.12) lib/phusion_passenger/railz/application_spawner.rb:362:in `handle_spawn_application'
+    passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+    passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+    passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+    passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:163:in `start'
+    passenger (2.2.12) lib/phusion_passenger/railz/application_spawner.rb:215:in `start'
+    passenger (2.2.12) lib/phusion_passenger/spawn_manager.rb:262:in `spawn_rails_application'
+    passenger (2.2.12) lib/phusion_passenger/abstract_server_collection.rb:126:in `lookup_or_add'
+    passenger (2.2.12) lib/phusion_passenger/spawn_manager.rb:256:in `spawn_rails_application'
+    passenger (2.2.12) lib/phusion_passenger/abstract_server_collection.rb:80:in `synchronize'
+    passenger (2.2.12) lib/phusion_passenger/abstract_server_collection.rb:79:in `synchronize'
+    passenger (2.2.12) lib/phusion_passenger/spawn_manager.rb:255:in `spawn_rails_application'
+    passenger (2.2.12) lib/phusion_passenger/spawn_manager.rb:154:in `spawn_application'
+    passenger (2.2.12) lib/phusion_passenger/spawn_manager.rb:287:in `handle_spawn_application'
+    passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+    passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+    passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+
+
+ActionController::RoutingError (No route matches "/photos/thumb/missing.png" with {:method=>:get}):
+  passenger (2.2.12) lib/phusion_passenger/rack/request_handler.rb:92:in `process_request'
+  passenger (2.2.12) lib/phusion_passenger/abstract_request_handler.rb:207:in `main_loop'
+  passenger (2.2.12) lib/phusion_passenger/railz/application_spawner.rb:426:in `start_request_handler'
+  passenger (2.2.12) lib/phusion_passenger/railz/application_spawner.rb:366:in `handle_spawn_application'
+  passenger (2.2.12) lib/phusion_passenger/utils.rb:252:in `safe_fork'
+  passenger (2.2.12) lib/phusion_passenger/railz/application_spawner.rb:362:in `handle_spawn_application'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:163:in `start'
+  passenger (2.2.12) lib/phusion_passenger/railz/application_spawner.rb:215:in `start'
+  passenger (2.2.12) lib/phusion_passenger/spawn_manager.rb:262:in `spawn_rails_application'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server_collection.rb:126:in `lookup_or_add'
+  passenger (2.2.12) lib/phusion_passenger/spawn_manager.rb:256:in `spawn_rails_application'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server_collection.rb:80:in `synchronize'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server_collection.rb:79:in `synchronize'
+  passenger (2.2.12) lib/phusion_passenger/spawn_manager.rb:255:in `spawn_rails_application'
+  passenger (2.2.12) lib/phusion_passenger/spawn_manager.rb:154:in `spawn_application'
+  passenger (2.2.12) lib/phusion_passenger/spawn_manager.rb:287:in `handle_spawn_application'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+
+
+ActionController::RoutingError (No route matches "/photos/thumb/missing.png" with {:method=>:get}):
+  passenger (2.2.12) lib/phusion_passenger/rack/request_handler.rb:92:in `process_request'
+  passenger (2.2.12) lib/phusion_passenger/abstract_request_handler.rb:207:in `main_loop'
+  passenger (2.2.12) lib/phusion_passenger/railz/application_spawner.rb:426:in `start_request_handler'
+  passenger (2.2.12) lib/phusion_passenger/railz/application_spawner.rb:366:in `handle_spawn_application'
+  passenger (2.2.12) lib/phusion_passenger/utils.rb:252:in `safe_fork'
+  passenger (2.2.12) lib/phusion_passenger/railz/application_spawner.rb:362:in `handle_spawn_application'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:163:in `start'
+  passenger (2.2.12) lib/phusion_passenger/railz/application_spawner.rb:215:in `start'
+  passenger (2.2.12) lib/phusion_passenger/spawn_manager.rb:262:in `spawn_rails_application'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server_collection.rb:126:in `lookup_or_add'
+  passenger (2.2.12) lib/phusion_passenger/spawn_manager.rb:256:in `spawn_rails_application'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server_collection.rb:80:in `synchronize'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server_collection.rb:79:in `synchronize'
+  passenger (2.2.12) lib/phusion_passenger/spawn_manager.rb:255:in `spawn_rails_application'
+  passenger (2.2.12) lib/phusion_passenger/spawn_manager.rb:154:in `spawn_application'
+  passenger (2.2.12) lib/phusion_passenger/spawn_manager.rb:287:in `handle_spawn_application'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+
+
+ActionView::MissingTemplate (Missing template sessions/destroy.erb in view path app/views):
+  passenger (2.2.12) lib/phusion_passenger/rack/request_handler.rb:92:in `process_request'
+  passenger (2.2.12) lib/phusion_passenger/abstract_request_handler.rb:207:in `main_loop'
+  passenger (2.2.12) lib/phusion_passenger/railz/application_spawner.rb:426:in `start_request_handler'
+  passenger (2.2.12) lib/phusion_passenger/railz/application_spawner.rb:366:in `handle_spawn_application'
+  passenger (2.2.12) lib/phusion_passenger/utils.rb:252:in `safe_fork'
+  passenger (2.2.12) lib/phusion_passenger/railz/application_spawner.rb:362:in `handle_spawn_application'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:163:in `start'
+  passenger (2.2.12) lib/phusion_passenger/railz/application_spawner.rb:215:in `start'
+  passenger (2.2.12) lib/phusion_passenger/spawn_manager.rb:262:in `spawn_rails_application'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server_collection.rb:126:in `lookup_or_add'
+  passenger (2.2.12) lib/phusion_passenger/spawn_manager.rb:256:in `spawn_rails_application'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server_collection.rb:80:in `synchronize'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server_collection.rb:79:in `synchronize'
+  passenger (2.2.12) lib/phusion_passenger/spawn_manager.rb:255:in `spawn_rails_application'
+  passenger (2.2.12) lib/phusion_passenger/spawn_manager.rb:154:in `spawn_application'
+  passenger (2.2.12) lib/phusion_passenger/spawn_manager.rb:287:in `handle_spawn_application'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+
+
+ActionController::RoutingError (No route matches "/photos/thumb/missing.png" with {:method=>:get}):
+  passenger (2.2.12) lib/phusion_passenger/rack/request_handler.rb:92:in `process_request'
+  passenger (2.2.12) lib/phusion_passenger/abstract_request_handler.rb:207:in `main_loop'
+  passenger (2.2.12) lib/phusion_passenger/railz/application_spawner.rb:426:in `start_request_handler'
+  passenger (2.2.12) lib/phusion_passenger/railz/application_spawner.rb:366:in `handle_spawn_application'
+  passenger (2.2.12) lib/phusion_passenger/utils.rb:252:in `safe_fork'
+  passenger (2.2.12) lib/phusion_passenger/railz/application_spawner.rb:362:in `handle_spawn_application'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:163:in `start'
+  passenger (2.2.12) lib/phusion_passenger/railz/application_spawner.rb:215:in `start'
+  passenger (2.2.12) lib/phusion_passenger/spawn_manager.rb:262:in `spawn_rails_application'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server_collection.rb:126:in `lookup_or_add'
+  passenger (2.2.12) lib/phusion_passenger/spawn_manager.rb:256:in `spawn_rails_application'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server_collection.rb:80:in `synchronize'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server_collection.rb:79:in `synchronize'
+  passenger (2.2.12) lib/phusion_passenger/spawn_manager.rb:255:in `spawn_rails_application'
+  passenger (2.2.12) lib/phusion_passenger/spawn_manager.rb:154:in `spawn_application'
+  passenger (2.2.12) lib/phusion_passenger/spawn_manager.rb:287:in `handle_spawn_application'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+
+
+ActionController::RoutingError (No route matches "/photos/thumb/missing.png" with {:method=>:get}):
+  passenger (2.2.12) lib/phusion_passenger/rack/request_handler.rb:92:in `process_request'
+  passenger (2.2.12) lib/phusion_passenger/abstract_request_handler.rb:207:in `main_loop'
+  passenger (2.2.12) lib/phusion_passenger/railz/application_spawner.rb:426:in `start_request_handler'
+  passenger (2.2.12) lib/phusion_passenger/railz/application_spawner.rb:366:in `handle_spawn_application'
+  passenger (2.2.12) lib/phusion_passenger/utils.rb:252:in `safe_fork'
+  passenger (2.2.12) lib/phusion_passenger/railz/application_spawner.rb:362:in `handle_spawn_application'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:163:in `start'
+  passenger (2.2.12) lib/phusion_passenger/railz/application_spawner.rb:215:in `start'
+  passenger (2.2.12) lib/phusion_passenger/spawn_manager.rb:262:in `spawn_rails_application'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server_collection.rb:126:in `lookup_or_add'
+  passenger (2.2.12) lib/phusion_passenger/spawn_manager.rb:256:in `spawn_rails_application'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server_collection.rb:80:in `synchronize'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server_collection.rb:79:in `synchronize'
+  passenger (2.2.12) lib/phusion_passenger/spawn_manager.rb:255:in `spawn_rails_application'
+  passenger (2.2.12) lib/phusion_passenger/spawn_manager.rb:154:in `spawn_application'
+  passenger (2.2.12) lib/phusion_passenger/spawn_manager.rb:287:in `handle_spawn_application'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+  passenger (2.2.12) lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+

@@ -1,0 +1,27 @@
+<% title 'Project Supervisor'  %>
+<br />
+<%= link_to 'Edit', edit_project_supervisor_path(@project_supervisor) %> |
+<%= link_to 'Back', project_supervisors_path %>
+<br/><br/>
+
+<p>
+  <b>Employee number:</b>
+  <%=h @project_supervisor.employee_number %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%=h @project_supervisor.name %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%=h @project_supervisor.email %>
+</p>
+
+<p>
+  <b>Remark:</b>
+  <%=h @project_supervisor.remark %>
+</p>
+
+

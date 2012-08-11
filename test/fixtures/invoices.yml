@@ -1,0 +1,11 @@
+one:
+  invoice_date: 2009-11-16
+  invoice_number: MyString
+  customer_id: 1
+  remark: MyString
+
+two:
+  invoice_date: 2009-11-16
+  invoice_number: MyString
+  customer_id: 1
+  remark: MyString

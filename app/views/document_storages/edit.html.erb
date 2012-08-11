@@ -1,0 +1,9 @@
+<% title (t "titles.edit") + "Folder - " + @document_category.name %>
+
+
+<%= render :partial => 'form' %>
+
+<p>
+  <%= link_to (t "links.show", @document_storage %> |
+  <%= link_to (t "links.view_all", document_storages_path %>
+</p>

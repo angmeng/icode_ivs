@@ -1,0 +1,23 @@
+
+  <table class="list" style="width:100%">
+    <tr>
+<th>PO No</th>
+
+      <th>Date</th>
+      <th>Supplier</th>
+      <th>Quantity</th>
+      <th>Unit Price</th>
+    </tr>
+    <% history.each do |h| %>
+    <tr class="<%= cycle("odd", "even") %>" align="center">
+ <td><%= h.purchase_order.purchase_order_number  %></td>
+      <td><%= h.purchase_order.purchase_order_date.strftime("%d-%m-%Y")  %> </td>
+      <td><%= h.purchase_order.supplier.name  %></td>
+      <td><%= h.quantity  %></td>
+      <td><%= h.unit_price  %></td>
+    </tr>
+
+    <% end %>
+  </table>
+
+

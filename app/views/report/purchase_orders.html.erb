@@ -1,0 +1,208 @@
+<% title ("Purchase Orders") %>
+<br />
+<% form_for @search do |f| %>
+  <table calss="list" style="width: auto;">
+    <tr>
+      <th align="left">From Date</th><td><%= f.calendar_date_select :purchase_order_purchase_order_date_gte %></td>
+      <th align="left">To Date</th><td><%= f.calendar_date_select :purchase_order_purchase_order_date_lte %></td>
+    <tr>
+  </table>
+  <table calss="list" style="width: auto;">
+    </tr>
+    <tr>
+       <th align="left" width="120px">Product</th><td><%= f.select :product_id_equals, Product.all(:order => "name").map {|s| [s.name, s.id]}, :include_blank => true %></td>
+</tr>
+
+</table>
+<table calss="list" style="width: auto;">
+    </tr>
+    <tr>
+       <th align="left"  width="120px">Material Category</th><td><%= f.select :material_material_category_id_equals, MaterialCategory.all(:order => "name").map {|s| [s.name, s.id]}, :include_blank => true %></td>
+</tr>
+
+</table>
+  <table calss="list" style="width: auto;">
+
+<tr>      
+<th align="left" width="120px">Project</th><td><%= f.select :purchase_order_project_id_equals, Project.all(:order => "name").map {|s| [s.name, s.id]}, :include_blank => true %></td>
+     </tr>
+</table>
+  <table calss="list" style="width: auto;">
+
+   <tr>
+      <th align="left" width="120px">Supplier</th><td><%= f.select :purchase_order_supplier_id_equals, Supplier.all(:order => "name").map {|s| [s.name, s.id]}, :include_blank => true %></td>
+      <td></td><td></td>
+    </tr>
+</table>
+  <table calss="list" style="width: auto;">
+
+    <tr>
+      <th align="left" width="120px">Order By</th>
+      <td><%= select_tag "order_by", 
+               "<option>products, projects, suppliers</option><option>products, suppliers, projects</option><option>projects, products, suppliers</option><option>projects, suppliers, products</option><option>suppliers, projects, products</option><option>suppliers, products, projects</option>"
+      %></td>
+      <td></td><td></td>
+    </tr>
+    </table>
+  <table calss="list" style="width: auto;">
+    <tr>
+      <th align="left" width="120px"> </th><td><%= f.submit(t "links.search") %> | <%= link_to "Back", "/report/purchase_orders" %></td>
+
+    </tr>
+</table>
+<% end %>
+<br />
+
+<% if !@purchase_orders.empty? %>
+
+<% if @material_category %>
+  <h1>
+    <%= @material_category.name %>
+  </h1>
+<% end %>
+
+<br />
+<table style="width: 100%;border-style: solid;border-width: medium;border-spacing: 0">
+  <thead>
+  <tr>
+    <th style="width: 100px;border-style: solid;border-width: thick;border-right: none;padding: 2px 2px 2px 2px">PO Date</th>
+    <th style="border-style: solid;border-width: thick;border-right: none;padding: 2px 2px 2px 2px">PO No</th>
+  <% if not @sort[0] == "products" %>
+    <th style="border-style: solid;border-width: thick;border-right: none;padding: 2px 2px 2px 2px">Product</th>
+  <% end %> 
+  <% if not @sort[0] == "projects" %>
+    <th style="border-style: solid;border-width: thick;border-right: none;padding: 2px 2px 2px 2px">Project</th>
+  <% end %>
+    <th style="border-style: solid;border-width: thick;border-right: none;padding: 2px 2px 2px 2px">Description</th>
+  <% if not @sort[0] == "suppliers" %>
+    <th style="border-style: solid;border-width: thick;border-right: none;padding: 2px 2px 2px 2px">Supplier</th>
+  <% end %>
+    <th style="border-style: solid;border-width: thick;padding: 2px 2px 2px 2px">Total</th>
+    
+  </tr>
+</thead>
+   <tbody>
+   <%
+     @sort_name = ""
+     @grand_total = {}
+     @project_total_based_on_currency = {}
+     @total_kg = 0.000
+   %>
+<% @purchase_orders.each do |item| %>
+<%
+  	if @grand_total.has_key?(item.currency.name)
+       @grand_total[item.currency.name] += item.total_amount 
+     else
+       @grand_total = @grand_total.merge({ item.currency.name => item.total_amount })
+     end
+%>
+
+<% 
+  if item.material.material_group
+    if item.material.material_group.is_counting?
+      unless item.material.kg.blank?
+        @total_kg += item.material.kg
+      end
+    end
+  end
+%>
+
+<% case @sort[0]
+when "projects"
+  @target_name = item.purchase_order.project.name 
+when "products"
+  @target_name = item.product.name 
+when "suppliers"
+  @target_name = item.purchase_order.supplier.name 
+end %>
+
+   <% if @sort_name == @target_name 
+         if  @project_total_based_on_currency.has_key?(item.currency.name)
+           @project_total_based_on_currency[item.currency.name] += item.total_amount 
+         else
+           @project_total_based_on_currency = @project_total_based_on_currency.merge({ item.currency.name => item.total_amount })
+         end
+      else  	 
+	%>
+
+	    <% if !@project_total_based_on_currency.blank? %>
+	     <tr>
+	       <td colspan="6" style="width: 100%;height: 30px;text-align: right;border-style: solid;border-width: thin;">
+	         <h2>Total : <%= @project_total_based_on_currency.map {|key, value| "#{key}  #{number_with_precision(value, :precision => 3)}" }.join(", ") %></h2>
+	       </td>
+	     </tr>
+	    <% end %>
+	    <% @project_total_based_on_currency = { item.currency.name => item.total_amount } %>
+	    
+      <% case @sort[0]
+        when "projects"
+          @sort_name = item.purchase_order.project.name 
+        when "products"
+          @sort_name = item.product.name 
+        when "suppliers"
+          @sort_name = item.purchase_order.supplier.name 
+        end %>
+
+	     <tr>
+	       <td colspan="6" style="height: 38px;width: 100%;border-style: solid;border-width: thin;">
+	         <h2><%= @sort_name %></h2>
+	       </td>
+	     </tr>
+	     <% end %>
+   <tr>
+    <td style="width: auto;border-style: solid;border-width: thin;border-bottom: none;border-right: none"><%=h item.purchase_order.purchase_order_date %></td>
+    <td style="width: auto;border-style: solid;border-width: thin;border-bottom: none;border-right: none"><%=h item.purchase_order.purchase_order_number %></td>
+  
+  <% if not @sort[0] == "products" %>
+    <td style="width: auto;border-style: solid;border-width: thin;border-bottom: none;border-right: none"><%=h item.product.name rescue " - "  %></td>
+  <% end %>
+
+  <% if not @sort[0] == "projects" %>
+    <td style="width: auto;border-style: solid;border-width: thin;border-bottom: none;border-right: none"><%=h item.purchase_order.project.name rescue " - "  %></td>
+  <% end %>
+
+    <td style="width: auto;border-style: solid;border-width: thin;border-bottom: none;border-right: none"><%=h item.material.description rescue " - "  %></td>
+    
+  <% if not @sort[0] == "suppliers" %>
+    <td style="width: auto;border-style: solid;border-width: thin;border-bottom: none;border-right: none"><%=h item.purchase_order.supplier_name rescue " - "  %></td>
+  <% end %>
+
+    <td style="width: auto;border-style: solid;border-width: thin;border-bottom: none;"><%= "#{item.currency.name} " + ("%.3f" % item.total_amount) %></td>
+   </tr>
+   
+<% end %>
+    <% if !@project_total_based_on_currency.blank?  %>
+      <tr>
+       <td colspan="6" style="width: 100%;height: 30px;text-align: right;border-style: solid;border-width: thin;">
+         <h2>Total : <%= @project_total_based_on_currency.map {|key, value| "#{key}  #{ number_with_precision(value, :precision => 3)}" }.join(", ") %></h2>
+       </td>
+     </tr>
+    <% end %>
+     </tbody>
+</table>
+
+<br />
+
+<% if !@total_kg.blank?  %>
+  <table style="width: 100%">
+      <tr>
+        <td style="width: 100%;height: 30px;text-align: right;border-style: solid;border-width: thin;">
+         <h2>Total KG: <%= number_with_precision(@total_kg, :precision => 3) %></h2>
+       </td>
+     </tr>
+  </table>
+<% end %>
+
+
+<br />
+ <% if !@grand_total.blank?  %>
+<table style="width: 100%">
+      <tr>
+        <td style="width: 100%;height: 30px;text-align: right;border-style: solid;border-width: thin;">
+         <h2>Grand Total : <%= @grand_total.map {|key, value| "#{key}  #{ number_with_precision(value, :precision => 3)}" }.join(", ") %></h2>
+       </td>
+     </tr>
+     </table>
+  <% end %>
+<% end %>
+

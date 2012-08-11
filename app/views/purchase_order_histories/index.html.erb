@@ -1,0 +1,94 @@
+<% title "Listing purchase_order_history" %>
+
+
+<% form_for @search do |f| %>
+<table class="list" style="width: auto">
+<tr><th align="left">PR No</th><td><%= f.text_field :pr_number_begins_with %></td>
+</tr>
+<tr><th align="left">PO No</th><td><%= f.text_field :po_number_begins_with %></td>
+</tr>
+<tr><th align="left">Year</th> <td><%= f.text_field :year_equals %></td>
+</tr>
+<tr><th align="left">Project</th><td><%= f.text_field  :project_code_begins_with %></td>
+</tr>
+<tr><th align="left">Product</th><td><%= f.text_field  :project_code_begins_with %></td>
+</tr>
+<tr><th align="left">Item</th> <td><%= f.text_field :material_code_begins_with %></td>
+</tr>
+<tr><th align="left">Category</th><td><%= f.text_field  :category_begins_with %></td>
+</tr>
+<tr><th align="left">Supplier</th> <td><%= f.text_field  :supplier_code_begins_with %></td>
+</tr>
+<tr><th align="left"><%=t "common.action" %></th><td><%= f.submit(t "links.search") %></td>
+   </tr>
+</table>
+<% end %>
+<br />
+
+<% paginated_section @prs do %>
+<br /><br />
+  <table class="flexi">
+    <thead>
+  <tr>
+    <th width="50">ID</th>
+    <th width="50">Year</th>
+    <th width="50">Month</th>
+    <th width="50">Delivery date</th>
+    <th width="50">Pr number</th>
+    <th width="50">Po number</th>
+    <th width="60">Project code</th>
+    <th width="60">Po issue date</th>
+    <th width="50">Supplier code</th>
+    <th width="180">Material code</th>
+    <th width="50">Category</th>
+    <th width="160">Item description</th>
+    <th width="50">Uom</th>
+    <th width="280">Remark</th>
+    <th width="50">Unit price</th>
+    <th width="50">Qty</th>
+    <th width="60">Deliver to</th>
+    <th width="50">Term</th>
+    <th width="50">Product code</th>
+    <th width="50">Currency</th>
+    <th width="50">unit price</th>
+    <th width="45">Action</th>
+  </tr>
+ </thead>
+    <tbody>
+<% @purchase_order_histories.each do |purchase_order_history| %>
+  <tr>
+    <td><%=h purchase_order_history.history_id %></td>
+    <td><%=h purchase_order_history.year %></td>
+    <td><%=h purchase_order_history.month %></td>
+    <td><%=h purchase_order_history.delivery_date %></td>
+    <td><%=h purchase_order_history.pr_number %></td>
+    <td><%=h purchase_order_history.po_number %></td>
+    <td><%=h purchase_order_history.project_code %></td>
+    <td><%=h purchase_order_history.po_issue_date %></td>
+    <td><%=h purchase_order_history.supplier_code %></td>
+    <td><%=h purchase_order_history.material_code %></td>
+    <td><%=h purchase_order_history.category %></td>
+    <td><%=h purchase_order_history.item_description %></td>
+    <td><%=h purchase_order_history.uom %></td>
+    <td><%=h purchase_order_history.remark %></td>
+    <td><%=h purchase_order_history.unit_price %></td>
+    <td><%=h purchase_order_history.qty %></td>
+    <td><%=h purchase_order_history.deliver_to %></td>
+    <td><%=h purchase_order_history.term %></td>
+    <td><%=h purchase_order_history.product_code %></td>
+    <td><%=h purchase_order_history.currency %></td>
+    <td><%=h purchase_order_history.currency_unit_price %></td>
+    <td><%= link_to 'Show', purchase_order_history %></td>
+  </tr>
+<% end %>
+   </tbody>
+</table>
+
+<br />
+
+<% end %>
+<script type="text/javascript">
+
+ jQuery('.flexi').flexigrid({width:jQuery(window).width()-80,striped:true});
+
+</script>

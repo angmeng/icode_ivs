@@ -1,0 +1,2 @@
+<%= select_tag "item[material_id]", options_for_select(materials), {:onChange => remote_function(:url => {:action => 'search_by_material'},
+    :with => "'id='+this.value")} %>

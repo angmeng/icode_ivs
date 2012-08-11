@@ -1,0 +1,43 @@
+<% title (t "titles.edit") %>
+<br />
+<p>
+	<%= link_to image_tag("home.png", :title => "View All"), users_path %>
+	</p>
+<br />
+
+<% form_for @user do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :employee_number, "Employee No" %><br />
+    <%= f.text_field :employee_number %>
+  </p>
+  <p>
+    <%= f.label :username, (t "user.user_name") %><br />
+    <%= f.text_field :username %>
+  </p>
+   <p>
+    <%= f.label :signature_name %><br />
+    <%= f.text_field :signature_name %>
+  </p>
+  
+  <p>
+  	<%= f.label :department, (t "user.department") %><br />
+    <%= f.select :department_id, Department.all(:order => "name").map {|c| [c.name, c.id]} %>
+  	</p>
+	
+  <p>
+    <%= f.label :email, (t "user.email") %><br />
+    <%= f.text_field :email %>
+  </p>
+  
+  <p>
+    <%= f.label :language, (t "user.language") %><br />
+    <%= f.select :language, Setting::LANGUAGE_OPTIONS %>
+  </p>
+ 
+  <p><%= f.submit((t "links.update"), :disable_with => "Please Wait ...") %> </p>
+<% end %>
+
+<p>
+
+</p>

@@ -1,0 +1,19 @@
+one:
+  code: MyString
+  name: MyString
+  address: MyText
+  office_phone: MyString
+  fax_number: MyString
+  contact_person: MyString
+  contact_number: MyString
+  active: false
+
+two:
+  code: MyString
+  name: MyString
+  address: MyText
+  office_phone: MyString
+  fax_number: MyString
+  contact_person: MyString
+  contact_number: MyString
+  active: false

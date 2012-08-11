@@ -1,0 +1,15 @@
+one:
+  ar_code: MyString
+  ar_last_number: 1
+  ap_code: MyString
+  ap_last_number: 1
+  invoice_code: MyString
+  invoice_last_number: 1
+
+two:
+  ar_code: MyString
+  ar_last_number: 1
+  ap_code: MyString
+  ap_last_number: 1
+  invoice_code: MyString
+  invoice_last_number: 1

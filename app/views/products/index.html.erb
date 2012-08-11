@@ -1,0 +1,59 @@
+<% title (t 'titles.product')  %>
+<br />
+
+  <%= link_to image_tag("new.png", :title => "New"), new_product_path %>
+<br /><br />
+<% form_for @search do |f| %>
+  <table class="list" style="width: auto">
+    <tr>
+      <th>Code</th>
+      <th>Name</th>
+      <th>Group</th>
+      <th>Category</th>
+      <th><%=t "common.action" %></th>
+    </tr>
+    <tr>
+      <td align="center"><%= f.text_field :code_like %></td>
+      <td align="center"><%= f.text_field :name_like %></td>
+      <td align="center"><%= f.select :product_group_id_equals, ProductGroup.all.map {|g| [g.name, g.id]}, {:include_blank => true} %></td>
+      <td align="center"><%= f.select :product_category_id_equals, ProductCategory.all.map {|c| [c.name, c.id]}, {:include_blank => true} %></td>
+      <td align="center"><%= f.submit(t "links.search") %></td>
+   </tr>
+</table>
+
+<% end %>
+
+<br />
+
+<% paginated_section @products do %>
+<br /><br />
+<table class="list">
+  <thead>
+  <tr> 
+     <th class="link_header" align="left"><%= order @search, :by => :code %></th>
+     <th class="link_header" align="left"><%= order @search, :by => :name %></th>
+     <th align="left">Group</th>
+     <th align="left"><%=t 'product.product_category' %></th>
+     <th align="left">Uom</th>
+     <th><%=t 'common.action' %></th>
+  </tr>
+    </thead>
+   <tbody>
+  <% @products.each do |product| %>
+    <tr class="<%= cycle("odd", "even") %>">
+      <td><%=h product.code %></td>
+      <td><%=h product.name %></td>
+      <td><%=h product.product_group.name rescue "-" %></td>
+      <td><%=h product.product_category.name rescue "-" %></td>
+      <td><%=h product.uom.name rescue "-" %></td>
+      <td align="center"><%= link_to image_tag("show.png", :title => "show"), product %>
+      <%= link_to image_tag("edit.png", :title => "Edit"), edit_product_path(product) %>
+      <%= link_to image_tag("delete.png", :title => "Delete"), product, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+   </tbody>
+</table>
+<% end %>
+
+<br />
+<%= page_entries_info @products, :entry_name => 'product' %>

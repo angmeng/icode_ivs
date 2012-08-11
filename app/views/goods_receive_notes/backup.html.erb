@@ -1,0 +1,6 @@
+<% unless @goods_receive_note.purchase_order.imported? %>
+  <%= link_to "Mark this PO as completed delivered", settle_po_goods_receive_note_path(@goods_receive_note), :confirm => "Are you sure?" %>
+<% else %>
+  <%= link_to "Unmark this PO as incompleted delivered", unsettle_po_goods_receive_note_path(@goods_receive_note), :confirm => "Are you sure?" %>
+<% end %>
+

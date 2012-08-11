@@ -1,0 +1,43 @@
+<% title "New Return Note" %>
+<br />
+<%= link_to 'Back', return_notes_path %>
+<br /><br />
+<% form_for(@return_note) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :grn_date %><br />
+    <%= f.date_select :grn_date %>
+  </p>
+  <p>
+    <%= f.label :supplier_id %><br />
+    <%= f.select :supplier_id, @suppliers %>
+  </p>
+  <p>
+    <%= f.label :do_number %><br />
+    <%= f.text_field :do_number %>
+  </p>
+  <p>
+    <%= f.label :serial_number %><br />
+    <%= f.text_field :serial_number %>
+  </p>
+  <p>
+    <%= f.label :invoice_number %><br />
+    <%= f.text_field :invoice_number %>
+  </p>
+  <p>
+    <%= f.label :remark %><br />
+    <%= f.text_field :remark %>
+  </p>
+
+  <br/>
+  <hr/>
+  <br/>
+  <div style="float: left;width: 50%">
+     <%= render 'new_items' %>
+     <br />
+  <p style="margin-left: 70px"><%= f.submit(t "links.submit") %></p>
+ 
+
+ </div>
+  <% end %>

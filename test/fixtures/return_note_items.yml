@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  return_note_id: 1
+  project_id: 1
+  product_id: 1
+  material_id: 1
+  quantity: 1
+  remark: MyString
+
+two:
+  return_note_id: 1
+  project_id: 1
+  product_id: 1
+  material_id: 1
+  quantity: 1
+  remark: MyString

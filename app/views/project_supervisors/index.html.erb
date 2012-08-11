@@ -1,0 +1,30 @@
+
+<% title "Listing Project Supervisors"  %>
+<br />
+<%= link_to image_tag("new.png", :title => "New"), new_project_supervisor_path %>
+<br /><br />
+
+<table class="list">
+  <tr>
+    <th align="left">Employee number</th>
+    <th align="left">Name</th>
+    <th align="left">Email</th>
+    <th align="left">Remark</th>
+    <th>Action</th>
+  </tr>
+
+<% @project_supervisors.each do |project_supervisor| %>
+  <tr class="<%= cycle("odd", "even") %>">
+    <td><%=h project_supervisor.employee_number %></td>
+    <td><%=h project_supervisor.name %></td>
+    <td><%=h project_supervisor.email %></td>
+    <td><%=h project_supervisor.remark %></td>
+    <td align="center"><%= link_to 'Show', project_supervisor %>
+    <%= link_to 'Edit', edit_project_supervisor_path(project_supervisor) %>
+    <%= link_to 'Destroy', project_supervisor, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+

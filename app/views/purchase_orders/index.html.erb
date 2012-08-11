@@ -1,0 +1,62 @@
+<% title (t "menu.purchase_order") %>
+<br />
+<% form_for @search do |f| %>
+  <table class="list" style="width: auto">
+    <tr>
+      <th align="left">PO No</th><td><%= f.text_field :purchase_order_number_like %></td>
+</tr>
+<tr>
+      <th align="left">Supplier</th><td><%= f.select :supplier_id_equals, Supplier.all(:order => "name").map {|c| [c.name, c.id]} , {:include_blank => true} %></td>
+</tr>
+<tr>
+      <th align="left">Project</th><td><%= f.select :purchase_order_items_project_id_equals, Project.all(:order => "name").map {|c| [c.name, c.id]} , {:include_blank => true} %></td>
+</tr>
+<tr>
+      <th align="left">Product</th> <td><%= f.select :purchase_order_items_product_id_equals, Product.all(:order => "name").map {|c| [c.name, c.id]} , {:include_blank => true} %></td>
+</tr>
+<tr>
+      <th align="left">Item</th> <td><%= f.text_field :purchase_order_items_material_description_like %></td>
+</tr>
+<tr>
+      <th align="left"><%=t "common.action" %></th><td><%= f.submit(t "links.search") %></td>
+    </tr>
+    </table>
+<% end %>
+<br />
+<% paginated_section @purchase_orders do %>
+<br />
+<table class="list">
+  <thead>
+  <tr>
+    <th align="left">PO Date</th>
+    <th align="left">PO No</th>
+    <th align="left">Delivery Date</th>
+    <th align="left">Supplier</th>
+    <th align="left">Total</th>
+    <th align="left">Status</th>
+    <th>Action</th>
+  </tr>
+</thead>
+   <tbody>
+<% @purchase_orders.each do |purchase_order| %>
+   <tr class="<%= cycle("odd", "even") %>">
+    <td><%=h purchase_order.purchase_order_date %></td>
+    <td><%=h purchase_order.purchase_order_number %></td>
+    <td><%=h purchase_order.delivery_date %></td>
+    <td><%=h purchase_order.supplier_name %></td>
+    <td>
+       <% purchase_order.total_amount.each do |t| %>
+              <%= t.name  %>  <%= "%.3f" %  t.total %><br />
+           <% end %>
+    </td>
+    <td><%= show_negative_image purchase_order.void? %></td>
+    <td align="center"><%= link_to image_tag("show.png", :title => "show"), purchase_order %>
+    	<%= link_to image_tag("edit.png", :title => "Edit"), edit_purchase_order_path(purchase_order) %>
+    <%= link_to image_tag("delete.png", :title => "Delete"), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+     </tbody>
+</table>
+
+<br />
+<% end %>

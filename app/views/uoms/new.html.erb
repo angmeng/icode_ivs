@@ -1,0 +1,21 @@
+<% title "New UOMs"  %>
+<br />
+<%= link_to 'Back', uoms_path %>
+<br /><br />
+
+<% form_for(@uom) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+

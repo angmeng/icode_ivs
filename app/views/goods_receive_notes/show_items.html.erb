@@ -1,0 +1,107 @@
+<% content_for :head do %>
+  <%= javascript_include_tag("smo") %>
+<% end %>
+<%= link_to "Back", @goods_receive_note %>
+<br /><br/>
+
+<div class="mg10 exhibiton ex01">
+    <div class="exHead">
+        <div class="hTxt">
+            <div class="hTxtContent"><h2>GRN Detail</h2></div>
+        </div>
+        <div class="hLeft"></div>
+        <div class="hRight"></div>
+    </div>
+    <div class="exBody">
+        <div class="content">
+          <table class="list">
+            <tr>
+              <th>GRN No</th>
+              <th>GRN Date</th>
+              <th>S/N</th>
+              <th>DO No</th>
+              <th>Invoice No</th>
+              <th>PO No</th>
+              <th>Supplier</th>
+              <th>Settled</th>
+              <th>Status</th>
+            </tr>
+            <tr align="center">
+              <td><%=h @goods_receive_note.grn_number %></td>
+              <td><%=h @goods_receive_note.grn_date %></td>
+              <td><%=h @goods_receive_note.serial_number %></td>
+              <td><%=h @goods_receive_note.do_number %></td>
+              <td><%=h @goods_receive_note.invoice_number %></td>
+              
+              <td><%=h @goods_receive_note.purchase_order.purchase_order_number %>(<%=h @goods_receive_note.purchase_order.purchase_order_date %>)</td>
+              <td><%=h @goods_receive_note.supplier.name %></td>
+              <td><%=h @goods_receive_note.settled %></td>
+              <td><%= @goods_receive_note.status %></td>
+            </tr>
+          </table>
+        </div>
+    </div>
+    <div class="exFoot">
+        <div class="fLeft"></div>
+        <div class="fRight"></div>
+    </div>
+</div>
+
+<br />
+  <% form_tag(import_items_goods_receive_note_path(@goods_receive_note)) do  %>
+
+  <div class="mg10 exhibiton ex01">
+    <div class="exHead">
+        <div class="hTxt">
+            <div class="hTxtContent"><h2>Import from PO : <%= @purchase_order.purchase_order_number %> Supplier : <%= @purchase_order.supplier.name  %> </h2></div>
+        </div>
+        <div class="hLeft"></div>
+        <div class="hRight"></div>
+    </div>
+    <div class="exBody">
+        <div class="content">
+  
+   <table  class="flexi">
+     <thead>
+    <tr>
+      <th>All <br /><input type="checkbox" name="checkall" onclick="checkUncheckAll(this);"/></th>
+      <th align="left" width="100">Project</th>
+      <th align="left" width="100">Product</th>
+      <th align="left" width="200">Code</th>
+      <th align="left" width="300">Material</th>
+      <th align="left" width="100">Category</th>
+      <th width="100">Quantity</th>
+    </tr>
+    </thead>
+    <tbody>
+  <% @items.each do |p|  %>
+    <tr>
+      <td align="center"><%= check_box_tag "purchase_order_item[#{p.id.to_s}][selected]"  %></td>
+      <td><%= p.project.code rescue "-" %> </td>
+      <td><%= p.product.code rescue "-" %> </td>
+      <td><%= p.material.code %> </td>
+      <td><%= p.material.description %> </td>
+      <td><%= p.material.material_category.name  %> </td>
+      <td align="center"><%= "%.3f" % p.quantity  %> </td>
+    </tr>
+
+  <% end %>
+    </tbody>
+  </table>
+    <p>
+    <%= submit_tag 'Import' %>
+  </p>
+          </div>
+    </div>
+    <div class="exFoot">
+        <div class="fLeft"></div>
+        <div class="fRight"></div>
+    </div>
+</div>
+<% end %>
+  
+  <script type="text/javascript">
+
+ jQuery('.flexi').flexigrid({width:jQuery(window).width()-40,striped:true});
+
+</script>

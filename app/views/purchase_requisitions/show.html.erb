@@ -1,0 +1,155 @@
+<% content_for :head do %>
+  <%= javascript_include_tag("smo") %>
+<% end %>
+<% title "Purchase Requisition" %>
+<br />
+<%= render 'menu' %>
+
+<br /><br />
+<% if @pr.approved? %>
+  <% unless @pr.purchase_orders.empty? %>
+    <%= render "purchase_orders"  %>
+  <% end %>
+<% end %>
+<br /><br />
+<div class="mg10 exhibiton ex01">
+    <div class="exHead">
+        <div class="hTxt">
+            <div class="hTxtContent"><h2>PR Detail</h2></div>
+        </div>
+        <div class="hLeft"></div>
+        <div class="hRight"></div>
+    </div>
+    <div class="exBody">
+        <div class="content">
+          <% form_for(@pr) do |f|  %>
+          <table width="100%">
+            <tr>
+              <td><strong>PR No :</strong> <%= f.text_field :pr_number %></td>
+              <td><strong>PR Date :</strong> <%= f.calendar_date_select :pr_date %></td>
+              <td><strong>Status :</strong> <%= @pr.status %></td>
+            </tr>
+            <tr>
+              <td><strong>Batch No :</strong> <%= f.text_field :batch_no %> </td>
+              <td><strong>BOM/PA :</strong> <%= f.select :purchase_requisition_category_id, PurchaseRequisitionCategory.all(:order => "name").map {|c| [c.name, c.id]}%></td>
+              <td><strong><%= t "common.remark" %> :</strong> <%= f.text_field :remark, :size => "80" %></td>
+            </tr>
+             <tr>
+              <td><strong>Delvery Date :</strong> <%= f.text_field :delivery_date %> </td>
+              <td><strong>Project :</strong> <%= f.select :project_id, options_for_select(@projects, @pr.project_id) %></td>
+              <td><strong>Issued By :</strong> <%= @pr.issued_user.signature_name rescue "-"%></td>
+            </tr>
+            <tr>
+              <td><strong>Printed Currency :</strong> <%= f.select :currency_id, Currency.all.map {|c| [c.name, c.id]} %> </td>
+              <td><strong></strong></td>
+              <td><strong></strong></td>
+            </tr>
+
+          </table>
+          <%= f.submit "Update" %>
+          <% end %>
+        </div>
+    </div>
+    <div class="exFoot">
+        <div class="fLeft"></div>
+        <div class="fRight"></div>
+    </div>
+</div>
+
+
+<br />
+
+<br /><br />
+  <% form_tag edit_items_purchase_requisition_path(@pr) do %>
+  <table class="flexi">
+    <thead>
+    <tr>
+      <th width="15">All <br /><input type="checkbox" name="checkall" onclick="checkUncheckAll(this);"/></th>
+      <th width="40">Remove</th>
+      <th width="70">Status</th>
+      <th width="40">No</th>
+      <th width="160"><%=t "invoice.product" %></th>
+      <th width="280">Material</th>
+      <th width="100">Category</th>
+      <th width="50">UOM</th>
+      <th width="100">PO No</th>
+      <th width="100"><%=t "invoice.quantity" %></th>
+      <th width="100">Stock Quantity</th>
+      <th width="100">Purchase Quantity</th>
+      <th width="50">Currency</th>
+      <th width="80"><%=t "invoice.unit_price" %></th>
+      <th width="80"><%=t "invoice.amount" %></th>
+      <th width="280">Supplier</th>
+      <th width="200">Remark</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <% @current_items.each do |c| %>
+    <tr class="<%= cycle("odd", "even") %>">
+      <td align="center"><%= check_box_tag "item[#{c.id.to_s}][selected]", {}, c.confirmed? %></td>
+      <td align="center"><%= link_to image_tag("delete.png", :title => "Remove"), remove_item_purchase_requisition_path(c), :confirm => 'Are you sure?' %></td>
+      <td align="center"><%= c.status %></td>
+      <td align="center"><%= text_field_tag "item[#{c.id.to_s}][sequence_number]", c.sequence_number , :size => 5 %></td>
+      <td><%= c.product.code_name rescue "-" %></td>
+      <td><%= c.material.code_name rescue "-" %></td>
+      <td><%= c.material.material_category.name rescue "-" %></td>
+      <td align="center"><%= c.material.uom.name rescue "-" %></td>
+      <td align="center"><%= c.purchase_requisition.pr_number rescue "-" %></td>
+      <td align="center"><%= text_field_tag "item[#{c.id.to_s}][quantity]", "%.3f" % c.quantity, :size => 5 %></td>
+      <td align="center"><%= text_field_tag "item[#{c.id.to_s}][stock_quantity]", "%.3f" % c.stock_quantity, :size => 5 %></td>
+      <td align="center"><%= text_field_tag "item[#{c.id.to_s}][purchase_quantity]", "%.3f" % c.purchase_quantity, :size => 5 %></td>
+      <td align="center"><%= c.currency.name %></td>
+      <td align="center"><%= text_field_tag "item[#{c.id.to_s}][unit_price]", "%.3f" % c.unit_price, :size => 8 %></td>
+      <td align="center"><%= "%.3f" %  c.total_amount %></td>
+      <td><%= c.supplier.name %></td>
+      <td><%= link_to "Edit", edit_remark_purchase_requisition_path(c) %> <br /> <%= raw c.remark.gsub("<p>", "").gsub("</p>", "<br />") unless c.remark.blank?  %> </td>
+    </tr>
+     
+    <% end %>
+   
+    </tbody>
+  </table>
+  
+<table  width="100%">
+<tr>
+      <td>
+          <%= submit_tag "Confirm" %>
+      </td>
+      
+      <td width="80%"> <%= submit_tag "Update" %></td>
+      <td align="right" ><hr/><b><%=t ("invoice.total") %></b>
+                             <% @pr.total_amount.each do |t| %>
+                              <%= t.name  %>  <%= "%.3f" % t.total %>
+                             <% end %>
+                         <hr/><hr/>
+      </td>
+      <td>  </td><td></td>
+    </tr>
+    </table>
+
+<% end %>
+<br /><br />
+<div style="width: 100%">
+ 
+    <% form_tag add_items_purchase_requisition_path(@pr) do %>
+     <%= render 'new_items' %>
+    
+     <% end %>
+     <br />
+
+ </div>
+<div id="history" style="width:100%">
+  <% if @history %>
+    <%= render :partial => "history", :locals => {:history => @history} %>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+
+ jQuery('.flexi').flexigrid({width:jQuery(window).width()-40,striped:true});
+
+</script>
+
+
+

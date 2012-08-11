@@ -1,0 +1,28 @@
+<% title "Vehicles" %>
+<br/>
+<%= link_to image_tag("new.png", :title => "New"), new_vehicle_path %>
+<br /><br />
+<table class="list">
+  <thead>
+  <tr>
+    <th align="left">Name</th>
+    <th align="left">Description</th>
+    <th>Disabled</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+   <tbody>
+<% @vehicles.each do |vehicle| %>
+  <tr class="<%= cycle("odd", "even") %>">
+    <td><%=h vehicle.name %></td>
+    <td><%=h vehicle.description %></td>
+    <td align="center"><%=h vehicle.disabled %></td>
+    <td align="center"><%= link_to 'Show', vehicle %>
+    <%= link_to 'Edit', edit_vehicle_path(vehicle) %>
+    <%= link_to 'Destroy', vehicle, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+  </tbody>
+</table>
+
+<br />

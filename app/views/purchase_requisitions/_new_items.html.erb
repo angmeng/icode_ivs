@@ -1,0 +1,56 @@
+<div class="mg10 exhibiton ex06">
+    <div class="exHead">
+        <div class="hTxt">
+            <div class="hTxtContent"><h2>Add New</h2></div>
+        </div>
+        <div class="hLeft"></div>
+        <div class="hRight"></div>
+    </div>
+    <div class="exBody">
+        <div class="content">
+<table>
+  
+  <tr>
+    <th>Product</th><td><%= select_tag "item[product_id]", options_for_select(@products,:selected =>  session[:product_id].to_i)  %> </td>
+  </tr>
+  <tr>
+    <th>Category</th><td><%= select_tag "item[category_id]", options_for_select(@categories), {:onChange => remote_function(:url => {:action => 'search_by_category'},
+    :with => "'id='+this.value")}  %> </td>
+  </tr>
+  <tr>
+    <th>Material</th><td>
+      <div id="material">
+        <%= render :partial => "material", :locals => {:materials => @materials} %>
+      </div>
+
+    </td>
+  </tr>
+  <tr>
+     <th>Supplier</th><td><%= select_tag "item[supplier_id]", options_for_select(@suppliers, :selected => session[:supplier_id].to_i)  %></td>
+  </tr>
+   <tr>
+     <th>Currency</th><td><%= select_tag "item[currency_id]", options_for_select(@currency)  %></td>
+  </tr>
+  <tr>
+    <th>Quantity</th><td><%= text_field_tag "item[quantity]"  %> </td>
+  </tr>
+  <tr>
+    <th>U. Price</th><td><%= text_field_tag "item[unit_price]"  %> </td>
+  </tr>
+  <tr>
+    <th>Remark</th><td><%= text_area_tag "item[remark]" ,{}, :size => "60x2" %> </td>
+  </tr>
+</table>
+ <br />
+     <p style="margin-left: 70px"><%= submit_tag(t "invoice.add_product") if action_name == "show" %></p>
+
+        </div>
+    </div>
+    <div class="exFoot">
+        <div class="fLeft"></div>
+        <div class="fRight"></div>
+    </div>
+</div>
+
+
+

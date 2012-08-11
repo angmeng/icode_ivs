@@ -1,0 +1,21 @@
+
+  <%= link_to image_tag("edit.png", :title => "Edit"), edit_purchase_requisition_path(@pr) %> |
+  <%= link_to image_tag("delete.png", :title => "Delete"), @pr, :confirm => 'Are you sure you want to delete this PR?', :method => :delete %> |
+  <%= link_to image_tag("home.png", :title => "View All"), purchase_requisitions_path %> |
+  <%= link_to image_tag("new.png", :title => "New"), new_purchase_requisition_path %> |
+
+ 
+
+  <% if @pr.is_processing? %>
+     <%= link_to "Send for approval", send_for_approval_purchase_requisition_path(@pr), :confirm => "Are you sure you want to send it for approval ?" %>
+  <% elsif @pr.waiting_for_approval? %>
+     <%= link_to "Approve", approve_purchase_requisition_path(@pr), :confirm => "Are you sure you want to approve this PR ?" %>
+  <% elsif @pr.approved? %>
+     <%= link_to "Regenerate PO", regenerate_purchase_requisition_path(@pr), :confirm => "Are you sure you want to regenerate this PR ?" %>
+     
+  <% end %>
+  |
+    <% form_tag preview_purchase_requisition_path(@pr) do %>
+   <%= text_field_tag "number_rows", "18", :size => 5 %>
+  <%= image_submit_tag("print.png") %>
+  <% end %>

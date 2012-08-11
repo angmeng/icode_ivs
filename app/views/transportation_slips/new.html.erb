@@ -1,0 +1,81 @@
+<% content_for :head do %>
+<%= include_tiny_mce_if_needed %>
+<% end %>
+
+<% title (t "titles.new") %>
+<br />
+<%= link_to 'Back', transportation_slips_path %>
+<br /><br />
+
+<% form_for(@transportation_slip) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :transport_date %><br />
+    <%= f.date_select :transport_date %>
+  </p>
+  <p>
+    <%= f.label :project_id %><br />
+    <%= f.select :project_id, Project.options %>
+  </p>
+  <p>
+    <%= f.label :supplier_id %><br />
+    <%= f.select :supplier_id, Supplier.all(:order => "name").map {|s| [s.name, s.id]}  %>
+  </p>
+  <p>
+    <%= f.label :vehicle_id %><br />
+    <%= f.select :vehicle_id, Vehicle.all(:order => "name").map {|v| [v.name, v.id]} %>
+  </p>
+  <p>
+    <%= f.label :lorry_number %><br />
+    <%= f.text_field :lorry_number %>
+  </p>
+  <p>
+    <%= f.label :description_of_goods %><br />
+    <%= f.text_area :description_of_goods, :size => "60x4", :class => "mceEditor" %>
+  </p>
+  <p>
+    <%= f.label :quantity %><br />
+    <%= f.text_field :quantity %>
+  </p>
+  <p>
+    <%= f.label :from_location %><br />
+    <%= f.text_field :from_location %> 
+  </p>
+    <p>
+    <%= f.label :from_address %><br />
+    <%= f.text_area :from_address, :size => "60x4" %>
+  </p>
+  <p>
+    <%= f.label :to_location %><br />
+    <%= f.text_field :to_location %> 
+  </p>
+   <p>
+    <%= f.label :to_address %><br />
+   <%= f.text_area :to_address, :size => "60x4" %>
+  </p>
+  <p>
+    <%= f.label :driver_name %><br />
+    <%= f.text_field :driver_name %>
+  </p>
+  <p>
+    <%= f.label :driver_ic, "Driver I/C" %><br />
+    <%= f.text_field :driver_ic %>
+  </p>
+  <p>
+    <%= f.label :checked_by %><br />
+    <%= f.text_field :checked_by %>
+  </p>
+  <p>
+    <%= f.label :do_number, "DO" %><br />
+    <%= f.text_field :do_number %>
+  </p>
+  <p>
+    <%= f.label :fee %><br />
+    <%= f.text_field :fee %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+

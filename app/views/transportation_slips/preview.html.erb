@@ -1,0 +1,74 @@
+<style type="text/css">
+  table {font-size:80%;}
+
+</style>
+<h2 style="text-align: center">Transportation Slip</h2>
+
+<table width="100%" style="border:none">
+   <tr>
+      <td style="width: 10%"><strong>Slip No</strong> </td>
+      <td style="width: 60%"><%= @transportation_slip.id %></td>
+      <td style="width: 10%"> </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td style="width: 10%"><strong>Transporter Code</strong> </td>
+      <td style="width: 60%"><%= @transportation_slip.supplier.code rescue "-"  %></td>
+      <td style="width: 10%;" valign="top"><strong>Transporter Name</strong> </td>
+      <td valign="top"><%= @transportation_slip.supplier.name rescue "-" %></td>
+    </tr>
+
+<tr>
+     <td><strong>DO(s) : </strong></td>
+      <td> <%= @transportation_slip.do_number  %></td>
+     <td style="width: 10%"><strong>Date</strong> </td>
+      <td><%= @transportation_slip.transport_date %></td>
+</tr>
+    <tr>
+      <td><strong>Vehicle Type: </strong></td>
+      <td> <%= @transportation_slip.vehicle.name rescue "-" %></td>
+      <td><strong>Lorry No</strong> </td>
+      <td> <%= @transportation_slip.lorry_number %></td>
+    </tr>
+</table>
+<br />
+<table width="100%" style="border:groove" border="1" cellpadding="2" cellspacing="0">
+  <tr>
+    <th align="left">Description of Goods</th>
+    <th align="left">Qty</th>
+    <th align="left">From Loc</th>
+    <th align="left">From Address</th>
+    <th align="left">To Loc</th>
+    <th align="left">To Address</th>
+  </tr>
+	
+  
+  <tr>
+ 
+     <td><%= @transportation_slip.description_of_goods %></td>
+     <td><%= "%.3f" % @transportation_slip.quantity %></td>
+     <td><%= @transportation_slip.from_location %></td>
+      <td><%= @transportation_slip.from_address %></td>
+     <td><%= @transportation_slip.to_location %></td>
+     <td><%= @transportation_slip.to_address %></td>
+     
+  </tr>
+  
+</table>
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+<table width=100%>
+<tr>
+<td>________________________________________</td><td width="60%"></td><td>________________________________________</td>
+</tr>
+<tr>
+<td>Checked By : <%=h @transportation_slip.checked_by %></td><td></td><td>Driver's Name:  <%=h @transportation_slip.driver_name %></td>
+</tr>
+<tr>
+<td></td><td></td><td>Driver's IC No: <%=h @transportation_slip.driver_ic %></td>
+</tr>
+
+
+</table>
+
+
+

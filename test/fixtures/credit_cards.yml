@@ -1,0 +1,17 @@
+one:
+  card_number: MyString
+  card_bank_id: 1
+  reference_id: 1
+  card_type_id: 1
+  card_category_id: 1
+  owner_name: MyString
+  clear: false
+
+two:
+  card_number: MyString
+  card_bank_id: 1
+  reference_id: 1
+  card_type_id: 1
+  card_category_id: 1
+  owner_name: MyString
+  clear: false

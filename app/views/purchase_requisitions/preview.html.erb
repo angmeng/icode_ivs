@@ -1,0 +1,185 @@
+<style type="text/css">
+  table {font-size:70%;}
+  body {font-family: Times-New-Roman}
+
+</style>
+<% line = 0 %>
+
+<% @groups = @items.in_groups_of(@number_rows, false) %>
+<% @groups.each do |item_group|  %>
+
+ <% if @groups.at(0) == item_group %>
+      <h3 style="text-align: center"><%= company_name.upcase %><%# "UNI-VESSEL ENGINEERING (B'WORTH) SDN.BHD." %></h3>
+      <h3 style="text-align: center">PURCHASE REQUISITION</h3>
+
+      <table width="100%" style="border: none">
+              <tr>
+                <td style="width: 10%"><b>Project Title (Code)</b> </td>
+                <td> : </td>
+                <td style="width: 60%"><%= @pr.project.code_name rescue "-" %></td>
+                <td style="width: 10%"><b>PR No.</b> </td>
+                <td> : </td>
+                <td><%=  @pr.pr_number %></td>
+              </tr>
+
+              <tr>
+                <td><b>Batch No</b> </td>
+                <td> : </td>
+                <td> <%= @pr.batch_no %></td>
+                <td style="width: 10%"><b>Date</b> </td>
+                <td> : </td>
+                <td><%= @pr.pr_date.strftime("%d-%m-%Y") %></td>
+              </tr>
+
+              <tr>
+                <td><b></b> </td>
+                <td>  </td>
+                <td> </td>
+                <td><b>BOM / PA</b> </td>
+                <td> : </td>
+                <td> <%= @pr.purchase_requisition_category.name rescue "-" %></td>
+              </tr>
+
+      </table>
+  <% else %>
+      <h3 style="text-align: center">&nbsp;</h3>
+      <h3 style="text-align: center">&nbsp;</h3>
+
+      <table width="100%" style="border: none">
+              <tr>
+                <td style="width: 10%"><b>&nbsp;</b> </td>
+                <td>&nbsp;</td>
+                <td style="width: 60%">&nbsp;</td>
+                <td style="width: 10%"><b>&nbsp;</b> </td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+
+              <tr>
+                <td><b>&nbsp;</b> </td>
+                <td> &nbsp; </td>
+                <td> &nbsp;</td>
+                <td style="width: 10%"><b>&nbsp;</b> </td>
+                <td> &nbsp; </td>
+                <td>&nbsp;</td>
+              </tr>
+
+              <tr>
+                <td><b></b> </td>
+                <td>  </td>
+                <td> </td>
+                <td><b>&nbsp;</b> </td>
+                <td> &nbsp; </td>
+                <td> &nbsp;</td>
+              </tr>
+
+      </table>
+
+  <% end %>
+
+<br />
+<table border="1" style="width: 100%;border-style: solid;border-color: #111113;border-collapse: collapse;" cellpadding="2">
+  <tr>
+    <th style="width: 5%">No</th>
+
+    <th style="width: 8%">Product</th>
+    <th style="width: 8%">Category</th>
+    <th style="width: 20%">Description of Item</th>
+    <th style="width: 5%">Qty</th>
+    <th style="width: 5%">UOM</th>
+    <th style="width: 5%">Stock Qty</th>
+    <th style="width: 5%">Pur Qty</th>
+    <th style="width: 5%">PO No.</th>
+    <th style="width: 8%">U/Price</th>
+    <th style="width: 8%">Total Amount</th>
+    <th style="width: 8%">Supplier</th>
+    <th style="width: 20%">Remark</th>
+  </tr>
+   <% internal_line = 0 %>
+  <% item_group.each do |c|  %>
+   <% internal_line += 1 %>
+  <% line += 1 %>
+ 
+  <tr valign="top">
+    <td align="center"><%= line.to_s %>  </td>
+
+    <td><%= c.product.name rescue "-" %></td>
+    <td><%= c.material.material_category.name rescue "-" %></td>
+    <td><%= c.material.code + " : " + c.material.description %></td>
+    <td align="center"><%= "%.3f" % c.quantity %></td>
+    <td align="center"><%= c.material.uom.name rescue "-" %></td>
+    <td align="center"><%= "%.3f" % c.stock_quantity %></td>
+    <td align="center"><%= "%.3f" % c.purchase_quantity %></td>
+    <td align="center"><%= @pr.purchase_orders.first(:conditions => ["supplier_id = ?", c.supplier_id]).purchase_order_number rescue "-" %></td>
+    <td align="center"><%=  c.currency.name %> <%= "%.3f" % c.unit_price %></td>
+    <td align="center"><%=  c.currency.name %> <%= "%.3f" % c.total_amount %></td>
+    <td><%= c.supplier.name[0,10] %></td>
+    <td><%= raw c.remark.gsub("<p>", "").gsub("</p>", "<br />") unless c.remark.blank? %></td>
+  </tr>
+  <% end %>
+
+  <% if @groups.at(-1) == item_group %>
+    <tr>
+    <td colspan="3"></td>
+    <td align="center"><strong>ITEM : <%= line.to_s  %> ONLY </strong> </td>
+    <td colspan="6">  </td>
+    <td align="center"> <strong> <% @pr.total_amount.each do |t| %>
+              <%= t.name  %>  <%= "%.3f" % t.total %><br />
+           <% end %></strong></td>
+    <td colspan="2"></td>
+    </tr>
+
+
+  <% end %>
+  </table>
+<% (@number_rows - internal_line ).times do %>
+  <br />
+<% end %>
+  <% end %>
+
+
+<br />
+<table style="width: 100%">
+  <tr>
+    <td  style="width: 20%">
+      <table border="1" style="width: 100%;border-style: none;border-color: #111113;border-collapse: collapse;" cellpadding="2">
+        <tr>
+          <td height="20px">
+               <br /><br />
+               <br /><br />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            
+            Issued By - <%= @pr.issued_user.signature_name rescue "-"  %> <br />
+            Date :
+          </td>
+        </tr>
+      </table>
+     
+    </td>
+    <td width="60%"></td>
+
+    <td style="width: 20%">
+      <table border="1" style="width: 100%;border-style: none;border-color: #111113;border-collapse: collapse;" cellpadding="2">
+        <tr>
+          <td height="20px">
+              <br /><br />
+              <br /><br />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            
+            Approved By - KY. Low <br />
+            Date :
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+
+

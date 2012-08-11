@@ -1,0 +1,33 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  transport_date: 2011-01-13
+  project_id: 1
+  supplier_id: 1
+  vehicle_id: 1
+  lorry_number: MyString
+  description_of_goods: MyString
+  quantity: 1
+  from_location: MyString
+  to_location: MyString
+  driver_name: MyString
+  driver_ic: MyString
+  checked_by: MyString
+  do_number: MyString
+  fee: 9.99
+
+two:
+  transport_date: 2011-01-13
+  project_id: 1
+  supplier_id: 1
+  vehicle_id: 1
+  lorry_number: MyString
+  description_of_goods: MyString
+  quantity: 1
+  from_location: MyString
+  to_location: MyString
+  driver_name: MyString
+  driver_ic: MyString
+  checked_by: MyString
+  do_number: MyString
+  fee: 9.99

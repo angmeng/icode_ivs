@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  outlet_id: 1
+  grn_number: MyString
+  grn_date: 2010-05-18
+  remark: MyText
+  void: false
+  settled: false
+
+two:
+  outlet_id: 1
+  grn_number: MyString
+  grn_date: 2010-05-18
+  remark: MyText
+  void: false
+  settled: false

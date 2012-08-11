@@ -1,0 +1,25 @@
+
+<% title "Listing Terms" %>
+<br />
+<%= link_to image_tag("new.png", :title => "New"), new_term_path %>
+<br />
+<br />
+<table class="list">
+  <tr>
+    <th align="left">Name</th>
+    <th align="left">Description</th>
+    <th>Action</th>
+  </tr>
+
+<% @terms.each do |term| %>
+  <tr>
+    <td><%=h term.name %></td>
+    <td><%=h term.description %></td>
+    <td align="center"><%= link_to 'Show', term %>
+    <%= link_to 'Edit', edit_term_path(term) %>
+    <%= link_to 'Destroy', term, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />

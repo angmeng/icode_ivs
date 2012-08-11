@@ -1,0 +1,22 @@
+<% form_for @document_storage, :html=> {:multipart => true} do |f| %>
+  <%= f.error_messages %>
+  
+    <%= f.hidden_field :document_category_id, :value => session[:document_category_id] %>
+    <p>  
+      <%= f.label :document, (t "document.filename") %>  <br />
+      <%= f.file_field :document %>  
+   </p>  
+   
+   <p>     
+    <%= f.label :description, (t "common.description") %> <br />
+    <%= f.text_area :description, :size => "60x6" %>  
+  </p>  
+   <p>  
+     <%= f.submit(t "links.submit") %>
+   </p>  
+  
+ 
+<% end %>
+
+
+  

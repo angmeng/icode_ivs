@@ -1,0 +1,57 @@
+<% title (t "titles.new") %>
+<br />
+ <%= link_to (t "links.view_all"), purchase_requisitions_path %>
+<br /><br />
+<% form_for @pr do |f| %>
+  <%= f.error_messages %>
+  <%= f.hidden_field :issued_user_id, :value => current_user.id %>
+  <table width="60%">
+    <tr>
+      <th align="left"><%= f.label :pr_date, "PR Date" %><br />
+        <%= f.date_select :pr_date %>
+      </th>
+      <th align="left"><%= f.label :delivery_date %><br />
+        <%= f.text_field :delivery_date %>
+      </th>
+    </tr>
+    <tr>
+      
+      <th align="left"><%= f.label :purchase_requisition_category_id, "BOM/PA" %><br />
+        <%= f.select :purchase_requisition_category_id, PurchaseRequisitionCategory.all(:order => "name").map {|c| [c.name, c.id]} %>
+      </th>
+      <th align="left">
+	<%= f.label :batch_no %><br />
+        <%= f.text_field :batch_no %>
+      </th>
+    </tr>
+    <tr>
+      <th colspan="4" align="left">
+	<%= f.label :project_id %><br />
+       <%= f.select :project_id, options_for_select(@projects)  %>
+      </th>
+    </tr>
+    <tr>
+      <th colspan="4" align="left">
+	<%= f.label :remark, (t "common.remark") %><br />
+        <%= f.text_area :remark, :size => "120x2" %>
+      </th>
+    </tr>
+  </table>
+  
+  <br/>
+  <hr/>
+  <br/>
+  <div style="width: 100%">
+     <%= render 'new_items' %>
+     <br />
+  <p style="margin-left: 70px"><%= f.submit(t "links.submit") %></p>
+    <% end %>
+
+ </div>
+<div id="history" style="width:100%">
+  <% if @history %>
+    <%= render :partial => "history", :locals => {:history => @history} %>
+  <% end %>
+</div>
+
+

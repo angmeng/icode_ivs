@@ -1,0 +1,26 @@
+<% title "Editing Material Groups"  %>
+<br/>
+<%= link_to 'Show', @material_group %> |
+<%= link_to 'Back', material_groups_path %>
+<br /><br/>
+<% form_for(@material_group) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </p>
+<p>
+    <%= f.label :is_counting, "Need KG value?" %><br />
+    <%= f.check_box :is_counting %>
+  </p>
+
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+

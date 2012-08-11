@@ -1,0 +1,22 @@
+<h1>Listing purchase_requisition_categories</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+
+<% @purchase_requisition_categories.each do |purchase_requisition_category| %>
+  <tr>
+    <td><%=h purchase_requisition_category.name %></td>
+    <td><%=h purchase_requisition_category.description %></td>
+    <td><%= link_to 'Show', purchase_requisition_category %></td>
+    <td><%= link_to 'Edit', edit_purchase_requisition_category_path(purchase_requisition_category) %></td>
+    <td><%= link_to 'Destroy', purchase_requisition_category, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New purchase_requisition_category', new_purchase_requisition_category_path %>
