@@ -28,7 +28,8 @@
     <th style="border-style: solid;border-width: thick;border-right: none;padding: 2px 2px 2px 2px">Description</th>
 
     <th style="border-style: solid;border-width: thick;border-right: none;padding: 2px 2px 2px 2px">Qty</th>
-
+    <th style="border-style: solid;border-width: thick;border-right: none;padding: 2px 2px 2px 2px">Delivered</th>
+    <th style="border-style: solid;border-width: thick;border-right: none;padding: 2px 2px 2px 2px">Pending</th>
     <th style="border-style: solid;border-width: thick;border-right: none;padding: 2px 2px 2px 2px">U. Price</th>
 
     <th style="border-style: solid;border-width: thick;border-right: none;padding: 2px 2px 2px 2px">Supplier</th>
@@ -61,7 +62,7 @@
 
 	    <% if !@project_total_based_on_currency.blank? %>
 	     <tr>
-	       <td colspan="8" style="width: 100%;height: 30px;text-align: right;border-style: solid;border-width: thin;">
+	       <td colspan="10" style="width: 100%;height: 30px;text-align: right;border-style: solid;border-width: thin;">
 	         <h2>Total : <%= @project_total_based_on_currency.map {|key, value| "#{key}  #{number_with_precision(value, :precision => 3)}" }.join(", ") %></h2>
 	       </td>
 	     </tr>
@@ -69,11 +70,18 @@
 	    <% @project_total_based_on_currency = { item.currency.name => item.total_amount } %>
 	    <% @project_name = item.purchase_order.project.name %>
 	     <tr>
-	       <td colspan="8" style="height: 38px;width: 100%;border-style: solid;border-width: thin;">
+	       <td colspan="10" style="height: 38px;width: 100%;border-style: solid;border-width: thin;">
 	         <h2><%= @project_name %></h2>
 	       </td>
 	     </tr>
 	     <% end %>
+
+    <% 
+      delivered_qty = 0
+      GoodsReceiveNoteItem.all(:conditions => ["purchase_order_item_id = ?", item.id]).each do |grn_item|
+        delivered_qty += grn_item.deliver_quantity
+      end
+    %>
    <tr>
     <td style="width: auto;border-style: solid;border-width: thin;border-bottom: none;border-right: none"><%=h item.purchase_order.purchase_order_date %></td>
     <td style="width: auto;border-style: solid;border-width: thin;border-bottom: none;border-right: none"><%=h item.purchase_order.purchase_order_number %></td>
@@ -81,7 +89,9 @@
     <td style="width: auto;border-style: solid;border-width: thin;border-bottom: none;border-right: none"><%=h item.product.name rescue " - "  %></td>
     <td style="width: auto;border-style: solid;border-width: thin;border-bottom: none;border-right: none"><%=h item.material.description rescue " - "  %></td>
 
-    <td style="width: auto;border-style: solid;border-width: thin;border-bottom: none;border-right: none"><%=h item.quantity rescue " - "  %></td>
+    <td style="width: auto;border-style: solid;border-width: thin;border-bottom: none;border-right: none;text-align:right;"><%=h item.quantity rescue " - "  %></td>
+    <td style="width: auto;border-style: solid;border-width: thin;border-bottom: none;border-right: none;text-align:right;"><%=h delivered_qty %></td>
+    <td style="width: auto;border-style: solid;border-width: thin;border-bottom: none;border-right: none;text-align:right;"><%=h item.quantity - delivered_qty  %></td>
 
     <td style="width: auto;border-style: solid;border-width: thin;border-bottom: none;border-right: none;text-align:right;"><%=h "%.3f" % item.unit_price rescue " - "  %></td>
 
@@ -92,7 +102,7 @@
 <% end %>
     <% if !@project_total_based_on_currency.blank?  %>
       <tr>
-       <td colspan="8" style="width: 100%;height: 30px;text-align: right;border-style: solid;border-width: thin;">
+       <td colspan="10" style="width: 100%;height: 30px;text-align: right;border-style: solid;border-width: thin;">
          <h2>Total : <%= @project_total_based_on_currency.map {|key, value| "#{key}  #{ number_with_precision(value, :precision => 3)}" }.join(", ") %></h2>
        </td>
      </tr>
