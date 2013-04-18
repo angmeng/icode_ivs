@@ -88,7 +88,7 @@
     <% @current_items.each do |c| %>
     <tr class="<%= cycle("odd", "even") %>">
       <td align="center"><%= check_box_tag "item[#{c.id.to_s}][selected]", {}, c.confirmed? %></td>
-      <td align="center"><%= link_to image_tag("delete.png", :title => "Remove"), remove_item_purchase_requisition_path(c), :confirm => 'Are you sure?' %></td>
+      <td align="center"><%= link_to image_tag("delete.png", :title => "Remove"), remove_item_purchase_requisition_path(c), :confirm => 'Are you sure?', :method => :delete %></td>
       <td align="center"><%= c.status %></td>
       <td align="center"><%= text_field_tag "item[#{c.id.to_s}][sequence_number]", c.sequence_number , :size => 5 %></td>
       <td><%= c.product.code_name rescue "-" %></td>

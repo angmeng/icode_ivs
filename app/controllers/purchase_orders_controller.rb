@@ -23,7 +23,7 @@ class PurchaseOrdersController < ApplicationController
   # GET /purchase_orders.xml
   def index
     @search = PurchaseOrder.search(params[:search])
-    @purchase_orders = @search.all.uniq.paginate(:page => params[:page], :per_page => 30, :order => "purchase_order_number DESC")
+    @purchase_orders = @search.all(:order => "purchase_order_date DESC").paginate(:page => params[:page], :per_page => 30)
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @purchase_orders }
