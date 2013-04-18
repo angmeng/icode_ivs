@@ -1,5 +1,6 @@
 class PurchaseOrdersController < ApplicationController
-  before_filter :authenticated_admin_and_user
+  before_filter :authenticated_admin, :except => [:received, :index]
+  before_filter :authenticated_admin_and_user, :only => [:received, :index]
   before_filter :set_locale
 
    uses_tiny_mce :only => [:edit_remark],
@@ -91,6 +92,16 @@ class PurchaseOrdersController < ApplicationController
       render :action => 'new'
     end
   end
+
+  def received
+    @purchase_order = PurchaseOrder.find(params[:id])
+    @current_items = GoodsReceiving.new(@purchase_order).items
+  end
+
+  # def pending
+  #   @purchase_order = PurchaseOrder.find(params[:id])
+  #   @purchase_order.goods_receive_notes
+  # end
   
   def complete
     purchase_order = PurchaseOrder.find(params[:id])

@@ -2,7 +2,7 @@ class TransportationSlipsController < ApplicationController
   before_filter :authenticated_admin_and_user
   before_filter :set_locale
 
-uses_tiny_mce :only => [:edit, :new],
+  uses_tiny_mce :only => [:edit, :new],
                 :options => {
                         :theme => 'advanced',
                         :theme_advanced_resizing => true,

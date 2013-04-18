@@ -147,7 +147,7 @@ class PurchaseRequisition < ActiveRecord::Base
   def generate_po_for_suppliers
     @result.each do |r|
       po = purchase_orders.first(:conditions => ["supplier_id = ?", r.id])
-      po = purchase_orders.create!(:approved_user_id => approved_user_id, :purchased_user_id => issued_user_id,:project_id => project_id, :supplier_id => r.id, :purchase_order_date => Date.today, :term => r.term, :delivery_date => delivery_date) unless po
+      po = purchase_orders.create!(:approved_user_id => approved_user_id, :purchased_user_id => issued_user_id,:project_id => project_id, :supplier_id => r.id, :purchase_order_date => Date.today, :term => r.term, :delivery_date => delivery_date, :expected_delivery_date => expected_delivery_date) unless po
       r.prepared_requisition_items.each do |item|
         po_item = po.purchase_order_items.new
         po_item.product_id = item.product_id
@@ -170,7 +170,7 @@ class PurchaseRequisition < ActiveRecord::Base
      g_items_ids = []
      @result.each do |r|
       po = purchase_orders.first(:conditions => ["supplier_id = ?", r.id])
-      po = purchase_orders.create!(:approved_user_id => approved_user_id, :purchased_user_id => issued_user_id, :project_id => project_id,:supplier_id => r.id, :purchase_order_date => Date.today, :term => r.term, :delivery_date => delivery_date) unless po
+      po = purchase_orders.create!(:approved_user_id => approved_user_id, :purchased_user_id => issued_user_id, :project_id => project_id,:supplier_id => r.id, :purchase_order_date => Date.today, :term => r.term, :delivery_date => delivery_date, :expected_delivery_date => expected_delivery_date) unless po
       
       r.prepared_requisition_items.each do |item|
         po_item = item.purchase_order_item

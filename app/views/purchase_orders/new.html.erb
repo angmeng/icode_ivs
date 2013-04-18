@@ -13,7 +13,10 @@
     <%= f.date_select :purchase_order_date %>
 	</th>
   	</tr>
-	
+	<p>
+    <%= f.label :expected_delivery_date %><br />
+    <%= f.calendar_date_select :expected_delivery_date %>
+  </p>
 	<tr>
 		<th>
 			 <%= f.label :supplier_id, (t "purchase_invoice.supplier") %><br />

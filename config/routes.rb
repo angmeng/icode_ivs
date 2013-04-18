@@ -19,7 +19,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'purchase_requisitions/search_by_category', :controller => "purchase_requisitions", :action => "search_by_category"
   map.resources :purchase_requisitions, :member => {:update_po => :post, :edit_remark => :get, :update_remark => :post, :remove_item => :delete, :generate => :get, :regenerate => :get, :send_for_approval => :get, :approve => :get, :void => :get, :edit_items => :post, :preview => :post, :add_items => :post}
 
-  map.resources :purchase_orders, :member => {:edit_remark => :get, :update_remark => :post, :update_info => :post, :submit_pricing => :post, :complete => :get, :void => :get, :remove_item => :get, :preview => :post, :add_items => :post},
+  map.resources :purchase_orders, :member => {:received => :get, :pending => :get, :edit_remark => :get, :update_remark => :post, :update_info => :post, :submit_pricing => :post, :complete => :get, :void => :get, :remove_item => :get, :preview => :post, :add_items => :post},
                                   :collection => {:show_product => :get}
 
   map.resources :purchase_requisition_categories

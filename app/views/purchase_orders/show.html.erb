@@ -37,14 +37,16 @@
                 <td><strong>Delivery Date / To</strong></td><td> : </td> <td><%= @purchase_order.delivery_date %> / <%= @purchase_order.deliver_to %></td>
                 <td><strong>Term</strong></td><td> : </td> <td><%=  @purchase_order.term %></td>
               </tr>
+              <tr>
+                <td><strong>Expected Delivery Date</strong></td><td> : </td> <td><%= @purchase_order.expected_delivery_date %></td>
+                <td><strong>Currency</strong></td><td> : </td> <td><%= @purchase_order.currency.name rescue "-" %></td>
+                
+              </tr>
                <tr>
                 <td><strong><%= t "common.remark" %></strong></td><td> : </td> <td><%= @purchase_order.remark %></td>
                 <td><strong>Project</strong></td><td> : </td> <td><%=  @purchase_order.project.code_name rescue "-" %></td>
               </tr>
-              <tr>
-                <td><strong>Currency</strong></td><td> : </td> <td><%= @purchase_order.currency.name rescue "-" %></td>
-                <td></td><td>  </td> <td></td>
-              </tr>
+              
               <tr>
 
                 <td colspan="4" align="center"><% submit_tag "Update"  %>  </td>

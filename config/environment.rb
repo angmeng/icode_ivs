@@ -1,7 +1,7 @@
 # Be sure to restart your server when you modify this file
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.3.14' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.3.18' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -20,11 +20,10 @@ Rails::Initializer.run do |config|
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
   #config.gem 'thoughtbot-paperclip', :lib => 'paperclip', :source => 'http://gems.github.com'
-  config.gem "searchlogic"#, :version => "2.5.8"
+  config.gem "searchlogic", :version => "2.5.6"
   config.gem "calendar_date_select"
   config.gem "prawn"
-  config.gem "paperclip"#, :version => "2.3.11"
-  #config.gem "pdf_reader", :lib => "pdf/reader"
+  config.gem "paperclip", :version => "2.7.5"
   #config.gem 'laserlemon-vestal_versions', :lib => 'vestal_versions', :source => 'http://gems.github.com'
   config.gem "repeated_auto_complete"
   config.gem 'will_paginate', :version => '2.3.16'

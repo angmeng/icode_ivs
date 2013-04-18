@@ -18,6 +18,10 @@
   <p><%= f.label :delivery_date %><br />
         <%= f.text_field :delivery_date %>
       </p>
+
+      <p><%= f.label :expected_delivery_date %><br />
+        <%= f.calendar_date_select :expected_delivery_date %>
+      </p>
   
    <p><%= f.label :purchase_requisition_category_id, "BOM/PA" %><br />
         <%= f.select :purchase_requisition_category_id, PurchaseRequisitionCategory.all(:order => "name").map {|c| [c.name, c.id]} %>

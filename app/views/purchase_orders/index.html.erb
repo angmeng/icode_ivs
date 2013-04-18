@@ -32,9 +32,14 @@
     <th align="left">PO No</th>
     <th align="left">Delivery Date</th>
     <th align="left">Supplier</th>
-    <th align="left">Total</th>
+    <% if is_admin? %>
+      <th align="left">Total</th>
+    <% end %>
     <th align="left">Status</th>
-    <th>Action</th>
+    <% if is_admin? %>
+      <th>Action</th>
+    <% end %>
+    <th>Report</th>
   </tr>
 </thead>
    <tbody>
@@ -44,15 +49,21 @@
     <td><%=h purchase_order.purchase_order_number %></td>
     <td><%=h purchase_order.delivery_date %></td>
     <td><%=h purchase_order.supplier_name %></td>
+    <% if is_admin? %>
     <td>
        <% purchase_order.total_amount.each do |t| %>
               <%= t.name  %>  <%= "%.3f" %  t.total %><br />
            <% end %>
     </td>
+    <% end %>
     <td><%= show_negative_image purchase_order.void? %></td>
-    <td align="center"><%= link_to image_tag("show.png", :title => "show"), purchase_order %>
-    	<%= link_to image_tag("edit.png", :title => "Edit"), edit_purchase_order_path(purchase_order) %>
-    <%= link_to image_tag("delete.png", :title => "Delete"), :confirm => 'Are you sure?', :method => :delete %></td>
+    <% if is_admin? %>
+      <td align="center"><%= link_to image_tag("show.png", :title => "show"), purchase_order %>
+      	<%= link_to image_tag("edit.png", :title => "Edit"), edit_purchase_order_path(purchase_order) %>
+      <%= link_to image_tag("delete.png", :title => "Delete"), :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
+    <td align="center"><%= link_to 'Receiving', received_purchase_order_path(purchase_order) %>
+    </td>
   </tr>
 <% end %>
      </tbody>

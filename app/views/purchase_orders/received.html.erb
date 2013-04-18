@@ -1,0 +1,130 @@
+<% title "PO items receiving report" %>
+
+<br />
+<%= link_to image_tag("home.png", :title => "View All"), purchase_orders_path %>
+<br /><br />
+
+
+<div class="mg10 exhibiton ex01">
+    <div class="exHead">
+        <div class="hTxt">
+            <div class="hTxtContent"><h2>PO Detail</h2></div>
+        </div>
+        <div class="hLeft"></div>
+        <div class="hRight"></div>
+    </div>
+    <div class="exBody">
+        <div class="content">
+
+            <table>
+              <tr>
+                <td><strong>PO No</strong></td><td> : </td> <td><%= @purchase_order.purchase_order_number %></td>
+
+                <td><strong>Date</strong></td><td> : </td> <td><%= @purchase_order.purchase_order_date.strftime("%d-%m-%Y") %></td>
+              </tr>
+              <tr>
+                <td style="width: 10%"><strong><%= t "purchase_invoice.supplier" %></strong></td><td> : </td> <td style="width: 60%"><%= @purchase_order.supplier_name %></td>
+                <td style="width: 10%"><strong>Supplier Code</strong></td><td> : </td> <td style="width: 60%"><%= @purchase_order.supplier.code %></td>
+
+              </tr>
+               <tr>
+                <td style="width: 10%"><strong>Address</strong></td><td> : </td> <td style="width: 60%"><%= @purchase_order.supplier.address %></td>
+                <td style="width: 10%"><strong>Office No</strong></td><td> : </td> <td style="width: 60%"><%= @purchase_order.supplier.office_phone %></td>
+
+              </tr>
+              <tr>
+                <td><strong>Delivery Date / To</strong></td><td> : </td> <td><%= @purchase_order.delivery_date %> / <%= @purchase_order.deliver_to %></td>
+                <td><strong>Term</strong></td><td> : </td> <td><%=  @purchase_order.term %></td>
+              </tr>
+              <tr>
+                <td><strong>Expected Delivery Date</strong></td><td> : </td> <td><%= @purchase_order.expected_delivery_date %></td>
+                <td><strong>Currency</strong></td><td> : </td> <td><%= @purchase_order.currency.name rescue "-" %></td>
+
+              </tr>
+               <tr>
+                <td><strong><%= t "common.remark" %></strong></td><td> : </td> <td><%= @purchase_order.remark %></td>
+                <td><strong>Project</strong></td><td> : </td> <td><%=  @purchase_order.project.code_name rescue "-" %></td>
+              </tr>
+
+            </table>
+            <br /> <br />
+        </div>
+    </div>
+    <div class="exFoot">
+        <div class="fLeft"></div>
+        <div class="fRight"></div>
+    </div>
+</div>
+
+<br />
+
+<div class="mg10 exhibiton ex01">
+    <div class="exHead">
+        <div class="hTxt">
+            <div class="hTxtContent"><h2>PO Received Item Detail</h2></div>
+        </div>
+        <div class="hLeft"></div>
+        <div class="hRight"></div>
+    </div>
+    <div class="exBody">
+        <div class="content">
+        
+         <br /><br />
+            <table class="flexi">
+              <thead>
+                <tr>
+                    <th align="center" width="40"> No </th>
+                   
+                    <th align="left" width="180">Product</th>
+                    <th align="left" width="280">Material</th>
+                    <th width="80">UOM</th>
+                    <th width="80"><%=t "invoice.quantity" %></th>
+                    <% if is_admin? %>
+                      <th width="80">Currency</th>
+                      <th width="80"><%=t "invoice.unit_price" %></th>
+                    <% end %>
+                    <th width="80">Received Qty</th>
+                    <th width="300">Pending Qty</th>
+                </tr>
+               </thead>
+              <tbody>
+                <% line = 0 %>
+              <% @current_items.each do |c| %>
+                <% line += 1 %>
+                <% material = Material.find(c.material_id) %>
+               <tr class="<%= cycle("odd", "even") %>">
+                 <td align="center"><%= line.to_s %></td>
+            
+                 <td><%= Product.find(c.product_id).code_name rescue "-" %></td>
+                 <td><%= material.code_name %></td>
+                 <td align="center"><%= material.uom.name rescue "Not Assigned" %></td>
+                 <td align="center"><%= "%.3f" % c.quantity %></td>
+                 <% if is_admin? %>
+                   <td align="center"><%= Currency.find(c.currency_id).name %></td>
+                   <td align="center"><%= "%.3f" % c.unit_price %></td>
+                 <% end %>
+                 <td align="center"> <%= c.delivered_qty %></td>
+                 <td align="center"><%= c.pending_qty %></td>
+              </tr>
+
+            <% end %>
+
+            </tbody>
+            </table>
+            <br/>
+
+        </div>
+    </div>
+    <div class="exFoot">
+        <div class="fLeft"></div>
+        <div class="fRight"></div>
+    </div>
+</div>
+<script type="text/javascript">
+
+ jQuery('.flexi').flexigrid({width:jQuery(window).width()-80,striped:true});
+
+</script>
+
+
+

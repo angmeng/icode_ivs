@@ -1,5 +1,5 @@
 class PurchaseRequisitionsController < ApplicationController
-  before_filter :authenticated_admin_and_user
+  before_filter :authenticated_admin
   before_filter :set_locale
   before_filter :find_pr, :except => [:update_remark, :edit_remark, :remove_item, :index, :new, :create, :search_by_category, :search_by_material, :replace_material_id]
 

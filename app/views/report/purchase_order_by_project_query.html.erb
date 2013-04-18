@@ -5,9 +5,14 @@
     <tr>
       <th align="left">From Date</th><td><%= f.calendar_date_select :purchase_order_purchase_order_date_gte %></td>
       <th align="left">To Date</th><td><%= f.calendar_date_select :purchase_order_purchase_order_date_lte %></td>
+     <tr>
+      <th align="left">From expected delivery date</th><td><%= f.calendar_date_select :purchase_order_expected_delivery_date_gte %></td>
+      <th align="left">To expected delivery date</th><td><%= f.calendar_date_select :purchase_order_expected_delivery_date_lte %></td>
+    </tr>
+    <tr>
       <th align="left">Project</th><td><%= f.select :purchase_order_project_id_equals, Project.all(:order => "name").map {|s| [s.name, s.id]}, :include_blank => true %></td>
       <th align="left"> </th><td><%= f.submit(t "links.search") %> | <%= link_to "Back", "/report/purchase_order_by_project_query"   %></td>
-</tr>
+   </tr>
 </table>
 <% end %>
 <br />
@@ -21,6 +26,11 @@
     <th style="border-style: solid;border-width: thick;border-right: none;padding: 2px 2px 2px 2px">PO No</th>
     <th style="border-style: solid;border-width: thick;border-right: none;padding: 2px 2px 2px 2px">Product</th>
     <th style="border-style: solid;border-width: thick;border-right: none;padding: 2px 2px 2px 2px">Description</th>
+
+    <th style="border-style: solid;border-width: thick;border-right: none;padding: 2px 2px 2px 2px">Qty</th>
+
+    <th style="border-style: solid;border-width: thick;border-right: none;padding: 2px 2px 2px 2px">U. Price</th>
+
     <th style="border-style: solid;border-width: thick;border-right: none;padding: 2px 2px 2px 2px">Supplier</th>
     <th style="border-style: solid;border-width: thick;padding: 2px 2px 2px 2px">Total</th>
     
@@ -51,7 +61,7 @@
 
 	    <% if !@project_total_based_on_currency.blank? %>
 	     <tr>
-	       <td colspan="6" style="width: 100%;height: 30px;text-align: right;border-style: solid;border-width: thin;">
+	       <td colspan="8" style="width: 100%;height: 30px;text-align: right;border-style: solid;border-width: thin;">
 	         <h2>Total : <%= @project_total_based_on_currency.map {|key, value| "#{key}  #{number_with_precision(value, :precision => 3)}" }.join(", ") %></h2>
 	       </td>
 	     </tr>
@@ -59,7 +69,7 @@
 	    <% @project_total_based_on_currency = { item.currency.name => item.total_amount } %>
 	    <% @project_name = item.purchase_order.project.name %>
 	     <tr>
-	       <td colspan="6" style="height: 38px;width: 100%;border-style: solid;border-width: thin;">
+	       <td colspan="8" style="height: 38px;width: 100%;border-style: solid;border-width: thin;">
 	         <h2><%= @project_name %></h2>
 	       </td>
 	     </tr>
@@ -70,14 +80,19 @@
     
     <td style="width: auto;border-style: solid;border-width: thin;border-bottom: none;border-right: none"><%=h item.product.name rescue " - "  %></td>
     <td style="width: auto;border-style: solid;border-width: thin;border-bottom: none;border-right: none"><%=h item.material.description rescue " - "  %></td>
+
+    <td style="width: auto;border-style: solid;border-width: thin;border-bottom: none;border-right: none"><%=h item.quantity rescue " - "  %></td>
+
+    <td style="width: auto;border-style: solid;border-width: thin;border-bottom: none;border-right: none;text-align:right;"><%=h "%.3f" % item.unit_price rescue " - "  %></td>
+
     <td style="width: auto;border-style: solid;border-width: thin;border-bottom: none;border-right: none"><%=h item.purchase_order.supplier_name rescue " - "  %></td>
-    <td style="width: auto;border-style: solid;border-width: thin;border-bottom: none;"><%= "#{item.currency.name} " + ("%.3f" % item.total_amount) %></td>
+    <td style="width: auto;border-style: solid;border-width: thin;border-bottom: none;text-align:right;"><%= "#{item.currency.name} " + ("%.3f" % item.total_amount) %></td>
    </tr>
    
 <% end %>
     <% if !@project_total_based_on_currency.blank?  %>
       <tr>
-       <td colspan="6" style="width: 100%;height: 30px;text-align: right;border-style: solid;border-width: thin;">
+       <td colspan="8" style="width: 100%;height: 30px;text-align: right;border-style: solid;border-width: thin;">
          <h2>Total : <%= @project_total_based_on_currency.map {|key, value| "#{key}  #{ number_with_precision(value, :precision => 3)}" }.join(", ") %></h2>
        </td>
      </tr>

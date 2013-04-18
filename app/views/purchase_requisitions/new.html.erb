@@ -11,7 +11,9 @@
         <%= f.date_select :pr_date %>
       </th>
       <th align="left"><%= f.label :delivery_date %><br />
-        <%= f.text_field :delivery_date %>
+        <%= f.text_field :delivery_date %><br/>
+        <%= f.label :expected_delivery_date %><br />
+        <%= f.calendar_date_select :expected_delivery_date %>
       </th>
     </tr>
     <tr>

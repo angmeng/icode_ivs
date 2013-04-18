@@ -40,8 +40,8 @@
               <td><strong>Issued By :</strong> <%= @pr.issued_user.signature_name rescue "-"%></td>
             </tr>
             <tr>
+              <td><strong>Expected Delvery Date :</strong> <%= f.calendar_date_select :expected_delivery_date %></td>
               <td><strong>Printed Currency :</strong> <%= f.select :currency_id, Currency.all.map {|c| [c.name, c.id]} %> </td>
-              <td><strong></strong></td>
               <td><strong></strong></td>
             </tr>
 

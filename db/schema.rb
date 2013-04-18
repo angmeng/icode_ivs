@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110921063613) do
+ActiveRecord::Schema.define(:version => 20130416070224) do
 
   create_table "accessible_menus", :force => true do |t|
     t.string   "name",        :limit => 45
@@ -278,7 +278,10 @@ ActiveRecord::Schema.define(:version => 20110921063613) do
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_counting",               :default => false
   end
+
+  add_index "material_groups", ["is_counting"], :name => "index_material_groups_on_is_counting"
 
   create_table "materials", :force => true do |t|
     t.string   "code",                 :limit => 45
@@ -289,6 +292,7 @@ ActiveRecord::Schema.define(:version => 20110921063613) do
     t.text     "remark"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "kg",                                 :precision => 19, :scale => 3, :default => 0.0
   end
 
   add_index "materials", ["material_category_id"], :name => "index_materials_on_material_category_id"
@@ -450,6 +454,7 @@ ActiveRecord::Schema.define(:version => 20110921063613) do
     t.integer  "purchased_user_id",                     :default => 0
     t.integer  "approved_user_id",                      :default => 0
     t.integer  "currency_id",                           :default => 0
+    t.date     "expected_delivery_date"
   end
 
   add_index "purchase_orders", ["approved_user_id"], :name => "index_purchase_orders_on_approved_user_id"
@@ -507,6 +512,7 @@ ActiveRecord::Schema.define(:version => 20110921063613) do
     t.string   "delivery_date",                    :limit => 45
     t.integer  "project_id"
     t.integer  "currency_id",                                    :default => 0
+    t.date     "expected_delivery_date"
   end
 
   add_index "purchase_requisitions", ["approved_user_id"], :name => "index_purchase_requisitions_on_approved_user_id"

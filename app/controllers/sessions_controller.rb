@@ -22,7 +22,7 @@ class SessionsController < ApplicationController
     else
       flash.now[:error] = (t "flashes.invalid_login")
       render :action => 'new'
-    end    
+    end
     #else
     #   flash[:error] = "Your license is expired. Please contact your administrator"
     #   redirect_to login_url
@@ -30,10 +30,14 @@ class SessionsController < ApplicationController
   end
   
   def destroy
-   
+    admin = is_admin? ?  true : false
     reset_session
     flash[:notice] = (t "flashes.successfully_logout")
-    redirect_to admin_url
+    if admin
+      redirect_to admin_url
+    else
+      redirect_to root_url
+    end
    
   end
   

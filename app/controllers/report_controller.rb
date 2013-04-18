@@ -1,8 +1,8 @@
 class ReportController < ApplicationController
   before_filter :authenticated_admin_and_user
   before_filter :set_locale
-  
-  prawnto :prawn => { :top_margin => 75 }  
+
+  prawnto :prawn => { :top_margin => 75 }
   
   def purchase_order_by_project_query
     @search = PurchaseOrderItem.search(params[:search])
@@ -48,10 +48,8 @@ class ReportController < ApplicationController
     else
       @purchase_orders = []
     end
-    
   end
-  
-  
+
 #  def sales
 #    
 #  end
