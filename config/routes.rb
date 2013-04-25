@@ -115,7 +115,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'report/:action/:id.:format', :controller => 'report'
   map.connect 'kawaii/:action/:id.:format', :controller => 'kawaii'
   map.connect 'home/:action/:id.:format', :controller => 'home'
-  map.root :controller => 'sessions', :action => 'new'
+  map.root :controller => 'home', :action => 'index'
 
   # The priority is based upon order of creation: first created -> highest priority.
 

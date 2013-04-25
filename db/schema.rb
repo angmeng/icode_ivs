@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130416070224) do
+ActiveRecord::Schema.define(:version => 20130422054307) do
 
   create_table "accessible_menus", :force => true do |t|
     t.string   "name",        :limit => 45
@@ -547,19 +547,21 @@ ActiveRecord::Schema.define(:version => 20130416070224) do
   add_index "reserved_purchase_orders", ["purchase_order_id"], :name => "index_reserved_purchase_orders_on_purchase_order_id"
 
   create_table "return_note_items", :force => true do |t|
-    t.integer  "return_note_id",                                :default => 0
-    t.integer  "project_id",                                    :default => 0
-    t.integer  "product_id",                                    :default => 0
-    t.integer  "material_id",                                   :default => 0
-    t.decimal  "quantity",       :precision => 12, :scale => 3, :default => 0.0
+    t.integer  "return_note_id",                                        :default => 0
+    t.integer  "project_id",                                            :default => 0
+    t.integer  "product_id",                                            :default => 0
+    t.integer  "material_id",                                           :default => 0
+    t.decimal  "quantity",               :precision => 12, :scale => 3, :default => 0.0
     t.string   "remark"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "purchase_order_item_id",                                :default => 0
   end
 
   add_index "return_note_items", ["material_id"], :name => "index_return_note_items_on_material_id"
   add_index "return_note_items", ["product_id"], :name => "index_return_note_items_on_product_id"
   add_index "return_note_items", ["project_id"], :name => "index_return_note_items_on_project_id"
+  add_index "return_note_items", ["purchase_order_item_id"], :name => "index_return_note_items_on_purchase_order_item_id"
   add_index "return_note_items", ["return_note_id"], :name => "index_return_note_items_on_return_note_id"
 
   create_table "return_notes", :force => true do |t|
