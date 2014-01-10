@@ -1,7 +1,21 @@
 class Engineer
   #gem install rubyzip, nokogiri, spreadsheet, google-spreadsheet, spreadsheet-excel
   #apt-get install libxslt1-dev
-  require 'roo'
+  #require 'roo'
+  require 'spreadsheet'
+  Spreadsheet.client_encoding = 'UTF-8'
+
+  def self.export_material_list
+    book = Spreadsheet::Workbook.new
+    sheet1 = book.create_worksheet
+    sheet1.row(0).concat %w{Code Name Category UOM}
+    num = 0
+    Material.find_each do |product|
+      num += 1
+      sheet1.row(num).push product.code, product.description, (product.material_category.name rescue "-"), (product.uom.name rescue "-")
+    end
+    book.write "#{RAILS_ROOT}/public/material_list.xls"
+  end
 
   def self.check_supplier
     Supplier.all.each do |s|
