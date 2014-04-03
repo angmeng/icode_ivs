@@ -7,7 +7,7 @@ class ReportController < ApplicationController
   def purchase_order_by_project_query
     @search = PurchaseOrderItem.search(params[:search])
     if params[:search]
-      @purchase_orders = @search.all(:joins => [:product, {:purchase_order => [:supplier, :project]}], :conditions => ["deleted = ? and void = ?", false, false], :order => "projects.name, products.name, suppliers.name")
+      @purchase_orders = @search.all(:joins => [:product, {:purchase_order => [:supplier, :project]}], :conditions => ["deleted = ? and void = ?", false, false], :order => "projects.name, products.name, suppliers.name").uniq
       render :layout => "purchase_order_report"
     else
       @purchase_orders = []
@@ -17,7 +17,7 @@ class ReportController < ApplicationController
   def purchase_order_by_supplier_query
     @search = PurchaseOrderItem.search(params[:search])
     if params[:search]
-      @purchase_orders = @search.all(:joins => [:product, {:purchase_order => [:supplier, :project]}], :conditions => ["deleted = ? and void = ?", false, false], :order => "suppliers.name, projects.name, products.name")
+      @purchase_orders = @search.all(:joins => [:product, {:purchase_order => [:supplier, :project]}], :conditions => ["deleted = ? and void = ?", false, false], :order => "suppliers.name, projects.name, products.name").uniq
       render :layout => "purchase_order_report"
     else
       @purchase_orders = []
@@ -27,7 +27,7 @@ class ReportController < ApplicationController
   def purchase_order_by_product_query
     @search = PurchaseOrderItem.search(params[:search])
     if params[:search]
-      @purchase_orders = @search.all(:joins => [:product, {:purchase_order => [:supplier, :project]}], :conditions => ["deleted = ? and void = ?", false, false], :order => "products.name, projects.name, suppliers.name")
+      @purchase_orders = @search.all(:joins => [:product, {:purchase_order => [:supplier, :project]}], :conditions => ["deleted = ? and void = ?", false, false], :order => "products.name, projects.name, suppliers.name").uniq
       render :layout => "purchase_order_report"
     else
       @purchase_orders = []
@@ -39,9 +39,9 @@ class ReportController < ApplicationController
     if params[:search]
       if params[:order_by]
         @sort = params[:order_by].split(", ")
-        @purchase_orders = @search.all(:joins => [:product, {:purchase_order => [:supplier, :project]}], :conditions => ["deleted = ? and void = ?", false, false], :order => "#{@sort[0]}.name, #{@sort[1]}.name, #{@sort[2]}.name")
+        @purchase_orders = @search.all(:joins => [:product, {:purchase_order => [:supplier, :project]}], :conditions => ["deleted = ? and void = ?", false, false], :order => "#{@sort[0]}.name, #{@sort[1]}.name, #{@sort[2]}.name").uniq
       else
-        @purchase_orders = @search.all(:joins => [:product, {:purchase_order => [:supplier, :project]}], :conditions => ["deleted = ? and void = ?", false, false], :order => "products.name, projects.name, suppliers.name")
+        @purchase_orders = @search.all(:joins => [:product, {:purchase_order => [:supplier, :project]}], :conditions => ["deleted = ? and void = ?", false, false], :order => "products.name, projects.name, suppliers.name").uniq
       end
      @material_category = MaterialCategory.find_by_id(params[:search][:material_material_category_id_equals].to_i)
      render :layout => "purchase_order_report"
