@@ -23,7 +23,7 @@ Rails::Initializer.run do |config|
   config.gem "searchlogic", :version => "2.5.6"
   config.gem "calendar_date_select"
   config.gem "prawn"
-  config.gem "paperclip", :version => "2.7.5"
+  config.gem "paperclip" #, :version => "2.7.5"
   #config.gem 'laserlemon-vestal_versions', :lib => 'vestal_versions', :source => 'http://gems.github.com'
   config.gem "repeated_auto_complete"
   config.gem 'will_paginate', :version => '2.3.16'

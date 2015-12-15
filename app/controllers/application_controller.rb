@@ -18,14 +18,18 @@ class ApplicationController < ActionController::Base
   
   protected
   
-  def check_menu_accessible
-    if is_admin? and current_user_department_id > 1
-      found = AccessibleMenu.find_by_name(controller_name)
-      unless current_user.department.accessible_menus.include?(found)
+  def check_authorization
+    if is_user?
+      unless can_access?(controller_name)
         flash[:error] = "Unauthorized access"
         redirect_to home_url
       end
     end
+  end
+
+  def can_access?(target)
+    found = AccessibleMenu.find_by_name(target)
+    current_user.department.accessible_menus.include?(found)
   end
     
   def set_locale
@@ -35,14 +39,14 @@ class ApplicationController < ActionController::Base
   def authenticated_admin
     unless is_admin?
       flash[:error] = "Unauthorized access"
-      redirect_to logout_url
+      redirect_invalid_access
     end
   end
   
   def authenticated_admin_and_user
     unless is_admin? or is_user?
       flash[:error] = "Unauthorized access"
-      redirect_to logout_url
+      redirect_invalid_access
     end
   end
   
@@ -58,15 +62,15 @@ class ApplicationController < ActionController::Base
   
   
   def is_admin?
-    current_user.department_id == Department::ADMIN
+    current_user && current_user.department_id == Department::ADMIN
   end
   
   def is_super_admin?
-    current_user.department_id == Department::ADMIN
+    current_user && current_user.department_id == Department::ADMIN
   end
 
   def is_user?
-    current_user.department_id > Department::ADMIN
+    current_user && current_user.department_id > Department::ADMIN
   end
   
   
@@ -81,6 +85,14 @@ class ApplicationController < ActionController::Base
   def redirect_back_or_default(default)
     redirect_to(session[:back] || default)
     session[:back] = nil
+  end
+
+  def redirect_invalid_access
+    if current_user
+      redirect_to root_url
+    else
+      redirect_to admin_url
+    end
   end
   
 end

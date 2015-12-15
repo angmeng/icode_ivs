@@ -1,7 +1,12 @@
       <div id='welcome'>
-        Welcome, <%= current_user.username rescue current_user.nickname  %>
-        <%= link_to "Profile", current_user   %> |
-        <%= link_to "Logout", logout_url %>
+        <% if current_user %>
+          Welcome, <%= current_user.username rescue current_user.nickname  %>
+          <%= link_to "Profile", current_user   %> |
+          <%= link_to "Logout", logout_url %>
+        <% else %>
+          <%= link_to "Login", admin_url %> |
+          <a href="#" onclick="Modalbox.show($('about'), { title: this.title }); return false;" title="About DSS">About</a>
+        <% end %>
         <!--<div id='jumpbox'>
           <a class="" href="#">Campaigns</a> | 
           <a class="" href="#">Accounts</a> |

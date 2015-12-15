@@ -36,6 +36,9 @@ module ApplicationHelper
     end
   end
   
- 
+  def can_access?(target)
+    found = AccessibleMenu.find_by_name(target)
+    current_user.department.accessible_menus.include?(found)
+  end
  
 end

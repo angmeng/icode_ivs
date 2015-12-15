@@ -1,0 +1,22 @@
+<% title "Menu" %>
+<p><%= link_to image_tag("new.png", :title => "New"), new_accessible_menu_path %></p>
+<table>
+  <tr>
+    <th style="text-align:left;">Name</th>
+    <th style="text-align:left;">Description</th>
+    <th>Link</th>
+    <th>Action</th>
+  </tr>
+  <% @menus.each do |menu| %>
+    <tr>
+      <td><%=h menu.name %></td>
+      <td><%=h menu.description %></td>
+      <td><%=h menu.link  %></td>
+      <td style="text-align:center;"><%= link_to "Show", menu %>
+      <%= link_to "Edit", edit_accessible_menu_path(menu) %>
+      <%= link_to "Destroy", menu, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+

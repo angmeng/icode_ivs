@@ -23,12 +23,13 @@
        <div id='header'>
         <%= render :partial => '/layouts/header' %>
        </div>
-	   
+	  <% if current_user %> 
       <% if is_admin? %>
-	  <%= render :partial => '/layouts/admin_menu'  %>
+  	    <%= render :partial => '/layouts/admin_menu'  %>
       <% elsif is_user? %>
-	  <%= render :partial => '/layouts/user_menu'  %>
+  	    <%= render :partial => '/layouts/user_menu'  %>
       <% end %>
+    <% end %>
 
      <div style='float:left;margin-left:20px;width:80%;'>
 	         <% flash.each do |name, msg| %>

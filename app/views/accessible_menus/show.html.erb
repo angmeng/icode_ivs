@@ -1,0 +1,20 @@
+<% title "Menu" %>
+
+<p>
+  <strong>Name:</strong>
+  <%=h @menu.name %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%=h @menu.description %>
+</p>
+<p>
+  <strong>Link:</strong>
+  <%=h @menu.link %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_accessible_menu_path(@menu) %> |
+  <%= link_to "Destroy", @menu, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", accessible_menus_path %>
+</p>

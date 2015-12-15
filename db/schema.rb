@@ -9,13 +9,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130422054307) do
+ActiveRecord::Schema.define(:version => 20151215110545) do
 
   create_table "accessible_menus", :force => true do |t|
     t.string   "name",        :limit => 45
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "link",                      :default => "/"
   end
 
   create_table "authorizations", :force => true do |t|
@@ -292,7 +293,7 @@ ActiveRecord::Schema.define(:version => 20130422054307) do
     t.text     "remark"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "kg",                                 :precision => 19, :scale => 3, :default => 0.0
+    t.decimal  "kg",                                 :precision => 19, :scale => 3
   end
 
   add_index "materials", ["material_category_id"], :name => "index_materials_on_material_category_id"
@@ -453,12 +454,14 @@ ActiveRecord::Schema.define(:version => 20130422054307) do
     t.string   "deliver_to",              :limit => 45
     t.integer  "purchased_user_id",                     :default => 0
     t.integer  "approved_user_id",                      :default => 0
-    t.integer  "currency_id",                           :default => 0
+    t.integer  "currency_id",                           :default => 1
     t.date     "expected_delivery_date"
   end
 
   add_index "purchase_orders", ["approved_user_id"], :name => "index_purchase_orders_on_approved_user_id"
+  add_index "purchase_orders", ["currency_id"], :name => "index_purchase_orders_on_currency_id"
   add_index "purchase_orders", ["imported"], :name => "index_purchase_orders_on_imported"
+  add_index "purchase_orders", ["project_id"], :name => "index_purchase_orders_on_project_id"
   add_index "purchase_orders", ["purchased_user_id"], :name => "index_purchase_orders_on_purchased_user_id"
   add_index "purchase_orders", ["supplier_id"], :name => "index_purchase_orders_on_supplier_id"
   add_index "purchase_orders", ["term"], :name => "index_purchase_orders_on_term_id"
@@ -505,18 +508,19 @@ ActiveRecord::Schema.define(:version => 20130422054307) do
     t.integer  "company_id",                                     :default => 1
     t.boolean  "deleted",                                        :default => false
     t.integer  "issued_user_id",                                 :default => 0
-    t.integer  "approved_user_id",                               :default => 0
+    t.integer  "approved_user_id",                               :default => 6
     t.string   "batch_no",                         :limit => 45
     t.integer  "purchase_requisition_category_id",               :default => 0,     :null => false
     t.integer  "status_id",                        :limit => 1,  :default => 0,     :null => false
     t.string   "delivery_date",                    :limit => 45
     t.integer  "project_id"
-    t.integer  "currency_id",                                    :default => 0
+    t.integer  "currency_id",                                    :default => 1
     t.date     "expected_delivery_date"
   end
 
   add_index "purchase_requisitions", ["approved_user_id"], :name => "index_purchase_requisitions_on_approved_user_id"
   add_index "purchase_requisitions", ["company_id"], :name => "index_purchase_invoices_on_company_id"
+  add_index "purchase_requisitions", ["currency_id"], :name => "index_purchase_requisitions_on_currency_id"
   add_index "purchase_requisitions", ["issued_user_id"], :name => "index_purchase_requisitions_on_issued_user_id"
   add_index "purchase_requisitions", ["project_id"], :name => "index_purchase_requisitions_on_project_id"
   add_index "purchase_requisitions", ["purchase_requisition_category_id"], :name => "index_purchase_requisitions_on_purchase_requisition_category_id"
@@ -568,9 +572,9 @@ ActiveRecord::Schema.define(:version => 20130422054307) do
     t.string   "grn_number",     :limit => 20
     t.date     "grn_date"
     t.integer  "supplier_id",                  :default => 0,     :null => false
-    t.integer  "do_number"
+    t.string   "do_number"
     t.string   "serial_number",  :limit => 45
-    t.string   "invoice_number", :limit => 45
+    t.string   "invoice_number"
     t.string   "remark"
     t.boolean  "void",                         :default => false
     t.boolean  "settled",                      :default => false

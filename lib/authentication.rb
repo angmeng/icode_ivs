@@ -28,8 +28,6 @@ module Authentication
         @current_user ||= OutletStaff.find(session[:outlet_staff_id]) 
       end
     end
-
-    
   end
   
   def logged_in?
@@ -40,7 +38,7 @@ module Authentication
     unless logged_in?
       flash[:error] = "You must first log in or sign up before accessing this page."
       store_target_location
-      redirect_to login_url
+      redirect_invalid_access
     end
   end
   
