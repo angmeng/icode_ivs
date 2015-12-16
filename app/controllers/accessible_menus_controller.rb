@@ -3,7 +3,7 @@ class AccessibleMenusController < ApplicationController
   before_filter :set_locale
   
   def index
-    @menus = AccessibleMenu.all
+    @menus = AccessibleMenu.all(:order => "name")
   end
   
   def show
