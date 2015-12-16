@@ -2,35 +2,49 @@
   <ul>
     <li><a href="#" ><%=t 'menu.inventory' %></a>
        <ul>
-          <li><a href="/store_locations"><%=t 'menu.location' %></a></li>
-          <li><a href="/stock_adjustments"><%=t 'menu.stock_adjustment' %></a></li>
-          <li><a href="/stock_transfers"><%=t 'menu.stock_transfer' %></a></li>
-          <li><a href="/goods_receive_notes">Goods Receive Note</a></li>
-          <li><a href="/return_notes">Goods Return Note</a></li>
-          <li><a href="/transportation_slips">Transportation Slip</a></li>
+          <% if can_access?("store_locations") %>
+            <li><a href="/store_locations"><%=t 'menu.location' %></a></li>
+          <% end %>
+          <% if can_access?("stock_adjustments") %>
+            <li><a href="/stock_adjustments"><%=t 'menu.stock_adjustment' %></a></li>
+          <% end %>
+          <% if can_access?("stock_transfers") %>
+            <li><a href="/stock_transfers"><%=t 'menu.stock_transfer' %></a></li>
+          <% end %>
+          <% if can_access?("goods_receive_notes") %>
+            <li><a href="/goods_receive_notes">Goods Receive Note</a></li>
+          <% end %>
+          <% if can_access?("return_notes") %>
+            <li><a href="/return_notes">Goods Return Note</a></li>
+          <% end %>
+          <% if can_access?("transportation_slips") %>
+            <li><a href="/transportation_slips">Transportation Slip</a></li>
+          <% end %>
        </ul>
     </li>
 
     <li><a href="#" >Material</a>
        <ul>
+        <% if can_access?("materials") %>
           <li><a href="/materials">Material</a></li>
-
+        <% end %>
        </ul>
     </li>
      <li><a href="#"><%=t 'menu.ap_management' %></a>
        <ul>
+        <% if can_access?("purchase_orders") %>
           <li><a href="/purchase_orders"><%=t 'menu.purchase_order' %></a></li>
+        <% end %>
        </ul>
     </li>
 
     <li><a href="#"><%=t 'menu.admin' %></a>
        <ul>
+        <% if can_access?("document_storages") %>
           <li><a href="/document_storages/category_index"><%=t 'menu.document' %></a></li>
+        <% end %>
        </ul>
     </li>
-
-
-
 
   </ul>
 </div>

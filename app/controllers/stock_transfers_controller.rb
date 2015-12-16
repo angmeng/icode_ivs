@@ -1,5 +1,6 @@
 class StockTransfersController < ApplicationController
   before_filter :authenticated_admin_and_user
+  before_filter :check_authorization
   before_filter :set_locale
   # GET /stock_transfers
   # GET /stock_transfers.xml

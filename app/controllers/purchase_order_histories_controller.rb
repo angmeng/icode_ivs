@@ -1,4 +1,5 @@
 class PurchaseOrderHistoriesController < ApplicationController
+  before_filter :authenticated_admin
   # GET /purchase_order_histories
   # GET /purchase_order_histories.xml
   def index

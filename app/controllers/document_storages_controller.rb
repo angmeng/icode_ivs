@@ -1,5 +1,6 @@
 class DocumentStoragesController < ApplicationController
   before_filter :authenticated_admin_and_user
+  before_filter :check_authorization
   before_filter :set_locale
   
   def category_index

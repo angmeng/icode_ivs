@@ -1,6 +1,7 @@
 class KawaiiController < ApplicationController
   include KawaiiAuthentication
   before_filter :authenticated_admin_and_user
+  before_filter :check_authorization
   before_filter :set_locale
   protect_from_forgery
   

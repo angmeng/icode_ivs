@@ -1,5 +1,6 @@
 class GoodsReceiveNotesController < ApplicationController
   before_filter :authenticated_admin_and_user
+  before_filter :check_authorization
   before_filter :set_locale
 
   uses_tiny_mce :only => [:edit_remark],

@@ -1,4 +1,5 @@
 class ProjectSupervisorsController < ApplicationController
+  before_filter :authenticated_admin
   # GET /project_supervisors
   # GET /project_supervisors.xml
   def index

@@ -1,5 +1,6 @@
 class ProductGroupsController < ApplicationController
   before_filter :authenticated_admin_and_user
+  before_filter :check_authorization
   before_filter :set_locale
   # GET /product_groups
   # GET /product_groups.xml

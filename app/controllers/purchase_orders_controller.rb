@@ -1,6 +1,7 @@
 class PurchaseOrdersController < ApplicationController
   before_filter :authenticated_admin, :except => [:received, :index]
   before_filter :authenticated_admin_and_user, :only => [:received, :index]
+  before_filter :check_authorization, :only => [:received, :index]
   before_filter :set_locale
 
    uses_tiny_mce :only => [:edit_remark],

@@ -1,5 +1,6 @@
 class PurchaseOrderItemsController < ApplicationController
   before_filter :authenticated_admin_and_user
+  before_filter :check_authorization
   before_filter :set_locale
   # GET /purchase_order_items
   # GET /purchase_order_items.xml
